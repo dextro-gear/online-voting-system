@@ -14,6 +14,7 @@ import com.cg.onlinevotingsystem.cooperativesocietyms.service.ICooperativeSociet
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 
@@ -25,19 +26,24 @@ class OnlineVotingSystemCooperativeSocietyTest {
 	@Mock
 	ICooperativeSocietyDaoRepository repository;
 
+
+	@Test
+	public void AddSocietyDetailsTest(){
+		CooperativeSociety society1 = new CooperativeSociety(5,"mighin","milesha","surhi","gantantra","kahar","480808");
+		service.addSocietyDetails(society1);
+		verify(repository,times(1)).addSocietyDetails(society1);
+
+	}
+
 	
 	@Test
 	public void ViewSocietyByIDTest( ) {
-		when(repository.findById(1)).thenReturn(new CooperativeSociety(1,"hanal","viven",
-				"maliha","mahilaa","kunur","302608");
+		when(repository.findById(1)).thenReturn(new CooperativeSociety(1,"hanal","viven","maliha","mahilaa","kunur","302608");
 		CooperativeSociety s1 = service.viewSocietyById(1);
 		Assertions.assertEquals("hanal",s1.getSocietyName());
 		Assertions.assertEquals("viven",s1.getHeadOfSociety());
 		Assertions.assertEquals("maliha",s1.getVillage());
 		Assertions.assertEquals("mahila",s1.getMandal());
-
-		
-
 	}
 	@Test
 	public void ViewSocietyListTest(){
@@ -51,13 +57,7 @@ class OnlineVotingSystemCooperativeSocietyTest {
 
 
 	}
-	@Test
-	public void AddSocietyDetailsTest(){
-		CooperativeSociety society1 = new CooperativeSociety(5,"mighin","milesha","surhi","gantantra","kahar","480808");
-        service.addSocietyDetails(society1);
-        verify(repository,times(1)).addSocietyDetails(society1);
 
-	}
 
 
 }
