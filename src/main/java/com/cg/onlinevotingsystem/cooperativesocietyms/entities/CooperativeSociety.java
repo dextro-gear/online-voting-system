@@ -9,7 +9,7 @@ public class CooperativeSociety {
 	private String mandal;
 	private String district;
 	private String pincode;
-	
+
 	public CooperativeSociety() {
 		
 	}
