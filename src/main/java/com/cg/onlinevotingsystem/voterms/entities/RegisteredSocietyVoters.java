@@ -2,9 +2,11 @@ package com.cg.onlinevotingsystem.voterms.entities;
 
 import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+@Entity
 public class RegisteredSocietyVoters {
     @GeneratedValue
     @Id
@@ -25,31 +27,40 @@ public class RegisteredSocietyVoters {
     private CooperativeSociety society;
     private boolean castedVote;
 
-    public RegisteredSocietyVoters(){
-
+    public RegisteredSocietyVoters() {
+        this.voterIDCardNo = null;
+        this.firstName = null;
+        this.lastName = null;
+        this.gender = null;
+        this.password = null;
+        this.reservationCategory = null;
+        this.mobileNo = null;
+        this.emailID = null;
+        this.address1 = null;
+        this.address2 = null;
+        this.mandal = null;
+        this.district = null;
+        this.pincode = 0;
+        this.castedVote = false;
+        this.cooperativeSociety = null;
     }
 
-    public RegisteredSocietyVoters(String voterIdCardNo,String firstName, String lastName, String gender, String password, String reservationCategory,
-                                   String mobileNo, String emailId, String address1, String address2, String mandal, String district, int pincode, CooperativeSociety society,
-                                   boolean castedVote) {
-        super();
-
-        this.voterIdCardNo = voterIdCardNo;
+    public RegisteredSocietyVoters(String voterIDCardNo, String firstName, String lastName, String gender, String password, String reservationCategory, String mobileNo, String emailID, String address1, String address2, String mandal, String district, int pincode, boolean castedVote, CooperativeSociety cooperativeSociety) {
+        this.voterIDCardNo = voterIDCardNo;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.password = password;
         this.reservationCategory = reservationCategory;
         this.mobileNo = mobileNo;
-        this.emailId =emailId;
+        this.emailID = emailID;
         this.address1 = address1;
         this.address2 = address2;
         this.mandal = mandal;
         this.district = district;
         this.pincode = pincode;
-        this.society = society;
         this.castedVote = castedVote;
-
+        this.cooperativeSociety = cooperativeSociety;
     }
 
     public int getId() {

@@ -11,7 +11,7 @@ public class NominatedCandidates{
     @GeneratedValue
     private int candidateID;
 
-    String nominationFormNo;
+    private String nominationFormNo;
 
 //    RegisteredSocietyVoters societyVoter;
 

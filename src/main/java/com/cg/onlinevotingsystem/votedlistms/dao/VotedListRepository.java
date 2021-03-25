@@ -1,4 +1,7 @@
 package com.cg.onlinevotingsystem.votedlistms.dao;
 
-public interface VotedListRepository {
+import com.cg.onlinevotingsystem.votedlistms.entities.VotedList;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface VotedListRepository extends JpaRepository<VotedList, Integer> {
 }
