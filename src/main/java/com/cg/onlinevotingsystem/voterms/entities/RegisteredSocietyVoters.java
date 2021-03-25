@@ -5,6 +5,7 @@ import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociet
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class RegisteredSocietyVoters {
@@ -24,6 +25,7 @@ public class RegisteredSocietyVoters {
     private String mandal;
     private String district;
     private int pincode;
+    @OneToOne
     private CooperativeSociety cooperativeSociety;
     private boolean castedVote;
 

@@ -4,11 +4,12 @@ import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociet
 import com.cg.onlinevotingsystem.nominatedcandidatems.entities.NominatedCandidates;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import java.util.Date;
-
+@Entity
 public class VotedList {
 
     @GeneratedValue

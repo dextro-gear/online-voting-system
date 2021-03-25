@@ -2,9 +2,10 @@ package com.cg.onlinevotingsystem.nominatedcandidatems.entities;
 
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
+@Entity
 public class NominatedCandidates{
 
     @Id

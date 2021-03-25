@@ -31,7 +31,7 @@ class OnlineVotingSystemCooperativeSocietyTest {
 	public void AddSocietyDetailsTest(){
 		CooperativeSociety society1 = new CooperativeSociety(5,"mighin","milesha","surhi","gantantra","kahar","480808");
 		service.addSocietyDetails(society1);
-		verify(repository,times(1)).addSocietyDetails(society1);
+		verify(service,times(1)).addSocietyDetails(society1);
 
 	}
 
@@ -52,7 +52,7 @@ class OnlineVotingSystemCooperativeSocietyTest {
 		CooperativeSociety society2 = new CooperativeSociety(3,"Meraki","mahira","devgarh","janana","Kaman","610401");
 		list.add(society1);
 		list.add(society2);
-		when(repository.viewSocietyList()).thenReturn(list);
+		when(service.viewSocietyList()).thenReturn(list);
 
 
 
