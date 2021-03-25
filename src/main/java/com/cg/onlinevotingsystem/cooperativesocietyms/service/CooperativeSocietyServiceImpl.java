@@ -5,39 +5,49 @@ import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociet
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CooperativeSocietyServiceImpl implements ICooperativeSocietyService{
     @Autowired
-    ICooperativeSocietyDaoRepository repository;
+    ICooperativeSocietyDaoRepository cooperativeSocietyRepository;
 
 
     @Override
     public CooperativeSociety addSocietyDetails(CooperativeSociety society) {
-        return null;
+           CooperativeSociety s1 = new CooperativeSociety();
+           return cooperativeSocietyRepository.save(s1) ;
     }
 
     @Override
     public CooperativeSociety updateSocietyDetails(CooperativeSociety society) {
         CooperativeSociety s1 = new CooperativeSociety();
-        return repository.save(s1);
+        s1.setSocietyId(society.getSocietyId());
+        return cooperativeSocietyRepository.save(s1);
     }
 
     @Override
-    public CooperativeSociety deleteSociety(CooperativeSociety societyId) {
-        return null;
+    public CooperativeSociety deleteSociety(int societyId) {
+        Optional<CooperativeSociety> cooperativeSocietyOptional = this.cooperativeSocietyRepository.findById(societyId);
+        if(cooperativeSocietyOptional.isPresent())
+            cooperativeSocietyRepository.delete(cooperativeSocietyOptional.get());
+        return cooperativeSocietyOptional.get();
     }
 
     @Override
     public List<CooperativeSociety> viewSocietyList() {
-        return null;
+        return this.cooperativeSocietyRepository.findAll();
     }
 
     @Override
     public CooperativeSociety viewSocietyById(int societyId) {
-        return null;
+        Optional<CooperativeSociety> cooperativeSocietyOptional = this.cooperativeSocietyRepository.findById(societyId);
+        if (cooperativeSocietyOptional.isPresent())
+            return cooperativeSocietyOptional.get() ;
+        else
+            return null;
     }
 
 }

@@ -7,7 +7,7 @@ import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociet
 public interface ICooperativeSocietyService {
 	 CooperativeSociety addSocietyDetails(CooperativeSociety society);
 	 CooperativeSociety updateSocietyDetails(CooperativeSociety society);
-	 CooperativeSociety deleteSociety(CooperativeSociety societyId);
+	 CooperativeSociety deleteSociety(int societyId);
 	 List<CooperativeSociety>viewSocietyList();
 	 CooperativeSociety viewSocietyById(int societyId);
 	

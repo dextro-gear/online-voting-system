@@ -53,10 +53,8 @@ class OnlineVotingSystemCooperativeSocietyTest {
 		list.add(society1);
 		list.add(society2);
 		when(service.viewSocietyList()).thenReturn(list);
-
-
-
 	}
+
 
 
 
