@@ -19,9 +19,4 @@ public class VotedListServiceImplUnitTest {
     VotedListServiceImpl service ;
 
 
-    @Test
-    public void TestCastVotedList_1(){
-
-    }
-
 }

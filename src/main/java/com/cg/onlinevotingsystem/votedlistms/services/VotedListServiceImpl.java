@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Optional;
 
 public class VotedListServiceImpl implements VotedListService {
 
@@ -24,25 +25,46 @@ public class VotedListServiceImpl implements VotedListService {
     @Override
     // this method will update the detail in the record
     public VotedList updateVotedListDetails(int votedListID, RegisteredSocietyVoters voter, NominatedCandidates candidate, CooperativeSociety society) {
-        return null;
+        Optional<VotedList> votedListOptional=votedListRepository.findById(votedListID);
+       if (votedListOptional.isPresent())
+       {
+          VotedList vote=votedListOptional.get();
+          vote.setVoter(voter);
+          vote.setCandidate(candidate);
+          vote.setSociety(society);
+          return votedListRepository.save(vote);
+       }
+       else
+           return null;
+
+
     }
 
     @Override
     public VotedList deletedVotedListDetails(int id) {
         // find the VotedList
         // delete
-        return null;
+        Optional<VotedList> votedListOptional=this.votedListRepository.findById(id);
+        if (votedListOptional.isPresent())
+        {
+            votedListRepository.delete(votedListOptional.get());
+        }
+        return votedListOptional.get();
     }
 
     @Override
     public List<VotedList> viewVotedList() {
-        return null;
+        return this.votedListRepository.findAll();
     }
 
 
     @Override
     public VotedList searchByVoterId(int voterId) {
-        return null;
+        Optional<VotedList> votedListOptional=this.votedListRepository.findById(voterId);
+        if (votedListOptional.isPresent())
+            return votedListOptional.get();
+        else
+            return null;
     }
 
     @Override
