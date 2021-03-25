@@ -30,6 +30,24 @@ public class RegisteredSocietyVoters {
     @OneToOne
     CooperativeSociety cooperativeSociety;
 
+    public RegisteredSocietyVoters() {
+        this.voterIDCardNo = null;
+        this.firstName = null;
+        this.lastName = null;
+        this.gender = null;
+        this.password = null;
+        this.reservationCategory = null;
+        this.mobileNo = null;
+        this.emailID = null;
+        this.address1 = null;
+        this.address2 = null;
+        this.mandal = null;
+        this.district = null;
+        this.pincode = 0;
+        this.castedVote = false;
+        this.cooperativeSociety = null;
+    }
+
     public RegisteredSocietyVoters(String voterIDCardNo, String firstName, String lastName, String gender, String password, String reservationCategory, String mobileNo, String emailID, String address1, String address2, String mandal, String district, int pincode, boolean castedVote, CooperativeSociety cooperativeSociety) {
         this.voterIDCardNo = voterIDCardNo;
         this.firstName = firstName;
