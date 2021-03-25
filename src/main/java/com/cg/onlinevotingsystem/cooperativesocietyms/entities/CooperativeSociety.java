@@ -1,8 +1,17 @@
 package com.cg.onlinevotingsystem.cooperativesocietyms.entities;
 
-public class CooperativeSociety {
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class CooperativeSociety {
+	@GeneratedValue
+	@Id
 	private int societyId;
+
 	private String societyName;
 	private String headOfSociety;
 	private String village;
