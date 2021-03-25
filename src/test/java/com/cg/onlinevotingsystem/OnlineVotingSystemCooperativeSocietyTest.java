@@ -38,13 +38,16 @@ class OnlineVotingSystemCooperativeSocietyTest {
 	
 	@Test
 	public void ViewSocietyByIDTest( ) {
-		when(repository.findById(1).get()).thenReturn(new CooperativeSociety(1,"hanal","viven","maliha","mahilaa","kunur","302608"));
+
+		when(repository.findById(1)).thenReturn(Optional.of(new CooperativeSociety(1, "hanal", "viven", "maliha", "mahilaa", "kunur", "302608")));
+
 		CooperativeSociety s1 = service.viewSocietyById(1);
 		Assertions.assertEquals("hanal",s1.getSocietyName());
 		Assertions.assertEquals("viven",s1.getHeadOfSociety());
 		Assertions.assertEquals("maliha",s1.getVillage());
 		Assertions.assertEquals("mahila",s1.getMandal());
 	}
+  
 	@Test
 	public void ViewSocietyListTest(){
 		List<CooperativeSociety> list = new ArrayList<CooperativeSociety>();
@@ -53,9 +56,7 @@ class OnlineVotingSystemCooperativeSocietyTest {
 		list.add(society1);
 		list.add(society2);
 		when(service.viewSocietyList()).thenReturn(list);
-	}
-
-
+	
 
 
 }
