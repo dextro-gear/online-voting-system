@@ -1,45 +1,43 @@
 package com.cg.onlinevotingsystem.cooperativesocietyms.service;
 
-import java.util.List;
-
 import com.cg.onlinevotingsystem.cooperativesocietyms.dao.ICooperativeSocietyDaoRepository;
 import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.List;
+
 @Service
-public class CooperativeSocietyServiceImpl implements ICooperativeSocietyService {
-	@Autowired
-	ICooperativeSocietyDaoRepository repository;
+public class CooperativeSocietyServiceImpl implements ICooperativeSocietyService{
+    @Autowired
+    ICooperativeSocietyDaoRepository repository;
 
-	@Override
-	public int addSocietyDetails(CooperativeSociety society) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	@Override
-	public int updateSocietyDetails(CooperativeSociety society) {
+    @Override
+    public CooperativeSociety addSocietyDetails(CooperativeSociety society) {
+        return null;
+    }
 
-		return 0;
-	}
+    @Override
+    public CooperativeSociety updateSocietyDetails(CooperativeSociety society) {
+        CooperativeSociety s1 = new CooperativeSociety();
+        return repository.save(s1);
+    }
 
-	@Override
-	public int deleteSociety(int societyId) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    @Override
+    public CooperativeSociety deleteSociety(CooperativeSociety societyId) {
+        return null;
+    }
 
-	@Override
-	public List<CooperativeSociety> viewSocietyList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public List<CooperativeSociety> viewSocietyList() {
+        return null;
+    }
 
-	@Override
-	public CooperativeSociety viewSocietyById(int societyId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public CooperativeSociety viewSocietyById(int societyId) {
+        return null;
+    }
 
 }

@@ -1,8 +1,16 @@
 package com.cg.onlinevotingsystem.cooperativesocietyms.entities;
 
-public class CooperativeSociety {
+import org.springframework.stereotype.Component;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Component
+public class CooperativeSociety {
+	@GeneratedValue
+	@Id
 	private int societyId;
+
 	private String societyName;
 	private String headOfSociety;
 	private String village;
