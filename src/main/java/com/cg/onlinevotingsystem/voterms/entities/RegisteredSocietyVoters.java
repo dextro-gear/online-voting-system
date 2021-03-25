@@ -11,20 +11,20 @@ public class RegisteredSocietyVoters {
     @GeneratedValue
     @Id
     private int id;
-    private String voterIdCardNo;
+    private String voterIDCardNo;
     private String firstName;
     private String lastName;
     private String gender;
     private String password;
     private String reservationCategory;
     private String mobileNo;
-    private String emailId;
+    private String emailID;
     private String address1;
     private String address2;
     private String mandal;
     private String district;
     private int pincode;
-    private CooperativeSociety society;
+    private CooperativeSociety cooperativeSociety;
     private boolean castedVote;
 
     public RegisteredSocietyVoters() {
@@ -72,11 +72,11 @@ public class RegisteredSocietyVoters {
     }
 
     public String getVoterIdCardNo() {
-        return voterIdCardNo;
+        return voterIDCardNo;
     }
 
     public void setVoterIdCardNo(String voterIdCardNo) {
-        this.voterIdCardNo = voterIdCardNo;
+        this.voterIDCardNo = voterIdCardNo;
     }
 
     public String getFirstName() {
@@ -128,11 +128,11 @@ public class RegisteredSocietyVoters {
     }
 
     public String getEmailId() {
-        return emailId;
+        return emailID;
     }
 
     public void setEmailId(String emailId) {
-        this.emailId = emailId;
+        this.emailID = emailId;
     }
 
     public String getAddress1() {
@@ -176,11 +176,11 @@ public class RegisteredSocietyVoters {
     }
 
     public CooperativeSociety getSociety() {
-        return society;
+        return cooperativeSociety;
     }
 
     public void setSociety(CooperativeSociety society) {
-        this.society = society;
+        this.cooperativeSociety = society;
     }
 
     public boolean isCastedVote() {

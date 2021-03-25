@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-public class ICooperativeServiceImpl implements ICooperativeSocietyService{
+public class CooperativeSocietyServiceImpl implements ICooperativeSocietyService{
     @Autowired
     ICooperativeSocietyDaoRepository repository;
 

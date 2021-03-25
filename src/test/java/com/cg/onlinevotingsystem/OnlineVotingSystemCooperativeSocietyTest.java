@@ -38,7 +38,7 @@ class OnlineVotingSystemCooperativeSocietyTest {
 	
 	@Test
 	public void ViewSocietyByIDTest( ) {
-		when(repository.findById(1)).thenReturn(new CooperativeSociety(1,"hanal","viven","maliha","mahilaa","kunur","302608");
+		when(repository.findById(1).get()).thenReturn(new CooperativeSociety(1,"hanal","viven","maliha","mahilaa","kunur","302608"));
 		CooperativeSociety s1 = service.viewSocietyById(1);
 		Assertions.assertEquals("hanal",s1.getSocietyName());
 		Assertions.assertEquals("viven",s1.getHeadOfSociety());
