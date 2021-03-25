@@ -2,12 +2,13 @@ package com.cg.onlinevotingsystem.dashboard.entities;
 
 import com.cg.onlinevotingsystem.nominatedcandidatems.entities.NominatedCandidates;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
-
+@Entity
 public class ElectionResult {
 
     @Id

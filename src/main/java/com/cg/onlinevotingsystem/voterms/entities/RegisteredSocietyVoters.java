@@ -2,10 +2,12 @@ package com.cg.onlinevotingsystem.voterms.entities;
 
 import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+@Entity
 public class RegisteredSocietyVoters {
 
     @Id
