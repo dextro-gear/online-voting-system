@@ -103,4 +103,17 @@ public class ElectionResult {
     public void setResult(String result) {
         this.result = result;
     }
+
+    @Override
+    public String toString() {
+        return "ElectionResult{" +
+                "id=" + id +
+                ", pollingDate=" + pollingDate +
+                ", cooperativeSocietyName='" + cooperativeSocietyName + '\'' +
+                ", totalSocietyVotes=" + totalSocietyVotes +
+                ", totalCandidateVotes=" + totalCandidateVotes +
+                ", candidatesVotesPercentage=" + candidatesVotesPercentage +
+                ", result='" + result + '\'' +
+                '}';
+    }
 }

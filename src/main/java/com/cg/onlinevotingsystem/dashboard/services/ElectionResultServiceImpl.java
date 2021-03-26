@@ -1,25 +1,42 @@
 package com.cg.onlinevotingsystem.dashboard.services;
 
+import com.cg.onlinevotingsystem.dashboard.dao.IElectionResultRepository;
 import com.cg.onlinevotingsystem.dashboard.entities.ElectionResult;
+import com.cg.onlinevotingsystem.dashboard.exceptions.CandidateNotFoundException;
+import com.cg.onlinevotingsystem.nominatedcandidatems.dao.INominatedCandidateRepository;
 import com.cg.onlinevotingsystem.nominatedcandidatems.entities.NominatedCandidates;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
+@Service
 public class ElectionResultServiceImpl implements IElectionResultService{
+
+    @Autowired
+    INominatedCandidateRepository candidateRepository;
+
+    @Autowired
+    IElectionResultRepository electionResultRepository;
 
     @Override
     public ElectionResult addElectionResult(NominatedCandidates candidate, String coopSocietyName, int totalSocietyVotes, int totalCandidateVotes, float candidatesVotesPercentage, String result) {
-        return null;
+        return electionResultRepository.save(new ElectionResult(candidate, coopSocietyName, totalSocietyVotes, totalCandidateVotes, candidatesVotesPercentage, result));
     }
 
     @Override
     public List<ElectionResult> viewElectionResultList() {
-        return null;
+        return electionResultRepository.findAll();
     }
 
     @Override
     public ElectionResult viewCandidatewiseResult(int candidateID) {
-        return null;
+        Optional<NominatedCandidates> resultOptional = candidateRepository.findById(candidateID);
+        if(resultOptional.isPresent())
+            return electionResultRepository.findByCandidate(resultOptional.get());
+        else
+            throw new CandidateNotFoundException("Candidate with id" + candidateID + " was not found!");
     }
 
     @Override
