@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 
 
-@SpringBootTest
+/*@SpringBootTest
 public class OnlineVotingSystemVoterTest {
 
     @Autowired
@@ -43,5 +43,5 @@ public class OnlineVotingSystemVoterTest {
     //            "Aurangabad", "Mathura", 281006, "Society 1", false);
     //}
 
-
 }
+*/

@@ -2,54 +2,67 @@ package com.cg.onlinevotingsystem.voterms.entities;
 
 import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
+@Entity
 public class RegisteredSocietyVoters {
     @GeneratedValue
     @Id
     private int id;
-    private String voterIdCardNo;
+    private String voterIDCardNo;
     private String firstName;
     private String lastName;
     private String gender;
     private String password;
     private String reservationCategory;
     private String mobileNo;
-    private String emailId;
+    private String emailID;
     private String address1;
     private String address2;
     private String mandal;
     private String district;
     private int pincode;
-    private CooperativeSociety society;
+    @OneToOne
+    private CooperativeSociety cooperativeSociety;
     private boolean castedVote;
 
-    public RegisteredSocietyVoters(){
-
+    public RegisteredSocietyVoters() {
+        this.voterIDCardNo = null;
+        this.firstName = null;
+        this.lastName = null;
+        this.gender = null;
+        this.password = null;
+        this.reservationCategory = null;
+        this.mobileNo = null;
+        this.emailID = null;
+        this.address1 = null;
+        this.address2 = null;
+        this.mandal = null;
+        this.district = null;
+        this.pincode = 0;
+        this.castedVote = false;
+        this.cooperativeSociety = null;
     }
 
-    public RegisteredSocietyVoters(String voterIdCardNo,String firstName, String lastName, String gender, String password, String reservationCategory,
-                                   String mobileNo, String emailId, String address1, String address2, String mandal, String district, int pincode, CooperativeSociety society,
-                                   boolean castedVote) {
-        super();
-
-        this.voterIdCardNo = voterIdCardNo;
+    public RegisteredSocietyVoters(String voterIDCardNo, String firstName, String lastName, String gender, String password, String reservationCategory, String mobileNo, String emailID, String address1, String address2, String mandal, String district, int pincode, boolean castedVote, CooperativeSociety cooperativeSociety) {
+        this.voterIDCardNo = voterIDCardNo;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.password = password;
         this.reservationCategory = reservationCategory;
         this.mobileNo = mobileNo;
-        this.emailId =emailId;
+        this.emailID = emailID;
         this.address1 = address1;
         this.address2 = address2;
         this.mandal = mandal;
         this.district = district;
         this.pincode = pincode;
-        this.society = society;
         this.castedVote = castedVote;
-
+        this.cooperativeSociety = cooperativeSociety;
     }
 
     public int getId() {
@@ -61,11 +74,11 @@ public class RegisteredSocietyVoters {
     }
 
     public String getVoterIdCardNo() {
-        return voterIdCardNo;
+        return voterIDCardNo;
     }
 
     public void setVoterIdCardNo(String voterIdCardNo) {
-        this.voterIdCardNo = voterIdCardNo;
+        this.voterIDCardNo = voterIdCardNo;
     }
 
     public String getFirstName() {
@@ -117,11 +130,11 @@ public class RegisteredSocietyVoters {
     }
 
     public String getEmailId() {
-        return emailId;
+        return emailID;
     }
 
     public void setEmailId(String emailId) {
-        this.emailId = emailId;
+        this.emailID = emailId;
     }
 
     public String getAddress1() {
@@ -165,11 +178,11 @@ public class RegisteredSocietyVoters {
     }
 
     public CooperativeSociety getSociety() {
-        return society;
+        return cooperativeSociety;
     }
 
     public void setSociety(CooperativeSociety society) {
-        this.society = society;
+        this.cooperativeSociety = society;
     }
 
     public boolean getCastedVote() {

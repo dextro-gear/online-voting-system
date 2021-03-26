@@ -5,12 +5,15 @@ import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 import com.cg.onlinevotingsystem.voterms.service.IRegisteredSocietyVotersService;
 
 import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 @Component
 public class voterUI {
 
+  
+    @Autowired
     IRegisteredSocietyVotersService service;
 
     public static void main(String[] args) {
@@ -22,6 +25,7 @@ public class voterUI {
         System.out.println("Voter Creation..........");
         RegisteredSocietyVoters t1 = service.voterRegistration("A001","Ritik", "Singh", "Male", "password1", "General", "9997876560", "ritik@gmail.com", "House No. 1", "MR Nagar",
                 "Aurangabad", "Mathura", 281006, null, true);
+
         System.out.println(t1);
 
         System.out.println();
@@ -46,4 +50,5 @@ public class voterUI {
         System.out.println("Voter deleted");
 
     }
+
 }

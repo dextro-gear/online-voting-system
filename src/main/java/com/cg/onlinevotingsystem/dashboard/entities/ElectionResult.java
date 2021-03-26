@@ -2,12 +2,13 @@ package com.cg.onlinevotingsystem.dashboard.entities;
 
 import com.cg.onlinevotingsystem.nominatedcandidatems.entities.NominatedCandidates;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
-
+@Entity
 public class ElectionResult {
 
     @Id
@@ -101,5 +102,18 @@ public class ElectionResult {
 
     public void setResult(String result) {
         this.result = result;
+    }
+
+    @Override
+    public String toString() {
+        return "ElectionResult{" +
+                "id=" + id +
+                ", pollingDate=" + pollingDate +
+                ", cooperativeSocietyName='" + cooperativeSocietyName + '\'' +
+                ", totalSocietyVotes=" + totalSocietyVotes +
+                ", totalCandidateVotes=" + totalCandidateVotes +
+                ", candidatesVotesPercentage=" + candidatesVotesPercentage +
+                ", result='" + result + '\'' +
+                '}';
     }
 }

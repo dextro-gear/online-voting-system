@@ -7,7 +7,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootTest
 class OnlinevotingsystemApplicationTests {
-
 	public static void main(String[] args){
 		ConfigurableApplicationContext context = SpringApplication.run(OnlinevotingsystemApplicationTests.class, args);
 		voterUI ui = context.getBean(voterUI.class);
