@@ -10,10 +10,11 @@ import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 import com.cg.onlinevotingsystem.voterms.service.IRegisteredSocietyVotersService;
 import com.cg.onlinevotingsystem.voterms.service.RegisteredSocietyVotersServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class VotedListServiceImpl implements IVotedListService {
 
     @Autowired
@@ -79,6 +80,6 @@ public class VotedListServiceImpl implements IVotedListService {
         if (votes.size() > 0)
             return votes;
         else
-            throw new VotedListNotFoundException("VotedList records for candidate:" + candidateId + " was not found in the DB");
+
     }
 }

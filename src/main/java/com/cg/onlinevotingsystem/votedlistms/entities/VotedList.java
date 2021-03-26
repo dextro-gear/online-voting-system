@@ -74,4 +74,15 @@ public class VotedList {
     public void setCandidate(NominatedCandidates candidate) {
         this.candidate = candidate;
     }
+
+    @Override
+    public String toString() {
+        return "VotedList{" +
+                "id=" + id +
+                ", pollingDateTime=" + pollingDateTime +
+                ", society=" + society +
+                ", voter=" + voter +
+                ", candidate=" + candidate +
+                '}';
+    }
 }
