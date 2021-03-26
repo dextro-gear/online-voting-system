@@ -55,7 +55,7 @@ public class NominatedCandidateServiceImpl implements INominatedCandidatesServic
     @Override
     public NominatedCandidates searchByCandidateID(int candidateID) {
         Optional<NominatedCandidates> candidatesOptional = nominatedCandidateRepository.findById(candidateID);
-        if(candidatesOptional.isPresent())
+        if(!candidatesOptional.isPresent())
             throw new CandidateNotFoundException("Candidate with id" + candidateID + " not found in the DB");
         return candidatesOptional.get();
     }
