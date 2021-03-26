@@ -28,20 +28,20 @@ public class OnlineVotingSystemVoterTest {
         t1.setMandal("Aurangabad");
         t1.setDistrict("Mathura");
         t1.setPincode(281006);
-        t1.setSociety("Society 1");
+        t1.setSociety(null);
         t1.setCastedVote(true);
 
         Assertions.assertEquals(1,t1.getId());
         Assertions.assertEquals("A001",t1.getVoterIdCardNo());
     }
 
-    @Test
-    public void test_viewRegisteredVoterList(){
-        RegisteredSocietyVoters society1 = new RegisteredSocietyVoters(1,"A001","Ritik", "Singh", "Male", "password1", "General", "9997876560", "ritik@gmail.com", "House No. 1", "MR Nagar",
-                "Aurangabad", "Mathura", 281006, "Society 1", true);
-        RegisteredSocietyVoters society2 = new RegisteredSocietyVoters(2,"A002","Rishav", "Singh", "Male", "password2", "General", "9996663331", "rishav@gmail.com", "House No. 2", "MR Nagar",
-                "Aurangabad", "Mathura", 281006, "Society 1", false);
+   //@Test
+   // public void test_viewRegisteredVoterList(){
+    //    RegisteredSocietyVoters society1 = new RegisteredSocietyVoters(1,"A001","Ritik", "Singh", "Male", "password1", "General", "9997876560", "ritik@gmail.com", "House No. 1", "MR Nagar",
+    //            "Aurangabad", "Mathura", 281006, "Society 1", true);
+    //    RegisteredSocietyVoters society2 = new RegisteredSocietyVoters(2,"A002","Rishav", "Singh", "Male", "password2", "General", "9996663331", "rishav@gmail.com", "House No. 2", "MR Nagar",
+    //            "Aurangabad", "Mathura", 281006, "Society 1", false);
+    //}
 
 
-    }
 }

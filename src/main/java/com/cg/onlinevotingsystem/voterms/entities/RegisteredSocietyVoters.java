@@ -172,7 +172,7 @@ public class RegisteredSocietyVoters {
         this.society = society;
     }
 
-    public boolean isCastedVote() {
+    public boolean getCastedVote() {
         return castedVote;
     }
 
