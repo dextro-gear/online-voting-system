@@ -1,11 +1,15 @@
 package com.cg.onlinevotingsystem.votedlistms.services;
 
+import com.cg.onlinevotingsystem.cooperativesocietyms.dao.ICooperativeSocietyDaoRepository;
 import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
+import com.cg.onlinevotingsystem.cooperativesocietyms.service.CooperativeSocietyServiceImpl;
+import com.cg.onlinevotingsystem.nominatedcandidatems.dao.INominatedCandidateRepository;
 import com.cg.onlinevotingsystem.nominatedcandidatems.entities.NominatedCandidates;
 import com.cg.onlinevotingsystem.nominatedcandidatems.services.NominatedCandidateServiceImpl;
 import com.cg.onlinevotingsystem.votedlistms.dao.IVotedListRepository;
 import com.cg.onlinevotingsystem.votedlistms.entities.VotedList;
 import com.cg.onlinevotingsystem.votedlistms.exceptions.VotedListNotFoundException;
+import com.cg.onlinevotingsystem.voterms.dao.VoterRepository;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 import com.cg.onlinevotingsystem.voterms.service.IRegisteredSocietyVotersService;
 import com.cg.onlinevotingsystem.voterms.service.RegisteredSocietyVotersServiceImpl;
@@ -21,6 +25,15 @@ public class VotedListServiceImpl implements IVotedListService {
     IVotedListRepository votedListRepository;
 
     @Autowired
+    ICooperativeSocietyDaoRepository societyRepository;
+
+    @Autowired
+    VoterRepository voterRepository;
+
+    @Autowired
+    INominatedCandidateRepository candidateRepository;
+
+    @Autowired
     RegisteredSocietyVotersServiceImpl votersService;
 
     @Autowired
@@ -29,6 +42,9 @@ public class VotedListServiceImpl implements IVotedListService {
     @Override
     public VotedList castVotedList(RegisteredSocietyVoters voter, NominatedCandidates candidate, CooperativeSociety society) {
         VotedList vote = new VotedList(voter, candidate, society);
+        societyRepository.save(society);
+        voterRepository.save(voter);
+        candidateRepository.save(candidate);
         return votedListRepository.save(vote);
     }
 
@@ -67,7 +83,7 @@ public class VotedListServiceImpl implements IVotedListService {
 
     @Override
     public VotedList searchByVoterId(int voterId) {
-        Optional<VotedList> votedListOptional = Optional.of(this.votedListRepository.findByIdVoter(votersService.searchByVoterID(voterId)));
+        Optional<VotedList> votedListOptional = Optional.of(this.votedListRepository.findByVoter_Id(voterId));
         if (votedListOptional.isPresent())
             return votedListOptional.get();
         else
@@ -76,10 +92,11 @@ public class VotedListServiceImpl implements IVotedListService {
 
     @Override
     public List<VotedList> searchByNominatedCandidateId(int candidateId) {
-        List<VotedList> votes = votedListRepository.findByIdCandidate(candidateService.searchByCandidateID(candidateId));
+        List<VotedList> votes = votedListRepository.findByCandidate_CandidateID(candidateId);
         if (votes.size() > 0)
             return votes;
         else
+            throw new VotedListNotFoundException("VotedList records for Candidate:" + candidateId + " were not found in the DB");
 
     }
 }

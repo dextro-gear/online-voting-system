@@ -23,7 +23,7 @@ public class VotedListUI {
                 "House No. 1", "MR Nagar", "Aurangabad", "Mathura",
                 281006, true, null);
         NominatedCandidates candidate1=new NominatedCandidates();
-        CooperativeSociety society1 = new CooperativeSociety(1, "Meraki", "Dev",
+        CooperativeSociety society1 = new CooperativeSociety( "Meraki", "Dev",
                 "Verumbakam","Mesur", "Teni", "603203");
 
 
@@ -33,7 +33,7 @@ public class VotedListUI {
                 "House No. 1", "MR Nagar", "Aurangabad", "Mathura",
                 281006, true, null);
         NominatedCandidates candidate2=new NominatedCandidates();
-        CooperativeSociety society2 = new CooperativeSociety(1, "Meraki", "Dev",
+        CooperativeSociety society2 = new CooperativeSociety( "Meraki", "Dev",
                 "Verumbakam","Mesur", "Teni", "603203");
 
 
@@ -50,13 +50,13 @@ public class VotedListUI {
         VotedList votedListById =votedListService.searchByVoterId(voter1.getId());
 
 
-        System.out.println("Printing details of castVotedList ***************************************\n"+castVotedList1.toString());
+        System.out.println("\nPrinting details of castVotedList ***************************************\n"+castVotedList1.toString());
 
-        System.out.println("Updating details of votedList ********************************\n"+updateVotedListDetails1.toString());
+        System.out.println("\nUpdating details of votedList ********************************\n"+updateVotedListDetails1.toString());
 
-        System.out.println("Printing the list of votedList *****************************\n "+list.toString());
+        System.out.println("\nPrinting the list of votedList *****************************\n "+list.toString());
       
-        System.out.println("Printing the votedList by voterId ****************************\n"+votedListById);
+        System.out.println("\nPrinting the votedList by voterId ****************************\n"+votedListById);
 
     }
 

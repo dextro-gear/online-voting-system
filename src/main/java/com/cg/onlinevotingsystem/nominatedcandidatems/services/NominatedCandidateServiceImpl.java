@@ -3,21 +3,28 @@ package com.cg.onlinevotingsystem.nominatedcandidatems.services;
 import com.cg.onlinevotingsystem.dashboard.exceptions.CandidateNotFoundException;
 import com.cg.onlinevotingsystem.nominatedcandidatems.dao.INominatedCandidateRepository;
 import com.cg.onlinevotingsystem.nominatedcandidatems.entities.NominatedCandidates;
+import com.cg.onlinevotingsystem.voterms.dao.VoterRepository;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class NominatedCandidateServiceImpl implements INominatedCandidatesService{
 
     @Autowired
     INominatedCandidateRepository nominatedCandidateRepository;
 
+    @Autowired
+    VoterRepository voterRepository;
+
     @Override
     @Transactional
     public NominatedCandidates addNominatedCandidate(String nominationFormNo, RegisteredSocietyVoters societyVoter) {
+        voterRepository.save(societyVoter);
         return nominatedCandidateRepository.save(new NominatedCandidates(nominationFormNo, societyVoter));
     }
 
