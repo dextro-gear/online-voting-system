@@ -49,13 +49,14 @@ class OnlineVotingSystemCooperativeSocietyTest {
 	}
   
 	@Test
-	public void ViewSocietyListTest(){
+	public void ViewSocietyListTest() {
 		List<CooperativeSociety> list = new ArrayList<CooperativeSociety>();
-		CooperativeSociety society1 = new CooperativeSociety(2,"migan","miesha","sursuri","gantantra","kahar","480608");
-		CooperativeSociety society2 = new CooperativeSociety(3,"Meraki","mahira","devgarh","janana","Kaman","610401");
+		CooperativeSociety society1 = new CooperativeSociety(2, "migan", "miesha", "sursuri", "gantantra", "kahar", "480608");
+		CooperativeSociety society2 = new CooperativeSociety(3, "Meraki", "mahira", "devgarh", "janana", "Kaman", "610401");
 		list.add(society1);
 		list.add(society2);
 		when(service.viewSocietyList()).thenReturn(list);
+	}
 	
 
 
