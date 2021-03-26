@@ -5,7 +5,7 @@ import com.cg.onlinevotingsystem.votedlistms.entities.VotedList;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 
 import java.util.List;
-public interface VotedListService {
+public interface IVotedListService {
 
     public VotedList castVotedList(RegisteredSocietyVoters voter, NominatedCandidates candidate, CooperativeSociety society);
     public VotedList updateVotedListDetails(int votedListID, RegisteredSocietyVoters voter, NominatedCandidates candidate, CooperativeSociety society) ;

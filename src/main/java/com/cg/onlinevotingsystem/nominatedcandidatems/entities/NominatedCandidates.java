@@ -17,6 +17,9 @@ public class NominatedCandidates{
 //    RegisteredSocietyVoters societyVoter;
 
 
+    public NominatedCandidates() {
+    }
+
     public NominatedCandidates(String nominationFormNo) {
         this.nominationFormNo = nominationFormNo;
     }
