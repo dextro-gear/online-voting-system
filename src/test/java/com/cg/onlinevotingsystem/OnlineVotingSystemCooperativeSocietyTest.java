@@ -5,9 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
 import com.cg.onlinevotingsystem.cooperativesocietyms.service.ICooperativeSocietyService;
@@ -57,8 +56,6 @@ class OnlineVotingSystemCooperativeSocietyTest {
 		list.add(society2);
 		when(service.viewSocietyList()).thenReturn(list);
 	}
-	
-
 
 }
 
