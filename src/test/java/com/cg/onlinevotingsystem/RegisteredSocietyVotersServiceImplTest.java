@@ -19,9 +19,6 @@ class RegisteredSocietyVotersServiceImplTest {
 
     @Test
     void deleteRegisteredVoter() {
-        RegisteredSocietyVoters voter = Mockito.mock(RegisteredSocietyVoters.class);
-        RegisteredSocietyVoters voterSaved = Mockito.mock(RegisteredSocietyVoters.class);
-        Mockito.when()
 
     }
 

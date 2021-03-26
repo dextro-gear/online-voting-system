@@ -48,9 +48,9 @@ public class RegisteredSocietyVotersServiceImpl implements IRegisteredSocietyVot
             t1.setPincode(voter.getPincode());
             t1.setSociety(voter.getSociety());
             t1.setCastedVote(voter.getCastedVote());
-
             return voterRepository.save(t1);
         }
+        return registeredSocietyVotersOptional.get();
     }
 
 
