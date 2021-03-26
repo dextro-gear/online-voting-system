@@ -6,10 +6,11 @@ import com.cg.onlinevotingsystem.votedlistms.dao.IVotedListRepository;
 import com.cg.onlinevotingsystem.votedlistms.entities.VotedList;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class VotedListServiceImpl implements IVotedListService {
 
     @Autowired
@@ -68,6 +69,7 @@ public class VotedListServiceImpl implements IVotedListService {
 
     @Override
     public List<VotedList> searchByNominatedCandidateId(int candidateId) {
+
         return null;
     }
 }
