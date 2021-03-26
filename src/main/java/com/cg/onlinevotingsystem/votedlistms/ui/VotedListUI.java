@@ -55,10 +55,8 @@ public class VotedListUI {
         System.out.println("Updating details of votedList ********************************\n"+updateVotedListDetails1.toString());
 
         System.out.println("Printing the list of votedList *****************************\n "+list.toString());
-
+      
         System.out.println("Printing the votedList by voterId ****************************\n"+votedListById);
-
-
 
     }
 

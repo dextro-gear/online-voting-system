@@ -16,16 +16,28 @@ public class CooperativeSocietyServiceImpl implements ICooperativeSocietyService
 
 
     @Override
-    public CooperativeSociety addSocietyDetails(CooperativeSociety society) {
-           CooperativeSociety s1 = new CooperativeSociety();
+    public CooperativeSociety addSocietyDetails(String societyName, String headOfSociety, String village, String mandal,
+                                                String district, String pincode) {
+         CooperativeSociety s1 = new CooperativeSociety(societyName,headOfSociety,village,mandal,district,pincode);
+
            return cooperativeSocietyRepository.save(s1) ;
     }
 
     @Override
-    public CooperativeSociety updateSocietyDetails(CooperativeSociety society) {
-        CooperativeSociety s1 = new CooperativeSociety();
-        s1.setSocietyId(society.getSocietyId());
-        return cooperativeSocietyRepository.save(s1);
+    public CooperativeSociety updateSocietyDetails(int societyId,String societyName, String headOfSociety, String village, String mandal,
+                                                   String district, String pincode) {
+         Optional<CooperativeSociety> s1 = cooperativeSocietyRepository.findById(societyId);
+             CooperativeSociety s2 = s1.get();
+         if(s1.isPresent()) {
+             s2.setHeadOfSociety(headOfSociety);
+             s2.setDistrict(district);
+             s2.setMandal(mandal);
+             s2.setVillage(village);
+             s2.setPincode(pincode);
+             s2.setSocietyName(societyName);
+         }
+
+        return cooperativeSocietyRepository.save(s2);
     }
 
     @Override
