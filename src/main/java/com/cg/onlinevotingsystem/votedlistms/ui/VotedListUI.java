@@ -17,7 +17,7 @@ public class VotedListUI {
         RegisteredSocietyVoters voter=new RegisteredSocietyVoters("A001", "Ritik", "Singh", "Male", "password1", "General", "9997876560", "ritik@gmail.com", "House No. 1", "MR Nagar",
                 "Aurangabad", "Mathura", 281006, true, null);
         NominatedCandidates candidate=new NominatedCandidates();
-        CooperativeSociety society = new CooperativeSociety(1, "Meraki", "Dev", "Verumbakam","Mesur", "Teni", "603203");
+        CooperativeSociety society = new CooperativeSociety( "Meraki", "Dev", "Verumbakam","Mesur", "Teni", "603203");
 
         System.out.println();
 
