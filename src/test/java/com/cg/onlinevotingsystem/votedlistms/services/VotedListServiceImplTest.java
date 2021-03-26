@@ -2,7 +2,6 @@ package com.cg.onlinevotingsystem.votedlistms.services;
 
 import com.cg.onlinevotingsystem.votedlistms.dao.IVotedListRepository;
 import com.cg.onlinevotingsystem.votedlistms.entities.VotedList;
-import javafx.beans.binding.When;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
