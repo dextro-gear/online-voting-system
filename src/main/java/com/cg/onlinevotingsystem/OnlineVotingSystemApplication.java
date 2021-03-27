@@ -11,9 +11,11 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class OnlineVotingSystemApplication {
 	public static void main(String[] args) {
+
 		ConfigurableApplicationContext context = SpringApplication.run(OnlineVotingSystemApplication.class, args);
-		CooperativeSocietyUI ui =context.getBean(CooperativeSocietyUI.class);
-		ui.display();
+
+		CooperativeSocietyUI cooperativeSocietyUI = context.getBean(CooperativeSocietyUI.class);
+		cooperativeSocietyUI.display();
 
 		DashboardUI dashboardUI = context.getBean(DashboardUI.class);
 		dashboardUI.start();

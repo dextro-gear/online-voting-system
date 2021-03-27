@@ -4,6 +4,7 @@ import com.cg.onlinevotingsystem.cooperativesocietyms.dao.ICooperativeSocietyDao
 import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
 import com.cg.onlinevotingsystem.cooperativesocietyms.exceptions.CooperativeSocietyNotFoundException;
 import com.cg.onlinevotingsystem.cooperativesocietyms.exceptions.CooperativeSocietyCannotBeNullException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
