@@ -4,7 +4,6 @@ import com.cg.onlinevotingsystem.cooperativesocietyms.ui.CooperativeSocietyUI;
 import com.cg.onlinevotingsystem.dashboard.ui.DashboardUI;
 import com.cg.onlinevotingsystem.nominatedcandidatems.ui.CandidatesUI;
 import com.cg.onlinevotingsystem.votedlistms.ui.VotedListUI;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -13,8 +12,9 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class OnlinevotingsystemApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(OnlinevotingsystemApplication.class, args);
-		CooperativeSocietyUI ui =context.getBean(CooperativeSocietyUI.class);
-		ui.display();
+
+		CooperativeSocietyUI cooperativeSocietyUI =context.getBean(CooperativeSocietyUI.class);
+		cooperativeSocietyUI.display();
 
 		DashboardUI dashboardUI = context.getBean(DashboardUI.class);
 		dashboardUI.start();
