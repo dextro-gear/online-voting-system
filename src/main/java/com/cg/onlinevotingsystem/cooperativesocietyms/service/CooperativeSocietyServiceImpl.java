@@ -2,6 +2,7 @@ package com.cg.onlinevotingsystem.cooperativesocietyms.service;
 
 import com.cg.onlinevotingsystem.cooperativesocietyms.dao.ICooperativeSocietyDaoRepository;
 import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
+import com.cg.onlinevotingsystem.cooperativesocietyms.exceptions.CooperativeSocietyNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,7 @@ public class CooperativeSocietyServiceImpl implements ICooperativeSocietyService
              s2.setPincode(pincode);
              s2.setSocietyName(societyName);
          }
+         else throw new CooperativeSocietyNotFoundException("Details with Society Id "+ societyId+"does not exist in DB");
 
         return cooperativeSocietyRepository.save(s2);
     }
@@ -45,6 +47,8 @@ public class CooperativeSocietyServiceImpl implements ICooperativeSocietyService
         Optional<CooperativeSociety> cooperativeSocietyOptional = this.cooperativeSocietyRepository.findById(societyId);
         if(cooperativeSocietyOptional.isPresent())
             cooperativeSocietyRepository.delete(cooperativeSocietyOptional.get());
+        else
+            throw new CooperativeSocietyNotFoundException("Details with Society Id "+societyId+" was not found in DB");
         return cooperativeSocietyOptional.get();
     }
 
@@ -59,7 +63,7 @@ public class CooperativeSocietyServiceImpl implements ICooperativeSocietyService
         if (cooperativeSocietyOptional.isPresent())
             return cooperativeSocietyOptional.get() ;
         else
-            return null;
+            throw new CooperativeSocietyNotFoundException("Details with Society Id "+societyId+" was not found in DB");
     }
 
 }
