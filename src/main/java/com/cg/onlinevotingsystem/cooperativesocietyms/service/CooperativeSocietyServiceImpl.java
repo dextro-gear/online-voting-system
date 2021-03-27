@@ -36,7 +36,7 @@ public class CooperativeSocietyServiceImpl implements ICooperativeSocietyService
     @Override
     public CooperativeSociety updateSocietyDetails(int societyId,String societyName, String headOfSociety, String village, String mandal, String district, String pincode) {
          Optional<CooperativeSociety> s1 = cooperativeSocietyRepository.findById(societyId);
-         CooperativeSociety s2 = s1.orElse(null);
+         CooperativeSociety s2 = s1.get();
 
          if(s1.isPresent()) {
              s2.setHeadOfSociety(headOfSociety);
