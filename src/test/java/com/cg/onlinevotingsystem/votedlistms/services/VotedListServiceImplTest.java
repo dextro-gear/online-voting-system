@@ -4,11 +4,12 @@ import com.cg.onlinevotingsystem.votedlistms.dao.IVotedListRepository;
 import com.cg.onlinevotingsystem.votedlistms.entities.VotedList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
 import com.cg.onlinevotingsystem.nominatedcandidatems.entities.NominatedCandidates;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
@@ -18,7 +19,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class VotedListServiceImplTest {
 
     @Mock

@@ -25,11 +25,11 @@ public class CooperativeSociety {
 	
 	
 
-	public CooperativeSociety(int societyId, String societyName, String headOfSociety, String village, String mandal,
+	public CooperativeSociety( String societyName, String headOfSociety, String village, String mandal,
 			String district, String pincode) {
 		
 		super();
-		this.societyId = societyId;
+
 		this.societyName = societyName;
 		this.headOfSociety = headOfSociety;
 		this.village = village;
@@ -44,9 +44,6 @@ public class CooperativeSociety {
 		return societyId;
 	}
 
-	public void setSocietyId(int societyId) {
-		this.societyId = societyId;
-	}
 
 	public String getSocietyName() {
 		return societyName;
@@ -95,5 +92,17 @@ public class CooperativeSociety {
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "CooperativeSociety{" +
+				"societyId=" + societyId +
+				", societyName='" + societyName + '\'' +
+				", headOfSociety='" + headOfSociety + '\'' +
+				", village='" + village + '\'' +
+				", mandal='" + mandal + '\'' +
+				", district='" + district + '\'' +
+				", pincode='" + pincode + '\'' +
+				'}';
+	}
 }

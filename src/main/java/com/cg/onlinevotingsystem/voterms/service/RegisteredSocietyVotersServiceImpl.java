@@ -7,6 +7,7 @@ import java.util.Optional;
 import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
 import com.cg.onlinevotingsystem.voterms.dao.VoterRepository;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
+import com.cg.onlinevotingsystem.voterms.exceptions.RegisteredSocietyVoterNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ public class RegisteredSocietyVotersServiceImpl implements IRegisteredSocietyVot
 
     @Override
     public RegisteredSocietyVoters voterRegistration(String voterIdCardNo,String firstName, String lastName, String gender, String password, String reservationCategory,
+<<<<<<< HEAD
                                                      String mobileNo, String emailId, String address1, String address2, String mandal, String district, int pincode,boolean castedVote,
                                                      CooperativeSociety society) {
         //this method will return the information about the voter
@@ -29,6 +31,14 @@ public class RegisteredSocietyVotersServiceImpl implements IRegisteredSocietyVot
 
         }
 
+=======
+                                                     String mobileNo, String emailId, String address1, String address2, String mandal, String district, int pincode, CooperativeSociety society,
+                                                     boolean castedVote) {
+        // create new voter and store in DB
+        RegisteredSocietyVoters t1 = new RegisteredSocietyVoters(voterIdCardNo, firstName, lastName, gender, password, reservationCategory, mobileNo, emailId, address1, address2, mandal, district, pincode, castedVote, society);
+        return voterRepository.save(t1);
+    }
+>>>>>>> b2722d6e86b40c9c43d383d027ca2f47d6ad12e7
 
     @Override
     public RegisteredSocietyVoters updateRegisteredVoterDetails(RegisteredSocietyVoters voter) {
@@ -56,33 +66,31 @@ public class RegisteredSocietyVotersServiceImpl implements IRegisteredSocietyVot
         return registeredSocietyVotersOptional.get();
     }
 
-
-
-
     @Override
     public RegisteredSocietyVoters deleteRegisteredVoter(int voterId) {
-        //This method will delete the voter in argument
         Optional<RegisteredSocietyVoters> registeredSocietyVotersOptional = voterRepository.findById(voterId);
         if (registeredSocietyVotersOptional.isPresent()) {
             voterRepository.delete(registeredSocietyVotersOptional.get());
         }
+        else
+            throw new RegisteredSocietyVoterNotFoundException("Voter with id:" + voterId + " was not found in the DB");
 
         return registeredSocietyVotersOptional.get();
     }
 
     @Override
     public List<RegisteredSocietyVoters> viewRegisteredVoterList() {
-        return this.voterRepository.findAll();
+        return voterRepository.findAll();
     }
 
     @Override
     public RegisteredSocietyVoters searchByVoterID(int voterId) {
-        Optional<RegisteredSocietyVoters> registeredSocietyVotersOptional = this.voterRepository.findById(voterId);
+        Optional<RegisteredSocietyVoters> registeredSocietyVotersOptional = voterRepository.findById(voterId);
         if (registeredSocietyVotersOptional.isPresent()){
             return registeredSocietyVotersOptional.get();
         }
         else
-            return null;
+            throw new RegisteredSocietyVoterNotFoundException("Voter with id:" + voterId + " was not found in the DB");
     }
 
     @Override
