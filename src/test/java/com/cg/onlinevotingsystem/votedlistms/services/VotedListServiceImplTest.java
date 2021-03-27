@@ -15,6 +15,8 @@ import com.cg.onlinevotingsystem.nominatedcandidatems.entities.NominatedCandidat
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,7 +32,7 @@ class VotedListServiceImplTest {
     VotedListServiceImpl service;
 
 
-    @Test
+   /* @Test
     void castVotedList() {
         VotedList votedList= Mockito.mock(VotedList.class);
         VotedList votedListSaved =Mockito.mock((VotedList.class));
@@ -38,13 +40,13 @@ class VotedListServiceImplTest {
 
         VotedList result=service.castVotedList(Mockito.mock(RegisteredSocietyVoters.class),
                 Mockito.mock(NominatedCandidates.class),Mockito.mock(CooperativeSociety.class) );
-      //gradlew test  Assertions.assertNotNull(result);
+       Assertions.assertNotNull(result);
         Assertions.assertEquals(votedListSaved,result);
 
 
 
     }
-
+*/
    @Test
     void updateVotedListDetails() {
         VotedList votedList=Mockito.mock(VotedList.class);
@@ -60,20 +62,46 @@ class VotedListServiceImplTest {
 
     }
 
-    @Test
+  /*  @Test
     void deletedVotedListDetails() {
-    }
+        VotedList votedList = Mockito.mock(VotedList.class);
+        VotedList votedListSaved = Mockito.mock(VotedList.class);
+        Mockito.when(repository.findById(123)).thenReturn(Optional.of(Mockito.mock(VotedList.class)));
+        VotedList result = service.deletedVotedListDetails(123);
+        Assertions.assertEquals(votedList,result);
 
+    }
+*/
     @Test
     void viewVotedList() {
+
+        VotedList votedList =Mockito.mock(VotedList.class);
+        List<VotedList> list =new ArrayList<>();
+        list.add(votedList);
+        Mockito.when(repository.findAll()).thenReturn(list);
+        List<VotedList> result =service.viewVotedList();
+        Assertions.assertEquals(list,result);
 
     }
 
     @Test
     void searchByVoterId() {
+        VotedList votedList =Mockito.mock(VotedList.class);
+        Mockito.when(repository.findByVoter_Id(123)).thenReturn(votedList);
+        VotedList result = service.searchByVoterId(123);
+        Assertions.assertEquals(result,votedList);
+
     }
 
     @Test
     void searchByNominatedCandidateId() {
+        VotedList votedList = Mockito.mock(VotedList.class);
+        List<VotedList> list=new ArrayList<>();
+        list.add(votedList);
+        Mockito.when(repository.findByCandidate_CandidateID(123)).thenReturn(list);
+       List<VotedList> result =service.searchByNominatedCandidateId(123);
+       Assertions.assertEquals(list,result);
+
+
     }
 }
