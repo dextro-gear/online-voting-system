@@ -3,9 +3,11 @@ package com.cg.onlinevotingsystem.voterms.service;
 import java.util.List;
 
 import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
+import com.cg.onlinevotingsystem.cooperativesocietyms.service.CooperativeSocietyServiceImpl;
+import com.cg.onlinevotingsystem.cooperativesocietyms.service.ICooperativeSocietyService;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 
-public interface IRegisteredSocietyVotersService {
+public interface IRegisteredSocietyVotersService  {
 
     public RegisteredSocietyVoters voterRegistration(RegisteredSocietyVoters voter);
     RegisteredSocietyVoters voterRegistration(String voterIdCardNo,String firstName, String lastName, String gender, String password, String reservationCategory,
