@@ -25,26 +25,20 @@ public class VotedListServiceImpl implements IVotedListService {
     IVotedListRepository votedListRepository;
 
     @Autowired
-    ICooperativeSocietyDaoRepository societyRepository;
-
-    @Autowired
-    VoterRepository voterRepository;
-
-    @Autowired
-    INominatedCandidateRepository candidateRepository;
-
-    @Autowired
     RegisteredSocietyVotersServiceImpl votersService;
 
     @Autowired
     NominatedCandidateServiceImpl candidateService;
 
+    @Autowired
+    CooperativeSocietyServiceImpl societyService;
+
     @Override
     public VotedList castVotedList(RegisteredSocietyVoters voter, NominatedCandidates candidate, CooperativeSociety society) {
         VotedList vote = new VotedList(voter, candidate, society);
-        societyRepository.save(society);
-        voterRepository.save(voter);
-        candidateRepository.save(candidate);
+        societyService.addSocietyDetails(society);
+        votersService.voterRegistration(voter);
+        candidateService.addNominatedCandidate(candidate);
         return votedListRepository.save(vote);
     }
 
@@ -68,12 +62,11 @@ public class VotedListServiceImpl implements IVotedListService {
     @Override
     public VotedList deletedVotedListDetails(int id) {
         Optional<VotedList> votedListOptional = votedListRepository.findById(id);
-        if (votedListOptional.isPresent())
-        {
+        if (votedListOptional.isPresent()) {
             votedListRepository.delete(votedListOptional.get());
+            return votedListOptional.get();
         } else
             throw new VotedListNotFoundException("VotedList with id:" + id + " was not found in the DB");
-        return votedListOptional.get();
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.cg.onlinevotingsystem.voterms.ui;
 
-import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 import com.cg.onlinevotingsystem.voterms.service.IRegisteredSocietyVotersService;
 
@@ -12,7 +11,6 @@ import java.util.List;
 @Component
 public class voterUI {
 
-  
     @Autowired
     IRegisteredSocietyVotersService service;
 
@@ -22,32 +20,32 @@ public class voterUI {
     }
 
     public void display() {
-        System.out.println("Voter Creation..........");
+        System.out.println("\nVoter Creation..........");
         RegisteredSocietyVoters t1 = service.voterRegistration("A001","Ritik", "Singh", "Male", "password1", "General", "9997876560", "ritik@gmail.com", "House No. 1", "MR Nagar",
                 "Aurangabad", "Mathura", 281006, null, true);
 
         System.out.println(t1);
 
         System.out.println();
-        System.out.println("View Voter Details..........");
+        System.out.println("\nView Voter Details..........");
         System.out.println();
         List<RegisteredSocietyVoters> list = service.viewRegisteredVoterList();
-        System.out.println("Voter Details------->" +list);
+        System.out.println("\nVoter Details------->" +list);
 
 
         System.out.println();
-        System.out.println("Search Voter By Id..........");
+        System.out.println("\nSearch Voter By Id..........");
         System.out.println();
 
         RegisteredSocietyVoters t2 = service.searchByVoterID(t1.getId());
         System.out.println(t2);
 
         System.out.println();
-        System.out.println("Delete Voter..........");
+        System.out.println("\nDelete Voter..........");
         System.out.println();
 
         RegisteredSocietyVoters t3 = service.deleteRegisteredVoter(t1.getId());
-        System.out.println("Voter deleted");
+        System.out.println("\nVoter deleted");
 
     }
 

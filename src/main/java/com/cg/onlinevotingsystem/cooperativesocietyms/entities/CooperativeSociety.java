@@ -23,7 +23,6 @@ public class CooperativeSociety {
 		
 	}
 	
-	
 
 	public CooperativeSociety( String societyName, String headOfSociety, String village, String mandal,
 			String district, String pincode) {

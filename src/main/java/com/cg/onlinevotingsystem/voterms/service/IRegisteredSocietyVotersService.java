@@ -7,6 +7,7 @@ import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 
 public interface IRegisteredSocietyVotersService {
 
+    public RegisteredSocietyVoters voterRegistration(RegisteredSocietyVoters voter);
     RegisteredSocietyVoters voterRegistration(String voterIdCardNo,String firstName, String lastName, String gender, String password, String reservationCategory,
                                               String mobileNo, String emailId, String address1, String address2, String mandal, String district, int pincode, CooperativeSociety society,
                                               boolean castedVote);
