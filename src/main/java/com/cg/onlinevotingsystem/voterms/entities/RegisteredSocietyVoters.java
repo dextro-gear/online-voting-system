@@ -25,8 +25,10 @@ public class RegisteredSocietyVoters {
     private String mandal;
     private String district;
     private int pincode;
+
     @OneToOne
     private CooperativeSociety cooperativeSociety;
+
     private boolean castedVote;
 
     public RegisteredSocietyVoters() {

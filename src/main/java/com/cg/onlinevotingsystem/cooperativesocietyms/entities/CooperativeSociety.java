@@ -8,6 +8,7 @@ import javax.persistence.Id;
 
 @Entity
 public class CooperativeSociety {
+
 	@GeneratedValue
 	@Id
 	private int societyId;
@@ -22,7 +23,6 @@ public class CooperativeSociety {
 	public CooperativeSociety() {
 		
 	}
-	
 	
 
 	public CooperativeSociety( String societyName, String headOfSociety, String village, String mandal,

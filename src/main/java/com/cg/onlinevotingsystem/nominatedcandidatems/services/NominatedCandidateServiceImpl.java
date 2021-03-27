@@ -5,6 +5,7 @@ import com.cg.onlinevotingsystem.nominatedcandidatems.dao.INominatedCandidateRep
 import com.cg.onlinevotingsystem.nominatedcandidatems.entities.NominatedCandidates;
 import com.cg.onlinevotingsystem.voterms.dao.VoterRepository;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
+import com.cg.onlinevotingsystem.voterms.service.RegisteredSocietyVotersServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +20,20 @@ public class NominatedCandidateServiceImpl implements INominatedCandidatesServic
     INominatedCandidateRepository nominatedCandidateRepository;
 
     @Autowired
-    VoterRepository voterRepository;
+    RegisteredSocietyVotersServiceImpl votersService;
 
     @Override
     @Transactional
     public NominatedCandidates addNominatedCandidate(String nominationFormNo, RegisteredSocietyVoters societyVoter) {
-        voterRepository.save(societyVoter);
+        votersService.voterRegistration(societyVoter);
         return nominatedCandidateRepository.save(new NominatedCandidates(nominationFormNo, societyVoter));
+    }
+
+    @Override
+    @Transactional
+    public NominatedCandidates addNominatedCandidate(NominatedCandidates candidate){
+        votersService.voterRegistration(candidate.getSocietyVoter());
+        return nominatedCandidateRepository.save(candidate);
     }
 
     @Override
@@ -36,7 +44,7 @@ public class NominatedCandidateServiceImpl implements INominatedCandidatesServic
         if(candidatesOptional.isPresent()){
             candidate.setNominationFormNo(nominationFormNo);
             candidate.setSocietyVoter(societyVoter);
-        }else
+        } else
             throw new CandidateNotFoundException("Candidate with id" + id + " not found in the DB");
 
         return nominatedCandidateRepository.save(candidate);

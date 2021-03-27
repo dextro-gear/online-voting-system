@@ -18,23 +18,21 @@ public class VotedListUI {
 
     public void start(){
 
+        CooperativeSociety society1 = new CooperativeSociety( "Meraki", "Dev", "Verumbakam","Mesur", "Teni", "603203");
         RegisteredSocietyVoters voter1=new RegisteredSocietyVoters("A001", "Ritik", "Singh",
                 "Male", "password1", "General", "9997876560", "ritik@gmail.com",
                 "House No. 1", "MR Nagar", "Aurangabad", "Mathura",
-                281006, true, null);
-        NominatedCandidates candidate1=new NominatedCandidates();
-        CooperativeSociety society1 = new CooperativeSociety( "Meraki", "Dev",
-                "Verumbakam","Mesur", "Teni", "603203");
+                281006, true, society1);
+        NominatedCandidates candidate1=new NominatedCandidates("123123", voter1);
 
 
 
+        CooperativeSociety society2 = new CooperativeSociety( "Meraki", "Dev", "Verumbakam","Mesur", "Teni", "603203");
         RegisteredSocietyVoters voter2=new RegisteredSocietyVoters("A001", "Ritik", "Singh",
                 "Male", "password1", "General", "9997876560", "ritik@gmail.com",
                 "House No. 1", "MR Nagar", "Aurangabad", "Mathura",
-                281006, true, null);
-        NominatedCandidates candidate2=new NominatedCandidates();
-        CooperativeSociety society2 = new CooperativeSociety( "Meraki", "Dev",
-                "Verumbakam","Mesur", "Teni", "603203");
+                281006, true, society2);
+        NominatedCandidates candidate2=new NominatedCandidates("3232323", voter2);
 
 
         VotedList castVotedList1= votedListService.castVotedList(voter1,candidate1,society1);

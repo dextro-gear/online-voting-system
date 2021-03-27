@@ -25,33 +25,27 @@ public class VotedListServiceImpl implements IVotedListService {
     IVotedListRepository votedListRepository;
 
     @Autowired
-    ICooperativeSocietyDaoRepository societyRepository;
-
-    @Autowired
-    VoterRepository voterRepository;
-
-    @Autowired
-    INominatedCandidateRepository candidateRepository;
-
-    @Autowired
     RegisteredSocietyVotersServiceImpl votersService;
 
     @Autowired
     NominatedCandidateServiceImpl candidateService;
 
+    @Autowired
+    CooperativeSocietyServiceImpl societyService;
+
     @Override
     public VotedList castVotedList(RegisteredSocietyVoters voter, NominatedCandidates candidate, CooperativeSociety society) {
         VotedList vote = new VotedList(voter, candidate, society);
-        societyRepository.save(society);
-        voterRepository.save(voter);
-        candidateRepository.save(candidate);
+        societyService.addSocietyDetails(society);
+        votersService.voterRegistration(voter);
+        candidateService.addNominatedCandidate(candidate);
         return votedListRepository.save(vote);
     }
 
     @Override
     // this method will update the detail in the record
     public VotedList updateVotedListDetails(int votedListID, RegisteredSocietyVoters voter, NominatedCandidates candidate, CooperativeSociety society) {
-        Optional<VotedList> votedListOptional= votedListRepository.findById(votedListID);
+        Optional<VotedList> votedListOptional = votedListRepository.findById(votedListID);
        if (votedListOptional.isPresent())
        {
           VotedList vote=votedListOptional.get();
@@ -68,12 +62,11 @@ public class VotedListServiceImpl implements IVotedListService {
     @Override
     public VotedList deletedVotedListDetails(int id) {
         Optional<VotedList> votedListOptional = votedListRepository.findById(id);
-        if (votedListOptional.isPresent())
-        {
+        if (votedListOptional.isPresent()) {
             votedListRepository.delete(votedListOptional.get());
+            return votedListOptional.get();
         } else
             throw new VotedListNotFoundException("VotedList with id:" + id + " was not found in the DB");
-        return votedListOptional.get();
     }
 
     @Override
@@ -83,7 +76,7 @@ public class VotedListServiceImpl implements IVotedListService {
 
     @Override
     public VotedList searchByVoterId(int voterId) {
-        Optional<VotedList> votedListOptional = Optional.of(this.votedListRepository.findByVoter_Id(voterId));
+        Optional<VotedList> votedListOptional = Optional.of(votedListRepository.findByVoter_Id(voterId));
         if (votedListOptional.isPresent())
             return votedListOptional.get();
         else

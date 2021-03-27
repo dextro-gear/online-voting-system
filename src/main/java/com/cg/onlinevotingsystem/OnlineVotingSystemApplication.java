@@ -9,11 +9,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
-public class OnlinevotingsystemApplication {
+public class OnlineVotingSystemApplication {
 	public static void main(String[] args) {
-		ConfigurableApplicationContext context = SpringApplication.run(OnlinevotingsystemApplication.class, args);
 
-		CooperativeSocietyUI cooperativeSocietyUI =context.getBean(CooperativeSocietyUI.class);
+		ConfigurableApplicationContext context = SpringApplication.run(OnlineVotingSystemApplication.class, args);
+
+		CooperativeSocietyUI cooperativeSocietyUI = context.getBean(CooperativeSocietyUI.class);
 		cooperativeSocietyUI.display();
 
 		DashboardUI dashboardUI = context.getBean(DashboardUI.class);

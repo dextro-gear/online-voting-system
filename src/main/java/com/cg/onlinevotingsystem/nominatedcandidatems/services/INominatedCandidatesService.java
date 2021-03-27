@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface INominatedCandidatesService {
 
+    public NominatedCandidates addNominatedCandidate(NominatedCandidates candidate);
     NominatedCandidates addNominatedCandidate(String nominationFormNo, RegisteredSocietyVoters societyVoters);
     NominatedCandidates updateNominatedCandidateDetails(int id, String nominationFormNo, RegisteredSocietyVoters societyVoters);
     NominatedCandidates deleteNominatedCandidate(int candidateID);
