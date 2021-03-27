@@ -18,10 +18,17 @@ public class RegisteredSocietyVotersServiceImpl implements IRegisteredSocietyVot
     VoterRepository voterRepository;
 
     @Override
-    public RegisteredSocietyVoters voterRegistration(String voterIdCardNo, String firstName, String lastName, String gender, String password, String reservationCategory, String mobileNo, String emailId, String address1, String address2, String mandal, String district, int pincode, CooperativeSociety society, boolean castedVote) {
-        RegisteredSocietyVoters t1 = new RegisteredSocietyVoters(voterIdCardNo, firstName, lastName, gender, password, reservationCategory, mobileNo, emailId, address1, address2, mandal, district, pincode, castedVote, society);
+    public RegisteredSocietyVoters voterRegistration(String voterIdCardNo,String firstName, String lastName, String gender, String password, String reservationCategory,
+                                                     String mobileNo, String emailId, String address1, String address2, String mandal, String district, int pincode,boolean castedVote,
+                                                     CooperativeSociety society) {
+        //this method will return the information about the voter
+        RegisteredSocietyVoters t1 = new RegisteredSocietyVoters(voterIdCardNo, firstName, lastName, gender, password, reservationCategory,
+                        mobileNo,emailId, address1, address2,mandal, district,pincode, castedVote, society);
+
         return voterRepository.save(t1);
-    }
+
+
+        }
 
     @Override
     public RegisteredSocietyVoters voterRegistration(RegisteredSocietyVoters voter){
