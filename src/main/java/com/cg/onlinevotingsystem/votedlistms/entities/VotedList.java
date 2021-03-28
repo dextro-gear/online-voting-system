@@ -17,7 +17,7 @@ public class VotedList {
     @GeneratedValue
     @Id
     private int id;
-    private Date pollingDateTime;
+    private LocalDateTime pollingDateTime;
 
     @OneToOne
     private CooperativeSociety society;
@@ -35,7 +35,7 @@ public class VotedList {
         this.candidate = candidate;
         this.voter = voter;
         this.society = society;
-        this.pollingDateTime = null;
+        this.pollingDateTime = LocalDateTime.now();
     }
 
     public int getId() {
@@ -43,11 +43,11 @@ public class VotedList {
     }
 
 
-    public Date getPollingDateTime() {
+    public LocalDateTime getPollingDateTime() {
         return pollingDateTime;
     }
 
-    public void setPollingDateTime(Date pollingDateTime) {
+    public void setPollingDateTime(LocalDateTime pollingDateTime) {
         this.pollingDateTime = pollingDateTime;
     }
 
