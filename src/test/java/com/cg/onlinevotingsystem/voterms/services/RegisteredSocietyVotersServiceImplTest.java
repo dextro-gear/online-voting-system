@@ -46,11 +46,6 @@ public class RegisteredSocietyVotersServiceImplTest {
 
     @Test
     void deleteRegisteredVoter() {
-        RegisteredSocietyVoters voter = Mockito.mock(RegisteredSocietyVoters.class);
-        Optional<RegisteredSocietyVoters> optional = Optional.empty();
-        when(voterRepository.findById(RegisteredSocietyVoters.getId())).thenReturn(optional);
-        Executable executable = () -> deleteRegisteredVoter(int voterId);
-        Assertions.assertThrows(VoterNotFoundException.class, (org.junit.jupiter.api.function.Executable) executable);
 
     }
 

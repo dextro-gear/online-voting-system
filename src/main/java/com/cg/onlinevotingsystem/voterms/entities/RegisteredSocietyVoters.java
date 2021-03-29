@@ -9,6 +9,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class RegisteredSocietyVoters {
+
     @GeneratedValue
     @Id
     private int id;
@@ -194,4 +195,27 @@ public class RegisteredSocietyVoters {
     public void setCastedVote(boolean castedVote) {
         this.castedVote = castedVote;
     }
+
+    @Override
+    public String toString() {
+        return "RegisteredSocietyVoters{" +
+                "id=" + id +
+                ", voterIDCardNo='" + voterIDCardNo + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", gender='" + gender + '\'' +
+                ", password='" + password + '\'' +
+                ", reservationCategory='" + reservationCategory + '\'' +
+                ", mobileNo='" + mobileNo + '\'' +
+                ", emailID='" + emailID + '\'' +
+                ", address1='" + address1 + '\'' +
+                ", address2='" + address2 + '\'' +
+                ", mandal='" + mandal + '\'' +
+                ", district='" + district + '\'' +
+                ", pincode=" + pincode +
+                ", cooperativeSociety=" + cooperativeSociety +
+                ", castedVote=" + castedVote +
+                '}';
+    }
+
 }
