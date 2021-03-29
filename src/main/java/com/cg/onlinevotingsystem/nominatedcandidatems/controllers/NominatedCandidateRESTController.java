@@ -45,8 +45,9 @@ public class NominatedCandidateRESTController {
     }
 
     @GetMapping("/{id}")
-    public String getCandidateByID(@PathVariable("id") int candidateID){
-        return "getCandidateByID : " + candidateID;
+    public NominatedCandidateDTO getCandidateByID(@PathVariable("id") int candidateID){
+        NominatedCandidates candidate = candidateService.searchByCandidateID(candidateID);
+        return candidatesUtil.toDTO(candidate);
     }
 
     @GetMapping
