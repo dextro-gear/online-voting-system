@@ -45,7 +45,7 @@ public class VotedListServiceImpl implements IVotedListService {
     @Override
     // this method will update the detail in the record
     public VotedList updateVotedListDetails(int votedListID, RegisteredSocietyVoters voter, NominatedCandidates candidate, CooperativeSociety society) {
-        Optional<VotedList> votedListOptional= votedListRepository.findById(votedListID);
+        Optional<VotedList> votedListOptional = votedListRepository.findById(votedListID);
        if (votedListOptional.isPresent())
        {
           VotedList vote=votedListOptional.get();
@@ -76,7 +76,7 @@ public class VotedListServiceImpl implements IVotedListService {
 
     @Override
     public VotedList searchByVoterId(int voterId) {
-        Optional<VotedList> votedListOptional = Optional.of(this.votedListRepository.findByVoter_Id(voterId));
+        Optional<VotedList> votedListOptional = Optional.of(votedListRepository.findByVoter_Id(voterId));
         if (votedListOptional.isPresent())
             return votedListOptional.get();
         else

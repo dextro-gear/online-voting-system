@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
+import com.cg.onlinevotingsystem.cooperativesocietyms.service.CooperativeSocietyServiceImpl;
 import com.cg.onlinevotingsystem.voterms.dao.VoterRepository;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 import com.cg.onlinevotingsystem.voterms.exceptions.RegisteredSocietyVoterNotFoundException;
@@ -17,21 +18,19 @@ public class RegisteredSocietyVotersServiceImpl implements IRegisteredSocietyVot
     @Autowired
     VoterRepository voterRepository;
 
+    @Autowired
+    CooperativeSocietyServiceImpl societyService;
+
     @Override
-    public RegisteredSocietyVoters voterRegistration(String voterIdCardNo,String firstName, String lastName, String gender, String password, String reservationCategory,
-                                                     String mobileNo, String emailId, String address1, String address2, String mandal, String district, int pincode,boolean castedVote,
-                                                     CooperativeSociety society) {
-        //this method will return the information about the voter
-        RegisteredSocietyVoters t1 = new RegisteredSocietyVoters(voterIdCardNo, firstName, lastName, gender, password, reservationCategory,
-                        mobileNo,emailId, address1, address2,mandal, district,pincode, castedVote, society);
-
+    public RegisteredSocietyVoters voterRegistration(String voterIdCardNo,String firstName, String lastName, String gender, String password, String reservationCategory, String mobileNo, String emailId, String address1, String address2, String mandal, String district, int pincode, boolean castedVote, CooperativeSociety society) {
+        RegisteredSocietyVoters t1 = new RegisteredSocietyVoters(voterIdCardNo, firstName, lastName, gender, password, reservationCategory, mobileNo,emailId, address1, address2,mandal, district,pincode, castedVote, society);
+        societyService.addSocietyDetails(society);
         return voterRepository.save(t1);
-
-
-        }
+    }
 
     @Override
     public RegisteredSocietyVoters voterRegistration(RegisteredSocietyVoters voter){
+        societyService.addSocietyDetails(voter.getSociety());
         return voterRepository.save(voter);
     }
 

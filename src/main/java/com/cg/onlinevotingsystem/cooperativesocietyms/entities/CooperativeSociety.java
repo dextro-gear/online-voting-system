@@ -8,6 +8,7 @@ import javax.persistence.Id;
 
 @Entity
 public class CooperativeSociety {
+
 	@GeneratedValue
 	@Id
 	private int societyId;

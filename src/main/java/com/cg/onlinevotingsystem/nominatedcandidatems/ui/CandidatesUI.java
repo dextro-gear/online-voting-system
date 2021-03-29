@@ -37,17 +37,9 @@ public class CandidatesUI {
         NominatedCandidates n3 = candidateService.addNominatedCandidate("8765",t4);
         NominatedCandidates n4 = candidateService.addNominatedCandidate("4321", t2);
 
-
-
-        // Add service demo.
         System.out.println("\nAddcandidate");
         System.out.println(n4);
 
-        // find service demo
-        System.out.println("\nSearch candidate");
-        System.out.println(candidateService.searchByCandidateID(15).toString());
-
-        // update service demo
         System.out.println("\nUpdate candidate");
         System.out.println(candidateService.updateNominatedCandidateDetails(12, "666666", null));
     }
