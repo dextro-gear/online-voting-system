@@ -1,6 +1,6 @@
 package com.cg.onlinevotingsystem.votedlistms.dto;
 
-public class searchByVoterIdRequest {
+public class SearchByVoterIdRequest {
     public int getVoterId() {
         return voterId;
     }
@@ -11,7 +11,7 @@ public class searchByVoterIdRequest {
 
     int voterId;
 
-    public searchByVoterIdRequest(int voterId) {
+    public SearchByVoterIdRequest(int voterId) {
         this.voterId = voterId;
     }
 
