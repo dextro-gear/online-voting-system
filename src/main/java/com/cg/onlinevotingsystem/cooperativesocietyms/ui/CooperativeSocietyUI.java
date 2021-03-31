@@ -26,18 +26,18 @@ public class CooperativeSocietyUI {
 		CooperativeSociety s9 = service.addSocietyDetails("Shakti", "Somnath", "kosuvampalayam","Soch", "Mulugu", "999999");
 		CooperativeSociety s10 = service.addSocietyDetails("Muham", "Anish", "chandrapur","Dharti", "Erode", "101010");
 
-		//find by id implemented
-		CooperativeSociety cs3 = service.viewSocietyById(s2.getSocietyId());
+//		//find by id implemented
+//		CooperativeSociety cs3 = service.viewSocietyById(s2.getSocietyId());
+//
+//		//find all implemented
+//		List<CooperativeSociety>list = service.viewSocietyList();
 
-		//find all implemented
-		List<CooperativeSociety>list = service.viewSocietyList();
 
-
-		System.out.println("**** Details of Cooperative Society with Id :"+ s2.getSocietyId() + "****");
-		System.out.println( "All Details Of Cooperative Society : " +list);
-		System.out.println(s1);
-		System.out.println(s1.getHeadOfSociety());
-		System.out.println(s2.getDistrict());
+//		System.out.println("**** Details of Cooperative Society with Id :"+ s2.getSocietyId() + "****");
+//		System.out.println( "All Details Of Cooperative Society : " +list);
+//		System.out.println(s1);
+//		System.out.println(s1.getHeadOfSociety());
+//		System.out.println(s2.getDistrict());
 	}
 	
 

@@ -6,11 +6,23 @@ import com.cg.onlinevotingsystem.voterms.dto.VoterDTO;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class NominatedCandidatesUtil {
 
     public NominatedCandidateDTO toDTO(NominatedCandidates candidate){
         return new NominatedCandidateDTO(candidate.getCandidateID(), candidate.getNominationFormNo(), toDTO(candidate.getSocietyVoter()));
+    }
+
+    public List<NominatedCandidateDTO> toDTO(List<NominatedCandidates> candidates){
+        List<NominatedCandidateDTO> returnList = new ArrayList<NominatedCandidateDTO>();
+        for(NominatedCandidates c: candidates){
+            returnList.add(toDTO(c));
+        }
+
+        return returnList;
     }
 
     public VoterDTO toDTO(RegisteredSocietyVoters voter){

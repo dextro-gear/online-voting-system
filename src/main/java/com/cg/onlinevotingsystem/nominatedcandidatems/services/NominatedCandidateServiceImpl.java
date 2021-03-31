@@ -3,6 +3,7 @@ package com.cg.onlinevotingsystem.nominatedcandidatems.services;
 import com.cg.onlinevotingsystem.dashboard.exceptions.CandidateNotFoundException;
 import com.cg.onlinevotingsystem.nominatedcandidatems.dao.INominatedCandidateRepository;
 import com.cg.onlinevotingsystem.nominatedcandidatems.entities.NominatedCandidates;
+import com.cg.onlinevotingsystem.voterms.dto.VoterDTO;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 import com.cg.onlinevotingsystem.voterms.service.RegisteredSocietyVotersServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,20 @@ public class NominatedCandidateServiceImpl implements INominatedCandidatesServic
         NominatedCandidates candidate = candidatesOptional.get();
         if(candidatesOptional.isPresent()){
             candidate.setNominationFormNo(nominationFormNo);
-            candidate.setSocietyVoter(societyVoter);
+            votersService.updateRegisteredVoterDetails(candidate.getSocietyVoter());
+        } else
+            throw new CandidateNotFoundException("Candidate with id" + id + " not found in the DB");
+
+        return nominatedCandidateRepository.save(candidate);
+    }
+
+    @Transactional
+    public NominatedCandidates updateNominatedCandidateDetails(int id, String nominationFormNo, VoterDTO voter){
+        Optional<NominatedCandidates> candidatesOptional = nominatedCandidateRepository.findById(id);
+        NominatedCandidates candidate = candidatesOptional.get();
+        if(candidatesOptional.isPresent()){
+            candidate.setNominationFormNo(nominationFormNo);
+            votersService.updateRegisteredVoterDetails(voter);
         } else
             throw new CandidateNotFoundException("Candidate with id" + id + " not found in the DB");
 

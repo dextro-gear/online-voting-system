@@ -12,8 +12,19 @@ public class DashboardUI {
     ElectionResultServiceImpl electionResultService;
 
     public void start(){
-        System.out.println(electionResultService.addElectionResult(null, "tanjore", 100, 60, 60, "Nominated").toString());
-        System.out.println(electionResultService.addElectionResult(null, "chennai", 100, 60, 60, "Nominated").toString());
-        System.out.println(electionResultService.addElectionResult(null, "mumbai", 100, 60, 60, "Nominated").toString());
+//        System.out.println(electionResultService.addElectionResult(null, "tanjore", 100, 60, 60, "Nominated").toString());
+//        System.out.println(electionResultService.addElectionResult(null, "chennai", 100, 60, 60, "Nominated").toString());
+//        System.out.println(electionResultService.addElectionResult(null, "mumbai", 100, 60, 60, "Nominated").toString());
+
+        System.out.println("\nTotal percentage of people who have voted:");
+        System.out.println(electionResultService.viewVotingPercentage() + " %");
+
+        System.out.println("\nVote Percentage for candidate 26:");
+        System.out.println(electionResultService.viewCandidateVotingPercentage(26) + " %");
+
+        System.out.println("\nVote Percentage for candidate 27:");
+        System.out.println(electionResultService.viewCandidateVotingPercentage(27) + " %");
+
+
     }
 }

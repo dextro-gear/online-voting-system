@@ -15,8 +15,6 @@ public interface IElectionResultService {
     void displayVotingStatistics();
     NominatedCandidates viewHighestVotingPercentCandidate();
     NominatedCandidates viewLowestVotingPercentCandidate();
-    int viewInvalidVotes();
-    List<NominatedCandidates> candidatewiseInvalidVotesList();
     void displayPollingResult();
 
 }

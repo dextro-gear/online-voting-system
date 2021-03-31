@@ -12,17 +12,16 @@ import com.cg.onlinevotingsystem.voterms.service.RegisteredSocietyVotersServiceI
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/candidates")
 public class NominatedCandidateRESTController {
 
     /* TODO
         Nominated Candidate REST Endpoints
-    *   1. Add candidate
     *   2. Update candidate
     *   3. Delete candidate
-    *   4. View candidate by ID
-    *   5. View all candidates
     * */
 
     @Autowired
@@ -51,18 +50,18 @@ public class NominatedCandidateRESTController {
     }
 
     @GetMapping
-    public String getAllCandidates(){
-        return "getAllCandidates";
+    public List<NominatedCandidateDTO> getAllCandidates(){
+        return candidatesUtil.toDTO(candidateService.viewNominatedCandidateList());
     }
 
     @PutMapping
-    public String updateCandidateDetails(){
-        return "updateCandidateDetails";
+    public NominatedCandidateDTO updateCandidateDetails(@RequestBody NominatedCandidateDTO request){
+        return candidatesUtil.toDTO(candidateService.updateNominatedCandidateDetails(request.getCandidateID(), request.getNominationFormNo(), request.getVoter()));
     }
 
     @DeleteMapping("/{id}")
-    public String deleteCandidateByID(@PathVariable("id") int candidateID){
-        return "deleteCandidateByID : " + candidateID;
+    public NominatedCandidateDTO deleteCandidateByID(@PathVariable("id") int candidateID){
+        return candidatesUtil.toDTO(candidateService.deleteNominatedCandidate(candidateID));
     }
 
 

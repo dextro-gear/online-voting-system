@@ -3,6 +3,24 @@ package com.cg.onlinevotingsystem.voterms.dto;
 import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
 
 public class CreateVoterRequest {
+
+    private int id;
+    private String voterIDCardNo;
+    private String firstName;
+    private String lastName;
+    private String gender;
+    private String password;
+    private String reservationCategory;
+    private String mobileNo;
+    private String emailID;
+    private String address1;
+    private String address2;
+    private String mandal;
+    private String district;
+    private int pincode;
+    private CooperativeSociety cooperativeSociety;
+    private boolean castedVote;
+
     public int getId() {
         return id;
     }
@@ -131,21 +149,5 @@ public class CreateVoterRequest {
         this.castedVote = castedVote;
     }
 
-    private int id;
-    private String voterIDCardNo;
-    private String firstName;
-    private String lastName;
-    private String gender;
-    private String password;
-    private String reservationCategory;
-    private String mobileNo;
-    private String emailID;
-    private String address1;
-    private String address2;
-    private String mandal;
-    private String district;
-    private int pincode;
-    private CooperativeSociety cooperativeSociety;
-    private boolean castedVote;
 
 }

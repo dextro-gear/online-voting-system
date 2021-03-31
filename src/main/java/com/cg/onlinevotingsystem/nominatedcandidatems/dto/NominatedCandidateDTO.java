@@ -1,6 +1,5 @@
 package com.cg.onlinevotingsystem.nominatedcandidatems.dto;
 
-import com.cg.onlinevotingsystem.cooperativesocietyms.dto.CooperativeSocietyDetails;
 import com.cg.onlinevotingsystem.voterms.dto.VoterDTO;
 
 public class NominatedCandidateDTO {

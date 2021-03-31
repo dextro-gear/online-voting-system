@@ -1,14 +1,22 @@
 package com.cg.onlinevotingsystem.dashboard.services;
 
+import com.cg.onlinevotingsystem.cooperativesocietyms.service.CooperativeSocietyServiceImpl;
 import com.cg.onlinevotingsystem.dashboard.dao.IElectionResultRepository;
 import com.cg.onlinevotingsystem.dashboard.entities.ElectionResult;
 import com.cg.onlinevotingsystem.dashboard.exceptions.CandidateNotFoundException;
 import com.cg.onlinevotingsystem.nominatedcandidatems.dao.INominatedCandidateRepository;
 import com.cg.onlinevotingsystem.nominatedcandidatems.entities.NominatedCandidates;
+import com.cg.onlinevotingsystem.nominatedcandidatems.services.NominatedCandidateServiceImpl;
+import com.cg.onlinevotingsystem.votedlistms.entities.VotedList;
+import com.cg.onlinevotingsystem.votedlistms.services.VotedListServiceImpl;
+import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
+import com.cg.onlinevotingsystem.voterms.service.RegisteredSocietyVotersServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -19,6 +27,18 @@ public class ElectionResultServiceImpl implements IElectionResultService{
 
     @Autowired
     IElectionResultRepository electionResultRepository;
+
+    @Autowired
+    RegisteredSocietyVotersServiceImpl votersService;
+
+    @Autowired
+    CooperativeSocietyServiceImpl societyService;
+
+    @Autowired
+    NominatedCandidateServiceImpl candidateService;
+
+    @Autowired
+    VotedListServiceImpl votedListService;
 
     @Override
     public ElectionResult addElectionResult(NominatedCandidates candidate, String coopSocietyName, int totalSocietyVotes, int totalCandidateVotes, float candidatesVotesPercentage, String result) {
@@ -41,12 +61,18 @@ public class ElectionResultServiceImpl implements IElectionResultService{
 
     @Override
     public float viewVotingPercentage() {
-        return 0;
+        List<RegisteredSocietyVoters> voters = votersService.viewRegisteredVoterList();
+        int voteCount = getTotalVotes();
+        float votingPercentage = ((float) voteCount/(float) voters.size());
+        return votingPercentage;
     }
 
     @Override
     public float viewCandidateVotingPercentage(int candidateID) {
-        return 0;
+        List<VotedList> candidateVotes = votedListService.searchByNominatedCandidateId(candidateID);
+        int totalVoteCount = getTotalVotes();
+        float percentage = ((float) candidateVotes.size() / (float) totalVoteCount);
+        return percentage;
     }
 
     @Override
@@ -56,6 +82,12 @@ public class ElectionResultServiceImpl implements IElectionResultService{
 
     @Override
     public NominatedCandidates viewHighestVotingPercentCandidate() {
+        Map<NominatedCandidates, Float> voteMap = new HashMap<NominatedCandidates, Float>();
+        List<NominatedCandidates> candidatesList = candidateService.viewNominatedCandidateList();
+        for(NominatedCandidates candidate: candidatesList){
+            float percentage = viewCandidateVotingPercentage(candidate.getCandidateID());
+
+        }
         return null;
     }
 
@@ -65,17 +97,17 @@ public class ElectionResultServiceImpl implements IElectionResultService{
     }
 
     @Override
-    public int viewInvalidVotes() {
-        return 0;
-    }
-
-    @Override
-    public List<NominatedCandidates> candidatewiseInvalidVotesList() {
-        return null;
-    }
-
-    @Override
     public void displayPollingResult() {
 
+    }
+
+    public int getTotalVotes(){
+        List<RegisteredSocietyVoters> voters = votersService.viewRegisteredVoterList();
+        int voteCount = 0;
+        for(RegisteredSocietyVoters voter: voters){
+            if(voter.getCastedVote())
+                voteCount++;
+        }
+        return voteCount;
     }
 }

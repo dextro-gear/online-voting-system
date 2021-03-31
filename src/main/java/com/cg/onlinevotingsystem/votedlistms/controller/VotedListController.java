@@ -9,15 +9,17 @@ import com.cg.onlinevotingsystem.votedlistms.dao.IVotedListRepository;
 import com.cg.onlinevotingsystem.votedlistms.dto.*;
 import com.cg.onlinevotingsystem.votedlistms.entities.VotedList;
 import com.cg.onlinevotingsystem.votedlistms.services.IVotedListService;
+import com.cg.onlinevotingsystem.votedlistms.util.VotedListUtil;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 import com.cg.onlinevotingsystem.voterms.service.RegisteredSocietyVotersServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@RequestMapping("/votedList")
+@RequestMapping("/vote")
 @RestController
 public class VotedListController {
 
@@ -31,28 +33,18 @@ public class VotedListController {
     private RegisteredSocietyVotersServiceImpl votersService;
 
     @Autowired
-    NominatedCandidateServiceImpl candidateService;
+    private NominatedCandidateServiceImpl candidateService;
 
     @Autowired
-    IVotedListRepository votedListRepository;
+    private IVotedListRepository votedListRepository;
 
-   // @Autowired
-    //private VotedListUtil util;
-
-    /*
-    * 1. Add new votes (castVotedList)
-    * 2. Update vote details. (updateVotedListDetails)
-    * 3. Viewing which voter cast which vote. (searchByVoterID)
-    * 4. View all the votes. (viewVotedList)
-    * 5. Retrieve all votes for certain candidate
-    * 6. Delete a vote.
-    * */
+    @Autowired
+    private VotedListUtil votedListUtil;
 
     // cast a vote
-    @PostMapping("/add")
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping()
     public CastVotedListResponse castNewVote(@RequestBody CastVotedListRequest request){
-        int candidateID;
-        // cast the vote
         CooperativeSociety society = societyService.viewSocietyById(request.getSocietyID());
         NominatedCandidates candidate = candidateService.searchByCandidateID(request.getCandidateID());
         RegisteredSocietyVoters voter = votersService.searchByVoterID(request.getVoterID());
@@ -61,32 +53,23 @@ public class VotedListController {
     }
 
     // view all the votes
-    @GetMapping("/view")
-    public List<VotedList> viewVotedList() {
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping()
+    public List<VotedListDTO> viewVotedList() {
         List<VotedList> votes = votedListService.viewVotedList();
-        return votes;
+        return votedListUtil.toDTO(votes);
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("byId/{id}")
-    public String deleteVotedListDetails(@PathVariable("id")int id){
-        Optional<VotedList> optionalVotedList = votedListRepository.findById(id);
-        votedListService.deletedVotedListDetails(id);
-        return "VotedList details deleted " + id;
+    public VotedListDTO deleteVotedListDetails(@PathVariable("id")int id){
+        return votedListUtil.toDTO(votedListService.deletedVotedListDetails(id));
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("byVoterId/{id}")
-    public SearchByVoterIdRequest searchByVoterId(@PathVariable("id")int id){
-        Optional<VotedList> votedList=votedListRepository.findById(id);
-
-
-        return null;
+    public VotedListDTO searchByVoterId(@PathVariable("id")int id){
+        return votedListUtil.toDTO(votedListService.searchByVoterId(id));
     }
-
-
-
-
-
-
-
 
 }

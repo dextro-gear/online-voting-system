@@ -16,6 +16,7 @@ import com.cg.onlinevotingsystem.voterms.service.RegisteredSocietyVotersServiceI
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -34,11 +35,14 @@ public class VotedListServiceImpl implements IVotedListService {
     CooperativeSocietyServiceImpl societyService;
 
     @Override
+    @Transactional
     public VotedList castVotedList(RegisteredSocietyVoters voter, NominatedCandidates candidate, CooperativeSociety society) {
         VotedList vote = new VotedList(voter, candidate, society);
         societyService.addSocietyDetails(society);
         votersService.voterRegistration(voter);
         candidateService.addNominatedCandidate(candidate);
+        voter.setCastedVote(true);
+        votersService.updateRegisteredVoterDetails(voter);
         return votedListRepository.save(vote);
     }
 

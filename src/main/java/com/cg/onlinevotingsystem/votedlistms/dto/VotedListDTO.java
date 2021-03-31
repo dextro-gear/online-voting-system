@@ -9,42 +9,53 @@ import java.time.LocalDateTime;
 public class VotedListDTO {
 
     int voteId;
-    LocalDateTime localDateTime;
     int candidateId;
     int societyId;
+    String votingDateTime;
 
     public VotedListDTO() {
+    }
+
+    public VotedListDTO(int voteId, int candidateId, int societyId, String votingDateTime) {
+        this.voteId = voteId;
+        this.candidateId = candidateId;
+        this.societyId = societyId;
+        this.votingDateTime = votingDateTime;
     }
 
     public int getVoteId() {
         return voteId;
     }
 
-    public void setVoteId(int voteId) {
+    public VotedListDTO setVoteId(int voteId) {
         this.voteId = voteId;
+        return this;
     }
 
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
+    public String getVotingDateTime() {
+        return votingDateTime;
     }
 
-    public void setLocalDateTime(LocalDateTime localDateTime) {
-        this.localDateTime = localDateTime;
+    public VotedListDTO setVotingDateTime(String votingDateTime) {
+        this.votingDateTime = votingDateTime;
+        return this;
     }
 
     public int getCandidateId() {
         return candidateId;
     }
 
-    public void setCandidateId(int candidateId) {
+    public VotedListDTO setCandidateId(int candidateId) {
         this.candidateId = candidateId;
+        return this;
     }
 
     public int getSocietyId() {
         return societyId;
     }
 
-    public void setSocietyId(int societyId) {
+    public VotedListDTO setSocietyId(int societyId) {
         this.societyId = societyId;
+        return this;
     }
 }

@@ -27,7 +27,7 @@ public class VoterRESTController {
     @Autowired
     private VoterUtil util;
 
-    @PostMapping("/add")
+    @PostMapping
     public VoterDetails addNewVoter(@RequestBody CreateVoterRequest request){
         return util.details(service.voterRegistration(request.getVoterIDCardNo(),request.getFirstName(),
                 request.getLastName(),request.getGender(),request.getPassword(),request.getReservationCategory(),
@@ -36,14 +36,20 @@ public class VoterRESTController {
                 request.getCooperativeSociety()));
     }
 
-    @GetMapping("/byid/{id}")
+    @GetMapping
+    public String viewVoterList()
+    {
+        return "viewVoterList";
+    }
+
+    @GetMapping("/{id}")
     public VoterDetails findVoter(@PathVariable("id") int id)
     {
         RegisteredSocietyVoters sv = service.searchByVoterID(id);
         return util.details(sv);
     }
 
-    @DeleteMapping("byid/{id}")
+    @DeleteMapping("/{id}")
     public VoterDetails deleteVoter(@PathVariable("id") int id)
     {
         RegisteredSocietyVoters sv = service.deleteRegisteredVoter(id);
@@ -54,25 +60,6 @@ public class VoterRESTController {
     public String updateVoter(){
         return "updateVoterDetails";
     }
-
-    @PutMapping
-    public String viewVoterList()
-    {
-        return "viewVoterList";
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
