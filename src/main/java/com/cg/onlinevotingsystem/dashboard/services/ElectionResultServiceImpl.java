@@ -98,7 +98,6 @@ public class ElectionResultServiceImpl implements IElectionResultService{
 
     @Override
     public void displayPollingResult() {
-
     }
 
     public int getTotalVotes(){

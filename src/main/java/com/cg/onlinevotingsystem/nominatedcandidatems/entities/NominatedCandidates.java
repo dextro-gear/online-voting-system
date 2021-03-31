@@ -54,12 +54,12 @@ public class NominatedCandidates{
         if (this == o) return true;
         if (!(o instanceof NominatedCandidates)) return false;
         NominatedCandidates that = (NominatedCandidates) o;
-        return getCandidateID() == that.getCandidateID() && getNominationFormNo().equals(that.getNominationFormNo()) && getSocietyVoter().equals(that.getSocietyVoter());
+        return candidateID == that.candidateID && Objects.equals(nominationFormNo, that.nominationFormNo) && Objects.equals(societyVoter, that.societyVoter);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCandidateID(), getNominationFormNo(), getSocietyVoter());
+        return Objects.hash(candidateID, nominationFormNo, societyVoter);
     }
 
     @Override
@@ -69,4 +69,6 @@ public class NominatedCandidates{
                 ", nominationFormNo='" + nominationFormNo + '\'' +
                 '}';
     }
+
+
 }

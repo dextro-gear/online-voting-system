@@ -3,6 +3,8 @@ package com.cg.onlinevotingsystem.electionoffice.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Objects;
+
 @Entity
 public class ElectionOfficer {
 
@@ -103,5 +105,34 @@ public class ElectionOfficer {
 
     public void setDistrict(String district) {
         this.district = district;
+    }
+
+    @Override
+    public String toString() {
+        return "ElectionOfficer{" +
+                "officerID=" + officerID +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", gender='" + gender + '\'' +
+                ", mobileNo='" + mobileNo + '\'' +
+                ", emailID='" + emailID + '\'' +
+                ", address1='" + address1 + '\'' +
+                ", address2='" + address2 + '\'' +
+                ", district='" + district + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ElectionOfficer)) return false;
+        ElectionOfficer that = (ElectionOfficer) o;
+        return officerID == that.officerID && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(password, that.password) && Objects.equals(gender, that.gender) && Objects.equals(mobileNo, that.mobileNo) && Objects.equals(emailID, that.emailID) && Objects.equals(address1, that.address1) && Objects.equals(address2, that.address2) && Objects.equals(district, that.district);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(officerID, firstName, lastName, password, gender, mobileNo, emailID, address1, address2, district);
     }
 }

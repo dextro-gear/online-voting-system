@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 public class VotedList {
@@ -84,5 +85,18 @@ public class VotedList {
                 ", voter=" + voter +
                 ", candidate=" + candidate +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof VotedList)) return false;
+        VotedList votedList = (VotedList) o;
+        return id == votedList.id && Objects.equals(pollingDateTime, votedList.pollingDateTime) && Objects.equals(society, votedList.society) && Objects.equals(voter, votedList.voter) && Objects.equals(candidate, votedList.candidate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, pollingDateTime, society, voter, candidate);
     }
 }

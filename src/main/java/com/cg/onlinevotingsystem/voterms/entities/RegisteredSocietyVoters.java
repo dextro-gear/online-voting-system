@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import java.util.Objects;
 
 @Entity
 public class RegisteredSocietyVoters {
@@ -217,5 +218,19 @@ public class RegisteredSocietyVoters {
                 ", castedVote=" + castedVote +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RegisteredSocietyVoters)) return false;
+        RegisteredSocietyVoters that = (RegisteredSocietyVoters) o;
+        return id == that.id && pincode == that.pincode && castedVote == that.castedVote && Objects.equals(voterIDCardNo, that.voterIDCardNo) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(gender, that.gender) && Objects.equals(password, that.password) && Objects.equals(reservationCategory, that.reservationCategory) && Objects.equals(mobileNo, that.mobileNo) && Objects.equals(emailID, that.emailID) && Objects.equals(address1, that.address1) && Objects.equals(address2, that.address2) && Objects.equals(mandal, that.mandal) && Objects.equals(district, that.district) && Objects.equals(cooperativeSociety, that.cooperativeSociety);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, voterIDCardNo, firstName, lastName, gender, password, reservationCategory, mobileNo, emailID, address1, address2, mandal, district, pincode, cooperativeSociety, castedVote);
+    }
+
 
 }

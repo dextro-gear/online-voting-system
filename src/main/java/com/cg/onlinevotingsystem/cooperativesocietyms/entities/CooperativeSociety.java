@@ -5,6 +5,7 @@ package com.cg.onlinevotingsystem.cooperativesocietyms.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class CooperativeSociety {
@@ -104,5 +105,18 @@ public class CooperativeSociety {
 				", district='" + district + '\'' +
 				", pincode='" + pincode + '\'' +
 				'}';
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof CooperativeSociety)) return false;
+		CooperativeSociety society = (CooperativeSociety) o;
+		return societyId == society.societyId && societyName.equals(society.societyName) && headOfSociety.equals(society.headOfSociety) && village.equals(society.village) && mandal.equals(society.mandal) && district.equals(society.district) && pincode.equals(society.pincode);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(societyId, societyName, headOfSociety, village, mandal, district, pincode);
 	}
 }

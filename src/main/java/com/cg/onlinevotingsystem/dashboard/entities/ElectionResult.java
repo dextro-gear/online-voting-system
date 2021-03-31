@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 public class ElectionResult {
@@ -115,5 +116,18 @@ public class ElectionResult {
                 ", candidatesVotesPercentage=" + candidatesVotesPercentage +
                 ", result='" + result + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ElectionResult)) return false;
+        ElectionResult result1 = (ElectionResult) o;
+        return id == result1.id && totalSocietyVotes == result1.totalSocietyVotes && totalCandidateVotes == result1.totalCandidateVotes && Float.compare(result1.candidatesVotesPercentage, candidatesVotesPercentage) == 0 && Objects.equals(candidate, result1.candidate) && Objects.equals(pollingDate, result1.pollingDate) && Objects.equals(cooperativeSocietyName, result1.cooperativeSocietyName) && Objects.equals(result, result1.result);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, candidate, pollingDate, cooperativeSocietyName, totalSocietyVotes, totalCandidateVotes, candidatesVotesPercentage, result);
     }
 }
