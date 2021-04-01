@@ -14,11 +14,15 @@ import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 import com.cg.onlinevotingsystem.voterms.service.RegisteredSocietyVotersServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 import java.util.Optional;
 
+@Validated
 @RequestMapping("/vote")
 @RestController
 public class VotedListController {
@@ -44,7 +48,7 @@ public class VotedListController {
     // cast a vote
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
-    public CastVotedListResponse castNewVote(@RequestBody CastVotedListRequest request){
+    public CastVotedListResponse castNewVote(@RequestBody @Valid CastVotedListRequest request){
         CooperativeSociety society = societyService.viewSocietyById(request.getSocietyID());
         NominatedCandidates candidate = candidateService.searchByCandidateID(request.getCandidateID());
         RegisteredSocietyVoters voter = votersService.searchByVoterID(request.getVoterID());
@@ -62,13 +66,13 @@ public class VotedListController {
 
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("byId/{id}")
-    public VotedListDTO deleteVotedListDetails(@PathVariable("id")int id){
+    public VotedListDTO deleteVotedListDetails(@PathVariable("id") @Min(1) int id){
         return votedListUtil.toDTO(votedListService.deletedVotedListDetails(id));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("byVoterId/{id}")
-    public VotedListDTO searchByVoterId(@PathVariable("id")int id){
+    public VotedListDTO searchByVoterId(@PathVariable("id") @Min(1) int id){
         return votedListUtil.toDTO(votedListService.searchByVoterId(id));
     }
 
