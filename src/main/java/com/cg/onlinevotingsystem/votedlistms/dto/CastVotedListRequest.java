@@ -4,9 +4,16 @@ import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociet
 import com.cg.onlinevotingsystem.nominatedcandidatems.entities.NominatedCandidates;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 
+import javax.validation.constraints.Min;
+
 public class CastVotedListRequest {
+    @Min(1)
     private int voterID;
+
+    @Min(1)
     private int candidateID;
+
+    @Min(1)
     private int societyID;
 
     public int getVoterID() {
