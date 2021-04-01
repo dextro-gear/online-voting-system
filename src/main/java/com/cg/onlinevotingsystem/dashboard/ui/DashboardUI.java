@@ -2,6 +2,7 @@ package com.cg.onlinevotingsystem.dashboard.ui;
 
 import com.cg.onlinevotingsystem.dashboard.entities.ElectionResult;
 import com.cg.onlinevotingsystem.dashboard.services.ElectionResultServiceImpl;
+import com.cg.onlinevotingsystem.nominatedcandidatems.entities.NominatedCandidates;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +25,16 @@ public class DashboardUI {
 
         System.out.println("\nVote Percentage for candidate 27:");
         System.out.println(electionResultService.viewCandidateVotingPercentage(27) + " %");
+
+        NominatedCandidates winner = electionResultService.viewHighestVotingPercentCandidate();
+        System.out.println("\nHighest voted candidate");
+        System.out.println(winner.toString());
+        System.out.println(electionResultService.viewCandidateVotingPercentage(winner.getCandidateID()));
+
+        NominatedCandidates loser = electionResultService.viewLowestVotingPercentCandidate();
+        System.out.println("\nLowest voted candidate");
+        System.out.println(loser.toString());
+        System.out.println(electionResultService.viewCandidateVotingPercentage(loser.getCandidateID()));
 
 
     }

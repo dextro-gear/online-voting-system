@@ -14,10 +14,7 @@ import com.cg.onlinevotingsystem.voterms.service.RegisteredSocietyVotersServiceI
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ElectionResultServiceImpl implements IElectionResultService{
@@ -82,18 +79,28 @@ public class ElectionResultServiceImpl implements IElectionResultService{
 
     @Override
     public NominatedCandidates viewHighestVotingPercentCandidate() {
-        Map<NominatedCandidates, Float> voteMap = new HashMap<NominatedCandidates, Float>();
+        Map<NominatedCandidates, Float> voteMap = new HashMap<>();
         List<NominatedCandidates> candidatesList = candidateService.viewNominatedCandidateList();
         for(NominatedCandidates candidate: candidatesList){
             float percentage = viewCandidateVotingPercentage(candidate.getCandidateID());
-
+            voteMap.put(candidate, viewCandidateVotingPercentage(candidate.getCandidateID()));
         }
-        return null;
+        Map.Entry<NominatedCandidates, Float> maxEntry = Collections.max(voteMap.entrySet(), Comparator.comparing(Map.Entry::getValue));
+
+        return maxEntry.getKey();
     }
 
     @Override
     public NominatedCandidates viewLowestVotingPercentCandidate() {
-        return null;
+        Map<NominatedCandidates, Float> voteMap = new HashMap<>();
+        List<NominatedCandidates> candidatesList = candidateService.viewNominatedCandidateList();
+        for(NominatedCandidates candidate: candidatesList){
+            float percentage = viewCandidateVotingPercentage(candidate.getCandidateID());
+            voteMap.put(candidate, viewCandidateVotingPercentage(candidate.getCandidateID()));
+        }
+        Map.Entry<NominatedCandidates, Float> maxEntry = Collections.min(voteMap.entrySet(), Comparator.comparing(Map.Entry::getValue));
+
+        return maxEntry.getKey();
     }
 
     @Override
