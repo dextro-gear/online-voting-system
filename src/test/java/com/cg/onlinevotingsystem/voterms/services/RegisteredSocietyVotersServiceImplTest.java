@@ -12,12 +12,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 
-import java.lang.reflect.Executable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class RegisteredSocietyVotersServiceImplTest {
     @Mock
@@ -46,16 +45,30 @@ public class RegisteredSocietyVotersServiceImplTest {
 
     @Test
     void deleteRegisteredVoter() {
-
+        RegisteredSocietyVoters voter = Mockito.mock(RegisteredSocietyVoters.class);
+        RegisteredSocietyVoters voterSaved = Mockito.mock(RegisteredSocietyVoters.class);
+        Mockito.when(voterRepository.findById(123)).thenReturn(Optional.of(Mockito.mock(RegisteredSocietyVoters.class)));
+        RegisteredSocietyVoters result = service.deleteRegisteredVoter(123);
+        Assertions.assertEquals(voter,result);
     }
 
     @Test
     void viewRegisteredVoterList() {
+        RegisteredSocietyVoters voter = Mockito.mock(RegisteredSocietyVoters.class);
+        List<RegisteredSocietyVoters> list = new ArrayList<>();
+        list.add(voter);
+        Mockito.when(voterRepository.findAll()).thenReturn(list);
+        List<RegisteredSocietyVoters> result = service.viewRegisteredVoterList();
+        Assertions.assertEquals(list,result);
 
     }
 
     @Test
     void searchByVoterID() {
+        RegisteredSocietyVoters voter = Mockito.mock(RegisteredSocietyVoters.class);
+        Mockito.when(voterRepository.findById(123)).thenReturn(Optional.ofNullable(voter));
+        RegisteredSocietyVoters result = service.searchByVoterID(123);
+        Assertions.assertEquals(result,voter);
     }
 
     @Test
