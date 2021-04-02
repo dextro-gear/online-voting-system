@@ -76,6 +76,11 @@ class VotedListServiceImplTest {
         Assertions.assertThrows(InvalidVoteException.class ,executable);
     }
 
+    /**
+     * scenario: votes are updated successfully
+     * input : voteId ,mock voter, candidate, society
+     * expectation: verifying verify(voteRepository).save(vote) is called
+     */
     @Test
     void testUpdateVotedListDetails() {
         RegisteredSocietyVoters voter=mock(RegisteredSocietyVoters.class);
