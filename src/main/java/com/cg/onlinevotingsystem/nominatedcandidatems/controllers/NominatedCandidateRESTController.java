@@ -9,6 +9,7 @@ import com.cg.onlinevotingsystem.nominatedcandidatems.services.NominatedCandidat
 import com.cg.onlinevotingsystem.nominatedcandidatems.util.NominatedCandidatesUtil;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 import com.cg.onlinevotingsystem.voterms.service.RegisteredSocietyVotersServiceImpl;
+import com.cg.onlinevotingsystem.voterms.util.VoterUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,25 +26,30 @@ public class NominatedCandidateRESTController {
     * */
 
     @Autowired
-    NominatedCandidateServiceImpl candidateService;
+    private NominatedCandidateServiceImpl candidateService;
 
     @Autowired
-    CooperativeSocietyServiceImpl societyService;
+    private CooperativeSocietyServiceImpl societyService;
 
     @Autowired
-    RegisteredSocietyVotersServiceImpl votersService;
+    private RegisteredSocietyVotersServiceImpl votersService;
 
     @Autowired
-    NominatedCandidatesUtil candidatesUtil;
+    private NominatedCandidatesUtil candidatesUtil;
 
-    @PostMapping
+    @Autowired
+    private VoterUtil voterUtil;
+
+
+     @PostMapping("/add")
     public NominatedCandidateDTO addNewCandidate(@RequestBody AddCandidateRequest request){
         RegisteredSocietyVoters voter = votersService.searchByVoterID(request.getVoterID());
-        NominatedCandidates candidate = candidateService.addNominatedCandidate(request.getNominationFormNo(), voter);
+        NominatedCandidates candidate=new NominatedCandidates(request.getNominationFormNo(),voter);
+        candidate = candidateService.addNominatedCandidate(candidate);
         return candidatesUtil.toDTO(candidate);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/byid/{id}")
     public NominatedCandidateDTO getCandidateByID(@PathVariable("id") int candidateID){
         NominatedCandidates candidate = candidateService.searchByCandidateID(candidateID);
         return candidatesUtil.toDTO(candidate);
@@ -54,15 +60,13 @@ public class NominatedCandidateRESTController {
         return candidatesUtil.toDTO(candidateService.viewNominatedCandidateList());
     }
 
-    @PutMapping
+    @PutMapping("/updatecandidate")
     public NominatedCandidateDTO updateCandidateDetails(@RequestBody NominatedCandidateDTO request){
-        return candidatesUtil.toDTO(candidateService.updateNominatedCandidateDetails(request.getCandidateID(), request.getNominationFormNo(), request.getVoter()));
+        RegisteredSocietyVoters voter=voterUtil.toVoterEntity(request.getVoter());
+        NominatedCandidates candidate=candidateService.updateNominatedCandidateDetails(request.getCandidateID(),request.getNominationFormNo(),voter);
+        return candidatesUtil.toDTO(candidate);
     }
 
-    @DeleteMapping("/{id}")
-    public NominatedCandidateDTO deleteCandidateByID(@PathVariable("id") int candidateID){
-        return candidatesUtil.toDTO(candidateService.deleteNominatedCandidate(candidateID));
-    }
 
 
 }

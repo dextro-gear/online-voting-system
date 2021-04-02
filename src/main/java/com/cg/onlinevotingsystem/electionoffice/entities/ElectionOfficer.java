@@ -25,17 +25,7 @@ public class ElectionOfficer {
 
     public ElectionOfficer(){}
 
-    public ElectionOfficer(String firstName, String lastName, String password, String gender, String mobileNo, String emailID, String address1, String address2, String district) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.gender = gender;
-        this.mobileNo = mobileNo;
-        this.emailID = emailID;
-        this.address1 = address1;
-        this.address2 = address2;
-        this.district = district;
-    }
+
 
     // Getters
     public int getOfficerID() {
@@ -145,11 +135,11 @@ public class ElectionOfficer {
         if (this == o) return true;
         if (!(o instanceof ElectionOfficer)) return false;
         ElectionOfficer that = (ElectionOfficer) o;
-        return officerID == that.officerID && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(password, that.password) && Objects.equals(gender, that.gender) && Objects.equals(mobileNo, that.mobileNo) && Objects.equals(emailID, that.emailID) && Objects.equals(address1, that.address1) && Objects.equals(address2, that.address2) && Objects.equals(district, that.district);
+        return officerID == that.officerID ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(officerID, firstName, lastName, password, gender, mobileNo, emailID, address1, address2, district);
+        return Objects.hash(officerID);
     }
 }

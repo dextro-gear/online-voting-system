@@ -2,10 +2,7 @@ package com.cg.onlinevotingsystem.nominatedcandidatems.entities;
 
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -18,7 +15,7 @@ public class NominatedCandidates{
     private String nominationFormNo;
 
     @OneToOne
-    RegisteredSocietyVoters societyVoter;
+    private RegisteredSocietyVoters societyVoter;
 
 
     public NominatedCandidates() {
@@ -54,12 +51,12 @@ public class NominatedCandidates{
         if (this == o) return true;
         if (!(o instanceof NominatedCandidates)) return false;
         NominatedCandidates that = (NominatedCandidates) o;
-        return candidateID == that.candidateID && Objects.equals(nominationFormNo, that.nominationFormNo) && Objects.equals(societyVoter, that.societyVoter);
+        return candidateID == that.candidateID;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(candidateID, nominationFormNo, societyVoter);
+        return Objects.hash(candidateID);
     }
 
     @Override

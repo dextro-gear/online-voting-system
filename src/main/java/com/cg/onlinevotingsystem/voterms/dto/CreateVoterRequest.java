@@ -2,40 +2,31 @@ package com.cg.onlinevotingsystem.voterms.dto;
 
 import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
 
+import javax.validation.constraints.NotBlank;
+
 public class CreateVoterRequest {
 
-    private int id;
-    private String voterIDCardNo;
+    @NotBlank
     private String firstName;
+    @NotBlank
     private String lastName;
+    @NotBlank
     private String gender;
+    @NotBlank
     private String password;
     private String reservationCategory;
+    @NotBlank
     private String mobileNo;
+    @NotBlank
     private String emailID;
+    @NotBlank
     private String address1;
     private String address2;
     private String mandal;
     private String district;
     private int pincode;
-    private CooperativeSociety cooperativeSociety;
+    private int societyId;
     private boolean castedVote;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getVoterIDCardNo() {
-        return voterIDCardNo;
-    }
-
-    public void setVoterIDCardNo(String voterIDCardNo) {
-        this.voterIDCardNo = voterIDCardNo;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -133,14 +124,6 @@ public class CreateVoterRequest {
         this.pincode = pincode;
     }
 
-    public CooperativeSociety getCooperativeSociety() {
-        return cooperativeSociety;
-    }
-
-    public void setCooperativeSociety(CooperativeSociety cooperativeSociety) {
-        this.cooperativeSociety = cooperativeSociety;
-    }
-
     public boolean getCastedVote() {
         return castedVote;
     }
@@ -149,5 +132,15 @@ public class CreateVoterRequest {
         this.castedVote = castedVote;
     }
 
+    public int getSocietyId() {
+        return societyId;
+    }
 
+    public void setSocietyId(int societyId) {
+        this.societyId = societyId;
+    }
+
+    public boolean isCastedVote() {
+        return castedVote;
+    }
 }

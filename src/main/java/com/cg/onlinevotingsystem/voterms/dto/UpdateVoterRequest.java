@@ -1,6 +1,6 @@
 package com.cg.onlinevotingsystem.voterms.dto;
 
-public class VoterDTO {
+public class UpdateVoterRequest {
 
     private int voterID;
     private int societyID;
@@ -22,7 +22,7 @@ public class VoterDTO {
         return voterID;
     }
 
-    public VoterDTO setVoterID(int voterID) {
+    public UpdateVoterRequest setVoterID(int voterID) {
         this.voterID = voterID;
         return this;
     }
@@ -31,7 +31,7 @@ public class VoterDTO {
         return societyID;
     }
 
-    public VoterDTO setSocietyID(int societyID) {
+    public UpdateVoterRequest setSocietyID(int societyID) {
         this.societyID = societyID;
         return this;
     }
@@ -40,7 +40,7 @@ public class VoterDTO {
         return voterIDCardNo;
     }
 
-    public VoterDTO setVoterIDCardNo(String voterIDCardNo) {
+    public UpdateVoterRequest setVoterIDCardNo(String voterIDCardNo) {
         this.voterIDCardNo = voterIDCardNo;
         return this;
     }
@@ -49,7 +49,7 @@ public class VoterDTO {
         return firstName;
     }
 
-    public VoterDTO setFirstName(String firstName) {
+    public UpdateVoterRequest setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -58,7 +58,7 @@ public class VoterDTO {
         return lastName;
     }
 
-    public VoterDTO setLastName(String lastName) {
+    public UpdateVoterRequest setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -67,7 +67,7 @@ public class VoterDTO {
         return gender;
     }
 
-    public VoterDTO setGender(String gender) {
+    public UpdateVoterRequest setGender(String gender) {
         this.gender= gender;
         return this;
     }
@@ -76,7 +76,7 @@ public class VoterDTO {
         return password;
     }
 
-    public VoterDTO setPassword(String password) {
+    public UpdateVoterRequest setPassword(String password) {
         this.password = password;
         return this;
     }
@@ -85,7 +85,7 @@ public class VoterDTO {
         return reservationCategory;
     }
 
-    public VoterDTO setReservationCategory(String reservationCategory) {
+    public UpdateVoterRequest setReservationCategory(String reservationCategory) {
         this.reservationCategory = reservationCategory;
         return this;
     }
@@ -94,7 +94,7 @@ public class VoterDTO {
         return mobileNo;
     }
 
-    public VoterDTO setMobileNo(String mobileNo) {
+    public UpdateVoterRequest setMobileNo(String mobileNo) {
         this.mobileNo = mobileNo;
         return this;
     }
@@ -103,7 +103,7 @@ public class VoterDTO {
         return emailID;
     }
 
-    public VoterDTO setEmailID(String emailID) {
+    public UpdateVoterRequest setEmailID(String emailID) {
         this.emailID = emailID;
         return this;
     }
@@ -112,7 +112,7 @@ public class VoterDTO {
         return address1;
     }
 
-    public VoterDTO setAddress1(String address1) {
+    public UpdateVoterRequest setAddress1(String address1) {
         this.address1 = address1;
         return this;
     }
@@ -121,7 +121,7 @@ public class VoterDTO {
         return address2;
     }
 
-    public VoterDTO setAddress2(String address2) {
+    public UpdateVoterRequest setAddress2(String address2) {
         this.address2 = address2;
         return this;
     }
@@ -130,7 +130,7 @@ public class VoterDTO {
         return mandal;
     }
 
-    public VoterDTO setMandal(String mandal) {
+    public UpdateVoterRequest setMandal(String mandal) {
         this.mandal = mandal;
         return this;
     }
@@ -139,7 +139,7 @@ public class VoterDTO {
         return district;
     }
 
-    public VoterDTO setDistrict(String district) {
+    public UpdateVoterRequest setDistrict(String district) {
         this.district = district;
         return this;
     }
@@ -148,7 +148,7 @@ public class VoterDTO {
         return pincode;
     }
 
-    public VoterDTO setPincode(int pincode) {
+    public UpdateVoterRequest setPincode(int pincode) {
         this.pincode = pincode;
         return this;
     }

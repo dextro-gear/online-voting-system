@@ -25,34 +25,6 @@ class CooperativeSocietyControllerTest {
     @InjectMocks
     CooperativeSocietyController controller;
 
-
-    @Test
-    void testAddNewSociety() {
-        String district = "Zamir";
-        String headOfSociety = "Mahil";
-        String societyName = "Awadh";
-        String mandal = "Bhima";
-        String village = "Pushkar";
-        String pincode = "589996";
-
-        CreateCooperativeSocietyRequest request = new CreateCooperativeSocietyRequest();
-        request.setDistrict(district);
-        request.setHeadOfSociety(headOfSociety);
-        request.setSocietyName(societyName);
-        request.setMandal(mandal);
-        request.setVillage(village);
-        request.setPincode(pincode);
-
-        CooperativeSociety society = Mockito.mock(CooperativeSociety.class);
-
-        Mockito.when(service.addSocietyDetails(societyName,headOfSociety,village,mandal,district,pincode)).thenReturn(society);
-
-        CooperativeSociety society1 = controller.addNewSociety(request);
-        assertSame(society1,society);
-        Mockito.verify(service).addSocietyDetails(societyName,headOfSociety,village,mandal,district,pincode);
-
-    }
-
     @Test
     void findCooperativeSociety() {
         int id= 5;

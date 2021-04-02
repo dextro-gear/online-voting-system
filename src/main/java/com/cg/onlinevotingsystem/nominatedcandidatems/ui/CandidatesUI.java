@@ -19,10 +19,7 @@ public class CandidatesUI {
 
     public void start(){
 
-        NominatedCandidates n1 = candidateService.addNominatedCandidate("1234", votersService.searchByVoterID(11));
-        NominatedCandidates n2 = candidateService.addNominatedCandidate("5678",votersService.searchByVoterID(12));
-
-//        System.out.println("\nAddcandidate");
+     //System.out.println("\nAddcandidate");
 //        System.out.println(n4);
 //
 //        System.out.println("\nUpdate candidate");

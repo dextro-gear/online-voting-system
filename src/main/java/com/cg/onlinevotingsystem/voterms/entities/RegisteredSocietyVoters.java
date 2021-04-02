@@ -2,10 +2,7 @@ package com.cg.onlinevotingsystem.voterms.entities;
 
 import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -28,29 +25,16 @@ public class RegisteredSocietyVoters {
     private String district;
     private int pincode;
 
-    @OneToOne
+    @ManyToOne
     private CooperativeSociety cooperativeSociety;
 
     private boolean castedVote;
 
     public RegisteredSocietyVoters() {
-        this.voterIDCardNo = null;
-        this.firstName = null;
-        this.lastName = null;
-        this.gender = null;
-        this.password = null;
-        this.reservationCategory = null;
-        this.mobileNo = null;
-        this.emailID = null;
-        this.address1 = null;
-        this.address2 = null;
-        this.mandal = null;
-        this.district = null;
-        this.pincode = 0;
-        this.castedVote = false;
-        this.cooperativeSociety = null;
+
     }
 
+    /*
     public RegisteredSocietyVoters(String voterIDCardNo, String firstName, String lastName, String gender, String password, String reservationCategory, String mobileNo, String emailID, String address1, String address2, String mandal, String district, int pincode, boolean castedVote, CooperativeSociety cooperativeSociety) {
         this.voterIDCardNo = voterIDCardNo;
         this.firstName = firstName;
@@ -68,6 +52,8 @@ public class RegisteredSocietyVoters {
         this.castedVote = castedVote;
         this.cooperativeSociety = cooperativeSociety;
     }
+
+     */
 
     public int getId() {
         return id;
@@ -203,20 +189,8 @@ public class RegisteredSocietyVoters {
                 "id=" + id +
                 ", voterIDCardNo='" + voterIDCardNo + '\'' +
                 ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", gender='" + gender + '\'' +
-                ", password='" + password + '\'' +
-                ", reservationCategory='" + reservationCategory + '\'' +
-                ", mobileNo='" + mobileNo + '\'' +
-                ", emailID='" + emailID + '\'' +
-                ", address1='" + address1 + '\'' +
-                ", address2='" + address2 + '\'' +
-                ", mandal='" + mandal + '\'' +
-                ", district='" + district + '\'' +
-                ", pincode=" + pincode +
-                ", cooperativeSociety=" + cooperativeSociety +
-                ", castedVote=" + castedVote +
-                '}';
+                ", lastName='" + lastName ;
+
     }
 
     @Override
@@ -224,12 +198,12 @@ public class RegisteredSocietyVoters {
         if (this == o) return true;
         if (!(o instanceof RegisteredSocietyVoters)) return false;
         RegisteredSocietyVoters that = (RegisteredSocietyVoters) o;
-        return id == that.id && pincode == that.pincode && castedVote == that.castedVote && Objects.equals(voterIDCardNo, that.voterIDCardNo) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(gender, that.gender) && Objects.equals(password, that.password) && Objects.equals(reservationCategory, that.reservationCategory) && Objects.equals(mobileNo, that.mobileNo) && Objects.equals(emailID, that.emailID) && Objects.equals(address1, that.address1) && Objects.equals(address2, that.address2) && Objects.equals(mandal, that.mandal) && Objects.equals(district, that.district) && Objects.equals(cooperativeSociety, that.cooperativeSociety);
+        return id == that.id ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, voterIDCardNo, firstName, lastName, gender, password, reservationCategory, mobileNo, emailID, address1, address2, mandal, district, pincode, cooperativeSociety, castedVote);
+        return Objects.hash(id);
     }
 
 

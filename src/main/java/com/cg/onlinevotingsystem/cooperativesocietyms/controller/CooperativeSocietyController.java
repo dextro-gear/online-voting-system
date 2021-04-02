@@ -7,7 +7,7 @@ import com.cg.onlinevotingsystem.cooperativesocietyms.service.ICooperativeSociet
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/cooperativesociety")
+@RequestMapping("/societies")
 @RestController
 public class CooperativeSocietyController {
 
@@ -16,7 +16,14 @@ public class CooperativeSocietyController {
 
     @PostMapping("/add")
     public CooperativeSociety addNewSociety(@RequestBody CreateCooperativeSocietyRequest request) {
-        return societyService.addSocietyDetails(request.getSocietyName(), request.getHeadOfSociety(), request.getVillage(), request.getMandal(), request.getDistrict(), request.getPincode());
+        CooperativeSociety society=new CooperativeSociety();
+        society.setDistrict(request.getDistrict());
+        society.setHeadOfSociety(request.getHeadOfSociety());
+        society.setMandal(request.getMandal());
+        society.setPincode(request.getPincode());
+        society.setVillage(request.getVillage());
+        society.setSocietyName(request.getSocietyName());
+        return societyService.addSocietyDetails(society);
     }
 
     @GetMapping("/byid/{id}")
@@ -24,7 +31,7 @@ public class CooperativeSocietyController {
         return societyService.viewSocietyById(id);
     }
 
-    @DeleteMapping("byid/{id}")
+    @DeleteMapping("/delete/byid/{id}")
     public CooperativeSociety deleteCooperativeSociety(@PathVariable("id") int id) {
         return societyService.deleteSociety(id);
     }

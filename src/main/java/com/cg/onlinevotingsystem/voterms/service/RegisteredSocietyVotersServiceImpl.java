@@ -3,13 +3,14 @@ package com.cg.onlinevotingsystem.voterms.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
-import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
 import com.cg.onlinevotingsystem.cooperativesocietyms.service.CooperativeSocietyServiceImpl;
 import com.cg.onlinevotingsystem.voterms.dao.VoterRepository;
-import com.cg.onlinevotingsystem.voterms.dto.VoterDTO;
+import com.cg.onlinevotingsystem.voterms.dto.UpdateVoterRequest;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
-import com.cg.onlinevotingsystem.voterms.exceptions.RegisteredSocietyVoterNotFoundException;
+import com.cg.onlinevotingsystem.voterms.exceptions.InvalidVoterException;
+import com.cg.onlinevotingsystem.voterms.exceptions.VoterNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,89 +20,50 @@ import javax.transaction.Transactional;
 public class RegisteredSocietyVotersServiceImpl implements IRegisteredSocietyVotersService {
 
     @Autowired
-    VoterRepository voterRepository;
+    private VoterRepository voterRepository;
 
     @Autowired
-    CooperativeSocietyServiceImpl societyService;
+    private CooperativeSocietyServiceImpl societyService;
+
 
     @Override
     @Transactional
-    public RegisteredSocietyVoters voterRegistration(String voterIdCardNo,String firstName, String lastName, String gender, String password, String reservationCategory, String mobileNo, String emailId, String address1, String address2, String mandal, String district, int pincode, boolean castedVote, CooperativeSociety society) {
-        RegisteredSocietyVoters t1 = new RegisteredSocietyVoters(voterIdCardNo, firstName, lastName, gender, password, reservationCategory, mobileNo,emailId, address1, address2,mandal, district,pincode, castedVote, society);
-        societyService.addSocietyDetails(society);
-        return voterRepository.save(t1);
+    public RegisteredSocietyVoters voterRegistration(RegisteredSocietyVoters voter) {
+        validateVoter(voter);
+        String cardId=generateId();
+        voter.setVoterIdCardNo(cardId);
+        return voterRepository.save(voter);
     }
 
-    @Override
-    @Transactional
-    public RegisteredSocietyVoters voterRegistration(RegisteredSocietyVoters voter){
-        societyService.addSocietyDetails(voter.getSociety());
-        return voterRepository.save(voter);
+    public String generateId(){
+        Random random = new Random();
+        StringBuilder builder = new StringBuilder();
+        for(int i=0;i<10;i++){
+            int randomNum=random.nextInt(10);
+            builder.append(randomNum);
+        }
+        return builder.toString();
+
     }
 
     @Override
     @Transactional
     public RegisteredSocietyVoters updateRegisteredVoterDetails(RegisteredSocietyVoters voter) {
-
-        Optional<RegisteredSocietyVoters> registeredSocietyVotersOptional = voterRepository.findById(voter.getId());
-        if (registeredSocietyVotersOptional.isPresent()) {
-            RegisteredSocietyVoters t1 = registeredSocietyVotersOptional.get();
-            t1.setVoterIdCardNo(voter.getVoterIdCardNo());
-            t1.setFirstName(voter.getFirstName());
-            t1.setLastName(voter.getLastName());
-            t1.setGender(voter.getGender());
-            t1.setPassword(voter.getPassword());
-            t1.setReservationCategory(voter.getReservationCategory());
-            t1.setMobileNo(voter.getMobileNo());
-            t1.setEmailId(voter.getEmailId());
-            t1.setAddress1(voter.getAddress1());
-            t1.setAddress2(voter.getAddress2());
-            t1.setMandal(voter.getMandal());
-            t1.setDistrict(voter.getDistrict());
-            t1.setPincode(voter.getPincode());
-            t1.setCastedVote(voter.getCastedVote());
-            return voterRepository.save(t1);
+        validateVoter(voter);
+        boolean exists = voterRepository.existsById(voter.getId());
+        if (!exists) {
+            throw new VoterNotFoundException("Voter with id:" + voter.getId() + " was not found in the DB");
         }
-        else
-            throw new RegisteredSocietyVoterNotFoundException("Voter with id:" + voter.getId() + " was not found in the DB");
+        return voterRepository.save(voter);
     }
 
-    @Transactional
-    public RegisteredSocietyVoters updateRegisteredVoterDetails(VoterDTO voter) {
-
-        Optional<RegisteredSocietyVoters> registeredSocietyVotersOptional = voterRepository.findById(voter.getVoterID());
-        if (registeredSocietyVotersOptional.isPresent()) {
-            RegisteredSocietyVoters t1 = registeredSocietyVotersOptional.get();
-            t1.setVoterIdCardNo(voter.getVoterIDCardNo());
-            t1.setFirstName(voter.getFirstName());
-            t1.setLastName(voter.getLastName());
-            t1.setGender(voter.getGender());
-            t1.setPassword(voter.getPassword());
-            t1.setReservationCategory(voter.getReservationCategory());
-            t1.setMobileNo(voter.getMobileNo());
-            t1.setEmailId(voter.getEmailID());
-            t1.setAddress1(voter.getAddress1());
-            t1.setAddress2(voter.getAddress2());
-            t1.setMandal(voter.getMandal());
-            t1.setDistrict(voter.getDistrict());
-            t1.setPincode(voter.getPincode());
-            return voterRepository.save(t1);
-        }
-        else
-            throw new RegisteredSocietyVoterNotFoundException("Voter with id:" + voter.getVoterID() + " was not found in the DB");
-    }
 
     @Override
     @Transactional
     public RegisteredSocietyVoters deleteRegisteredVoter(int voterId) {
-        Optional<RegisteredSocietyVoters> registeredSocietyVotersOptional = voterRepository.findById(voterId);
-        if (registeredSocietyVotersOptional.isPresent()) {
-            voterRepository.delete(registeredSocietyVotersOptional.get());
-        }
-        else
-            throw new RegisteredSocietyVoterNotFoundException("Voter with id:" + voterId + " was not found in the DB");
-
-        return registeredSocietyVotersOptional.get();
+        RegisteredSocietyVoters voter = searchByVoterID(voterId);
+        voterRepository.deleteById(voterId);
+        return voter;
     }
 
     @Override
@@ -112,11 +74,11 @@ public class RegisteredSocietyVotersServiceImpl implements IRegisteredSocietyVot
     @Override
     public RegisteredSocietyVoters searchByVoterID(int voterId) {
         Optional<RegisteredSocietyVoters> registeredSocietyVotersOptional = voterRepository.findById(voterId);
-        if (registeredSocietyVotersOptional.isPresent()){
+        if (registeredSocietyVotersOptional.isPresent()) {
             return registeredSocietyVotersOptional.get();
         }
-        else
-            throw new RegisteredSocietyVoterNotFoundException("Voter with id:" + voterId + " was not found in the DB");
+
+        throw new VoterNotFoundException("Voter with id:" + voterId + " was not found in the DB");
     }
 
     @Override
@@ -124,5 +86,18 @@ public class RegisteredSocietyVotersServiceImpl implements IRegisteredSocietyVot
         return null;
     }
 
+
+    public void validateFirstName(RegisteredSocietyVoters voter) {
+        if (voter.getFirstName() == null || voter.getFirstName().isEmpty()) {
+            throw new InvalidVoterException(" firstName can't null or empty");
+        }
+    }
+
+    public void validateVoter(RegisteredSocietyVoters voter) {
+        if(voter==null){
+            throw new InvalidVoterException("voter arg can't be null");
+        }
+        validateFirstName(voter);
+    }
 
 }

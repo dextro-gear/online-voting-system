@@ -2,8 +2,8 @@ package com.cg.onlinevotingsystem.cooperativesocietyms.service;
 
 import com.cg.onlinevotingsystem.cooperativesocietyms.dao.ICooperativeSocietyDaoRepository;
 import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
-import com.cg.onlinevotingsystem.cooperativesocietyms.exceptions.CooperativeSocietyNotFoundException;
-import com.cg.onlinevotingsystem.cooperativesocietyms.exceptions.CooperativeSocietyCannotBeNullException;
+import com.cg.onlinevotingsystem.cooperativesocietyms.exceptions.SocietyNotFoundException;
+import com.cg.onlinevotingsystem.cooperativesocietyms.exceptions.InvalidSocietyException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,68 +13,112 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CooperativeSocietyServiceImpl implements ICooperativeSocietyService{
+public class CooperativeSocietyServiceImpl implements ICooperativeSocietyService {
 
     @Autowired
-    ICooperativeSocietyDaoRepository cooperativeSocietyRepository;
+    private ICooperativeSocietyDaoRepository cooperativeSocietyRepository;
 
 
+    /**
+     * This method saves a CooperativeSociety record in the database.
+     * @param society  The object of CooperativeSociety which must be saved
+     * @return  The saved instance of the CooperativeSociety object
+     */
     @Override
-    public CooperativeSociety addSocietyDetails(String societyName, String headOfSociety, String village, String mandal, String district, String pincode) {
-        CooperativeSociety s1 = new CooperativeSociety(societyName, headOfSociety, village, mandal, district, pincode);
-        return cooperativeSocietyRepository.save(s1) ;
+    public CooperativeSociety addSocietyDetails(CooperativeSociety society) {
+        validateSociety(society);
+        return cooperativeSocietyRepository.save(society);
     }
 
+
+    /**
+     * This methods updates an existing CooperativeSociety record in the database,
+     * and throws an exception if the record doesn't exist.
+     * @param society  The CooperativeSociety object with the updated details
+     * @return  The saved instance of the CooperativeSociety object
+     * @throws  SocietyNotFoundException
+     */
     @Override
-    public CooperativeSociety addSocietyDetails(CooperativeSociety society){
-        try{
-            return cooperativeSocietyRepository.save(society);
-        }catch (NullPointerException e){
-            throw new CooperativeSocietyCannotBeNullException("Society cannot be null. Null entities cannot be saved.");
+    public CooperativeSociety updateSociety(CooperativeSociety society) {
+        validateSociety(society);
+        boolean exists = cooperativeSocietyRepository.existsById(society.getSocietyId());
+        if(!exists){
+            throw new SocietyNotFoundException("society not found for id="+society.getSocietyId());
         }
+        return cooperativeSocietyRepository.save(society);
     }
 
-    @Override
-    public CooperativeSociety updateSocietyDetails(int societyId,String societyName, String headOfSociety, String village, String mandal, String district, String pincode) {
-         Optional<CooperativeSociety> s1 = cooperativeSocietyRepository.findById(societyId);
-         CooperativeSociety s2 = s1.get();
 
-         if(s1.isPresent()) {
-             s2.setHeadOfSociety(headOfSociety);
-             s2.setDistrict(district);
-             s2.setMandal(mandal);
-             s2.setVillage(village);
-             s2.setPincode(pincode);
-             s2.setSocietyName(societyName);
-         } else
-             throw new CooperativeSocietyNotFoundException("CooperativeSociety with id:" + societyId + " was not found in the DB");
-
-        return cooperativeSocietyRepository.save(s2);
-    }
-
+    /**
+     * This method deletes an existing CooperativeSociety record from the database,
+     * and throws an exception id the record does not exist.
+     * @param societyId  The ID of the record which must be deleted
+     * @return  The instance of the object which has been deleted
+     * @throws SocietyNotFoundException
+     */
     @Override
     public CooperativeSociety deleteSociety(int societyId) {
         Optional<CooperativeSociety> cooperativeSocietyOptional = cooperativeSocietyRepository.findById(societyId);
-        if(cooperativeSocietyOptional.isPresent())
-            cooperativeSocietyRepository.delete(cooperativeSocietyOptional.get());
-        else
-            throw new CooperativeSocietyNotFoundException("CooperativeSociety with id:" + societyId + " was not found in the DB");
-
+        if (!cooperativeSocietyOptional.isPresent()) {
+            throw new SocietyNotFoundException("CooperativeSociety with id:" + societyId + " was not found in the DB");
+        }
+        cooperativeSocietyRepository.delete(cooperativeSocietyOptional.get());
         return cooperativeSocietyOptional.get();
     }
 
+
+    /**
+     * This method retrieves all the records of CooperativeSociety in the database
+     * @return  A List of CooperativeSociety objects
+     */
     @Override
     public List<CooperativeSociety> viewSocietyList() {
         return cooperativeSocietyRepository.findAll();
     }
 
+
+    /**
+     * This method returns the record of a particular CooperativeSociety object.
+     * Throws an exception if the record doesn't exist.
+     * @param societyId  The ID of the record which has to be retrieved
+     * @return  An instance of CooperativeSociety object which has been retrieved from the DB
+     * @throws SocietyNotFoundException
+     */
     @Override
     public CooperativeSociety viewSocietyById(int societyId) {
         Optional<CooperativeSociety> cooperativeSocietyOptional = cooperativeSocietyRepository.findById(societyId);
-        if (cooperativeSocietyOptional.isPresent())
-            return cooperativeSocietyOptional.get() ;
-        else
-            throw new CooperativeSocietyNotFoundException("CooperativeSociety with id:" + societyId + " was not found in the DB");
+        if (cooperativeSocietyOptional.isPresent()) {
+            return cooperativeSocietyOptional.get();
+        }
+
+        throw new SocietyNotFoundException("CooperativeSociety with id:" + societyId + " was not found in the DB");
+    }
+
+
+    /**
+     * This method validates the name of the CooperativeSociety object.
+     * It throws an exception if the input name is invalid.
+     * @param name  The name of the CooperativeSociety object
+     * @throws InvalidSocietyException
+     */
+    void validateName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new InvalidSocietyException("Name cannot be null or empty");
+        }
+    }
+
+
+    /**
+     * This method validates the CooperativeSociety object.
+     * It throws an exception if the input is invalid.
+     * @param society The CooperativeSociety object
+     * @throws InvalidSocietyException
+     */
+    void validateSociety(CooperativeSociety society) {
+        if (society == null) {
+            throw new InvalidSocietyException("Society object cannot be null");
+        }
+        validateName(society.getSocietyName());
     }
 
 }

@@ -1,14 +1,14 @@
 package com.cg.onlinevotingsystem.nominatedcandidatems.dto;
 
-import com.cg.onlinevotingsystem.voterms.dto.VoterDTO;
+import com.cg.onlinevotingsystem.voterms.dto.UpdateVoterRequest;
 
 public class NominatedCandidateDTO {
 
     private int candidateID;
     private String nominationFormNo;
-    private VoterDTO voter;
+    private UpdateVoterRequest voter;
 
-    public NominatedCandidateDTO(int candidateID, String nominationFormNo, VoterDTO voter) {
+    public NominatedCandidateDTO(int candidateID, String nominationFormNo, UpdateVoterRequest voter) {
         this.candidateID = candidateID;
         this.nominationFormNo = nominationFormNo;
         this.voter = voter;
@@ -30,11 +30,11 @@ public class NominatedCandidateDTO {
         this.nominationFormNo = nominationFormNo;
     }
 
-    public VoterDTO getVoter() {
+    public UpdateVoterRequest getVoter() {
         return voter;
     }
 
-    public void setVoter(VoterDTO voter) {
+    public void setVoter(UpdateVoterRequest voter) {
         this.voter = voter;
     }
 }

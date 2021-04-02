@@ -24,21 +24,6 @@ public class CooperativeSociety {
 	public CooperativeSociety() {
 		
 	}
-	
-
-	public CooperativeSociety( String societyName, String headOfSociety, String village, String mandal,
-			String district, String pincode) {
-		
-		super();
-
-		this.societyName = societyName;
-		this.headOfSociety = headOfSociety;
-		this.village = village;
-		this.mandal = mandal;
-		this.district = district;
-		this.pincode = pincode;
-	}
-
 
 
 	public int getSocietyId() {
@@ -112,11 +97,11 @@ public class CooperativeSociety {
 		if (this == o) return true;
 		if (!(o instanceof CooperativeSociety)) return false;
 		CooperativeSociety society = (CooperativeSociety) o;
-		return societyId == society.societyId && societyName.equals(society.societyName) && headOfSociety.equals(society.headOfSociety) && village.equals(society.village) && mandal.equals(society.mandal) && district.equals(society.district) && pincode.equals(society.pincode);
+		return societyId == society.societyId ;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(societyId, societyName, headOfSociety, village, mandal, district, pincode);
+		return Objects.hash(societyId);
 	}
 }

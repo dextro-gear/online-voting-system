@@ -1,7 +1,7 @@
 package com.cg.onlinevotingsystem.cooperativesocietyms.controller;
 
 
-import com.cg.onlinevotingsystem.cooperativesocietyms.exceptions.CooperativeSocietyNotFoundException;
+import com.cg.onlinevotingsystem.cooperativesocietyms.exceptions.SocietyNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class CentralisedCooperativeSocietyExceptionalHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler
-    public String handleCooperativeSocietyNotFount(CooperativeSocietyNotFoundException e)
+    public String handleCooperativeSocietyNotFount(SocietyNotFoundException e)
     {
         return e.getMessage();
     }

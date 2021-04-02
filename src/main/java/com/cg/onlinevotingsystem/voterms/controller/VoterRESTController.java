@@ -1,6 +1,9 @@
 package com.cg.onlinevotingsystem.voterms.controller;
 
+import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
+import com.cg.onlinevotingsystem.cooperativesocietyms.service.ICooperativeSocietyService;
 import com.cg.onlinevotingsystem.voterms.dto.CreateVoterRequest;
+import com.cg.onlinevotingsystem.voterms.dto.UpdateVoterRequest;
 import com.cg.onlinevotingsystem.voterms.dto.VoterDetails;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 import com.cg.onlinevotingsystem.voterms.service.IRegisteredSocietyVotersService;
@@ -8,8 +11,13 @@ import com.cg.onlinevotingsystem.voterms.util.VoterUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
+/**
+ *
+ */
 @RestController
-@RequestMapping("/voter")
+@RequestMapping("/voters")
 public class VoterRESTController {
 
     /* TODO
@@ -22,44 +30,43 @@ public class VoterRESTController {
     * */
 
     @Autowired
-    private IRegisteredSocietyVotersService service;
+    private IRegisteredSocietyVotersService voterService;
+
+    @Autowired
+    private ICooperativeSocietyService societyService;
 
     @Autowired
     private VoterUtil util;
 
-    @PostMapping
-    public VoterDetails addNewVoter(@RequestBody CreateVoterRequest request){
-        return util.details(service.voterRegistration(request.getVoterIDCardNo(),request.getFirstName(),
-                request.getLastName(),request.getGender(),request.getPassword(),request.getReservationCategory(),
-                request.getMobileNo(),request.getEmailID(),request.getAddress1(),request.getAddress2(),
-                request.getMandal(),request.getDistrict(),request.getPincode(),request.getCastedVote(),
-                request.getCooperativeSociety()));
+    @PostMapping("/add")
+    public VoterDetails addNewVoter(@RequestBody @Valid CreateVoterRequest request) {
+        RegisteredSocietyVoters voter = util.toVoterEntity(request);
+        CooperativeSociety society = societyService.viewSocietyById(request.getSocietyId());
+        voter.setSociety(society);
+        voter = voterService.voterRegistration(voter);
+        return util.details(voter);
     }
 
-    @GetMapping
-    public String viewVoterList()
-    {
-        return "viewVoterList";
+    @PutMapping("/updatevoter")
+    public VoterDetails updateVoter(UpdateVoterRequest requestData) {
+        RegisteredSocietyVoters voter =util.toVoterEntity(requestData);
+        voter=voterService.updateRegisteredVoterDetails(voter);
+        return util.details(voter) ;
     }
+
 
     @GetMapping("/{id}")
-    public VoterDetails findVoter(@PathVariable("id") int id)
-    {
-        RegisteredSocietyVoters sv = service.searchByVoterID(id);
-        return util.details(sv);
+    public VoterDetails findVoter(@PathVariable("id") int id) {
+        RegisteredSocietyVoters details = voterService.searchByVoterID(id);
+        return util.details(details);
     }
 
     @DeleteMapping("/{id}")
-    public VoterDetails deleteVoter(@PathVariable("id") int id)
-    {
-        RegisteredSocietyVoters sv = service.deleteRegisteredVoter(id);
-        return util.details(sv);
+    public VoterDetails deleteVoter(@PathVariable("id") int id) {
+        RegisteredSocietyVoters details = voterService.deleteRegisteredVoter(id);
+        return util.details(details);
     }
 
-    @PutMapping
-    public String updateVoter(){
-        return "updateVoterDetails";
-    }
 
 
 }

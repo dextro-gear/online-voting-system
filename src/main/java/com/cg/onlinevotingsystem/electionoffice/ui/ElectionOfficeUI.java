@@ -1,5 +1,6 @@
 package com.cg.onlinevotingsystem.electionoffice.ui;
 
+import com.cg.onlinevotingsystem.electionoffice.entities.ElectionOfficer;
 import com.cg.onlinevotingsystem.electionoffice.service.ElectionOfficeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,7 +12,19 @@ public class ElectionOfficeUI {
     ElectionOfficeServiceImpl officeService;
 
     public void start(){
-        officeService.addElectionOfficer("Raja", "Sundaram", "password", "male", "9080597245", "gm1687@srmist.edu.in", "Chrompet", "Chennai", "Kancheepuram");
+        ElectionOfficer officer=new ElectionOfficer();
+        officer.setFirstName("Raja").
+                setLastName("Sundaram").
+                setPassword("password").
+                setGender("male").
+                setMobileNo("9080597245").
+                setEmailID("gm1687@srmist.edu.in").
+                setDistrict("Kancheepuram").
+                setAddress1("Chrompet").
+                setAddress2("Chennai");
+
+
+        officeService.addElectionOfficer(officer);
     }
 
 }

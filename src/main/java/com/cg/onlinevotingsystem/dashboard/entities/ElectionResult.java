@@ -21,25 +21,25 @@ public class ElectionResult {
 
     private LocalDate pollingDate;
     private String cooperativeSocietyName;
-    private int totalSocietyVotes;
+    private int totalPolledVotes;
     private int totalCandidateVotes;
     private float candidatesVotesPercentage;
     private String result;
 
-    public ElectionResult(NominatedCandidates candidate, String cooperativeSocietyName, int totalSocietyVotes, int totalCandidateVotes, float candidatesVotesPercentage, String result) {
+    public ElectionResult(NominatedCandidates candidate, String cooperativeSocietyName, int totalPolledVotes, int totalCandidateVotes, float candidatesVotesPercentage, String result) {
         this.candidate = candidate;
         this.pollingDate = LocalDate.now();
         this.cooperativeSocietyName = cooperativeSocietyName;
-        this.totalSocietyVotes = totalSocietyVotes;
+        this.totalPolledVotes = totalPolledVotes;
         this.totalCandidateVotes = totalCandidateVotes;
         this.candidatesVotesPercentage = candidatesVotesPercentage;
         this.result = result;
     }
 
-    public ElectionResult(String cooperativeSocietyName, int totalSocietyVotes, int totalCandidateVotes, float candidatesVotesPercentage, String result) {
+    public ElectionResult(String cooperativeSocietyName, int totalPolledVotes, int totalCandidateVotes, float candidatesVotesPercentage, String result) {
         this.pollingDate = LocalDate.now();
         this.cooperativeSocietyName = cooperativeSocietyName;
-        this.totalSocietyVotes = totalSocietyVotes;
+        this.totalPolledVotes = totalPolledVotes;
         this.totalCandidateVotes = totalCandidateVotes;
         this.candidatesVotesPercentage = candidatesVotesPercentage;
         this.result = result;
@@ -73,12 +73,12 @@ public class ElectionResult {
         this.cooperativeSocietyName = cooperativeSocietyName;
     }
 
-    public int getTotalSocietyVotes() {
-        return totalSocietyVotes;
+    public int getTotalPolledVotes() {
+        return totalPolledVotes;
     }
 
-    public void setTotalSocietyVotes(int totalSocietyVotes) {
-        this.totalSocietyVotes = totalSocietyVotes;
+    public void setTotalPolledVotes(int totalPolledVotes) {
+        this.totalPolledVotes = totalPolledVotes;
     }
 
     public int getTotalCandidateVotes() {
@@ -111,7 +111,7 @@ public class ElectionResult {
                 "id=" + id +
                 ", pollingDate=" + pollingDate +
                 ", cooperativeSocietyName='" + cooperativeSocietyName + '\'' +
-                ", totalSocietyVotes=" + totalSocietyVotes +
+                ", totalPolledVotes=" + totalPolledVotes +
                 ", totalCandidateVotes=" + totalCandidateVotes +
                 ", candidatesVotesPercentage=" + candidatesVotesPercentage +
                 ", result='" + result + '\'' +
@@ -123,11 +123,11 @@ public class ElectionResult {
         if (this == o) return true;
         if (!(o instanceof ElectionResult)) return false;
         ElectionResult result1 = (ElectionResult) o;
-        return id == result1.id && totalSocietyVotes == result1.totalSocietyVotes && totalCandidateVotes == result1.totalCandidateVotes && Float.compare(result1.candidatesVotesPercentage, candidatesVotesPercentage) == 0 && Objects.equals(candidate, result1.candidate) && Objects.equals(pollingDate, result1.pollingDate) && Objects.equals(cooperativeSocietyName, result1.cooperativeSocietyName) && Objects.equals(result, result1.result);
+        return id == result1.id && totalPolledVotes == result1.totalPolledVotes && totalCandidateVotes == result1.totalCandidateVotes && Float.compare(result1.candidatesVotesPercentage, candidatesVotesPercentage) == 0 && Objects.equals(candidate, result1.candidate) && Objects.equals(pollingDate, result1.pollingDate) && Objects.equals(cooperativeSocietyName, result1.cooperativeSocietyName) && Objects.equals(result, result1.result);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, candidate, pollingDate, cooperativeSocietyName, totalSocietyVotes, totalCandidateVotes, candidatesVotesPercentage, result);
+        return Objects.hash(id, candidate, pollingDate, cooperativeSocietyName, totalPolledVotes, totalCandidateVotes, candidatesVotesPercentage, result);
     }
 }

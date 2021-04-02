@@ -3,9 +3,11 @@ package com.cg.onlinevotingsystem.cooperativesocietyms.service;
 import com.cg.onlinevotingsystem.cooperativesocietyms.dao.ICooperativeSocietyDaoRepository;
 import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
 
+import com.cg.onlinevotingsystem.cooperativesocietyms.exceptions.SocietyNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.function.Executable;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -17,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class CooperativeSocietyServiceImplTest {
@@ -44,26 +46,27 @@ class CooperativeSocietyServiceImplTest {
 
     @Test
     void viewSocietyList() {
-        List<CooperativeSociety> list = new ArrayList<CooperativeSociety>();
-        CooperativeSociety society1 = new CooperativeSociety("migan", "miesha", "sursuri", "gantantra", "kahar", "480608");
-        CooperativeSociety society2 = new CooperativeSociety("Meraki", "mahira", "devgarh", "janana", "Kaman", "610401");
-        list.add(society1);
-        list.add(society2);
+        List list = mock(List.class);
         when(repository.findAll()).thenReturn(list);
-
-        List<CooperativeSociety>cooperativeSocietyList = service.viewSocietyList();
-        assertEquals(2,cooperativeSocietyList.size());
+        List<CooperativeSociety> result = service.viewSocietyList();
+        assertSame(list, result);
+        verify(repository).findAll();
 
     }
 
+    /**
+     * scenario: society exists in store
+     * input: id 1
+     * expectation: society fetched is the same mocked object which is stubbed
+     */
     @Test
-    void viewSocietyById(){
-
-            CooperativeSociety list = Mockito.mock(CooperativeSociety.class);
-            when(repository.findById(1)).thenReturn(Optional.ofNullable(list));
-            CooperativeSociety l1 = service.viewSocietyById(1);
-            Assertions.assertEquals(l1,list);
-
-
+    void viewSocietyById_1() {
+        CooperativeSociety society = Mockito.mock(CooperativeSociety.class);
+        Optional optional=Optional.of(society);
+        when(repository.findById(1)).thenReturn(optional);
+        CooperativeSociety l1 = service.viewSocietyById(1);
+        Assertions.assertEquals(l1, society);
+        verify(repository).findById(1);
     }
+
 }

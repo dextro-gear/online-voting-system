@@ -36,7 +36,6 @@ public class VotedList {
         this.candidate = candidate;
         this.voter = voter;
         this.society = society;
-        this.pollingDateTime = LocalDateTime.now();
     }
 
     public int getId() {
@@ -92,11 +91,11 @@ public class VotedList {
         if (this == o) return true;
         if (!(o instanceof VotedList)) return false;
         VotedList votedList = (VotedList) o;
-        return id == votedList.id && Objects.equals(pollingDateTime, votedList.pollingDateTime) && Objects.equals(society, votedList.society) && Objects.equals(voter, votedList.voter) && Objects.equals(candidate, votedList.candidate);
+        return id == votedList.id ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, pollingDateTime, society, voter, candidate);
+        return Objects.hash(id);
     }
 }

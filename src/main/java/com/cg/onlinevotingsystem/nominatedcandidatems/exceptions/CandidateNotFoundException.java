@@ -1,4 +1,4 @@
-package com.cg.onlinevotingsystem.dashboard.exceptions;
+package com.cg.onlinevotingsystem.nominatedcandidatems.exceptions;
 
 public class CandidateNotFoundException extends RuntimeException{
     public CandidateNotFoundException() {

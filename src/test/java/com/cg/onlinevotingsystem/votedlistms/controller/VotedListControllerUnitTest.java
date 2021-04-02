@@ -46,7 +46,7 @@ class VotedListControllerUnitTest {
     @InjectMocks
     VotedListController votedListController;
 
-
+/*
     @Test
     void castNewVote() {
         VotedList votedList =mock(VotedList.class);
@@ -59,10 +59,9 @@ class VotedListControllerUnitTest {
         when(votersService.searchByVoterID(request.getVoterID())).thenReturn(voter);
         when(candidateService.searchByCandidateID(request.getCandidateID())).thenReturn(candidate);
         when(votedListService.castVotedList(voter,candidate,society)).thenReturn(saved);
-        //VotedList result = votedListController.castNewVote(request);
 
 
-    }
+    }*/
 
     @Test
     void viewVotedList() {

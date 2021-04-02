@@ -30,24 +30,24 @@ public class VotedListUI {
 
     public void start(){
 
-        NominatedCandidates candidate26 = candidateService.searchByCandidateID(26);
-        NominatedCandidates candidate27 = candidateService.searchByCandidateID(27);
-
-        RegisteredSocietyVoters voter13 = votersService.searchByVoterID(13);
-        RegisteredSocietyVoters voter14 = votersService.searchByVoterID(14);
-        RegisteredSocietyVoters voter15 = votersService.searchByVoterID(15);
-        RegisteredSocietyVoters voter16 = votersService.searchByVoterID(16);
-        RegisteredSocietyVoters voter17 = votersService.searchByVoterID(17);
-        RegisteredSocietyVoters voter18 = votersService.searchByVoterID(18);
-        RegisteredSocietyVoters voter19 = votersService.searchByVoterID(19);
-
-        VotedList castVotedList1 = votedListService.castVotedList(voter13, candidate26, voter13.getSociety());
-        VotedList castVotedList2 = votedListService.castVotedList(voter14, candidate27, voter14.getSociety());
-        VotedList castVotedList3 = votedListService.castVotedList(voter15, candidate26, voter15.getSociety());
-        VotedList castVotedList4 = votedListService.castVotedList(voter16, candidate27, voter15.getSociety());
-        VotedList castVotedList5 = votedListService.castVotedList(voter17, candidate26, voter15.getSociety());
-        VotedList castVotedList6 = votedListService.castVotedList(voter18, candidate27, voter15.getSociety());
-        VotedList castVotedList7 = votedListService.castVotedList(voter19, candidate27, voter15.getSociety());
+//        NominatedCandidates candidate26 = candidateService.searchByCandidateID(26);
+//        NominatedCandidates candidate27 = candidateService.searchByCandidateID(27);
+//
+//        RegisteredSocietyVoters voter13 = votersService.searchByVoterID(13);
+//        RegisteredSocietyVoters voter14 = votersService.searchByVoterID(14);
+//        RegisteredSocietyVoters voter15 = votersService.searchByVoterID(15);
+//        RegisteredSocietyVoters voter16 = votersService.searchByVoterID(16);
+//        RegisteredSocietyVoters voter17 = votersService.searchByVoterID(17);
+//        RegisteredSocietyVoters voter18 = votersService.searchByVoterID(18);
+//        RegisteredSocietyVoters voter19 = votersService.searchByVoterID(19);
+//
+//        VotedList castVotedList1 = votedListService.castVotedList(voter13, candidate26, voter13.getSociety());
+//        VotedList castVotedList2 = votedListService.castVotedList(voter14, candidate27, voter14.getSociety());
+//        VotedList castVotedList3 = votedListService.castVotedList(voter15, candidate26, voter15.getSociety());
+//        VotedList castVotedList4 = votedListService.castVotedList(voter16, candidate27, voter15.getSociety());
+//        VotedList castVotedList5 = votedListService.castVotedList(voter17, candidate26, voter15.getSociety());
+//        VotedList castVotedList6 = votedListService.castVotedList(voter18, candidate27, voter15.getSociety());
+//        VotedList castVotedList7 = votedListService.castVotedList(voter19, candidate27, voter15.getSociety());
 
 
 //        VotedList updateVotedListDetails1 = votedListService.updateVotedListDetails(castVotedList1.getId(), voter1,candidate1,s1);
