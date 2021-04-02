@@ -25,6 +25,12 @@ class CooperativeSocietyControllerTest {
     @InjectMocks
     CooperativeSocietyController controller;
 
+
+    /**
+     * scenario: society exists in store
+     * input: id
+     * expectation: society fetched is the same mocked object which is stubbed
+     */
     @Test
     void findCooperativeSociety() {
         int id= 5;
@@ -34,6 +40,12 @@ class CooperativeSocietyControllerTest {
         assertSame(s1,society);
         Mockito.verify(service).viewSocietyById(id);
     }
+
+    /**
+     * scenario: society gets deleted in store
+     * input: id
+     * expectation: society deleted is the same mocked object which is stubbed
+     */
 
     @Test
     void testDeleteCooperativeSociety() {
