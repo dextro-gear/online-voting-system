@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
-@RequestMapping("/results/")
+@RequestMapping("/results")
 @RestController
 @Validated
 public class ElectionResultController {
