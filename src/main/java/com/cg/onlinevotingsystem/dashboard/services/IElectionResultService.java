@@ -7,14 +7,22 @@ import java.util.List;
 
 public interface IElectionResultService {
 
-    ElectionResult addElectionResult(NominatedCandidates candidate, String coopSocietyName, int totalSocietyVotes, int totalCandidateVotes, float candidatesVotesPercentage, String result );
+
+    ElectionResult addElectionResult(ElectionResult result);
+
     List<ElectionResult> viewElectionResultList();
+
     ElectionResult viewCandidatewiseResult(int candidateID);
+
     float viewVotingPercentage();
+
     float viewCandidateVotingPercentage(int candidateID);
-    void displayVotingStatistics();
-    NominatedCandidates viewHighestVotingPercentCandidate();
-    NominatedCandidates viewLowestVotingPercentCandidate();
+
     void displayPollingResult();
+
+    NominatedCandidates viewHighestVotingPercentCandidate();
+
+    NominatedCandidates viewLowestVotingPercentCandidate();
+
 
 }

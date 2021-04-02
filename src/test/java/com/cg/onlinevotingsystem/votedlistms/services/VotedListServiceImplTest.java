@@ -37,6 +37,11 @@ class VotedListServiceImplTest {
     VotedListServiceImpl service;
 
 
+    /**
+     * scenario: vote added successfully
+     * input : mock voter, candidate, society
+     * expectation: verifying verify(voteRepository).save(vote) is called
+     */
     @Test
     void testCastVotedList_1() {
        VotedList vote = mock(VotedList.class);
@@ -51,11 +56,15 @@ class VotedListServiceImplTest {
         VotedList result = service.castVotedList(voter,candidate,society);
         Assertions.assertNotNull(result);
         verify(voteRepository).save(vote);
+        verify(voter).setCastedVote(true);
+        verify(votersService).updateRegisteredVoterDetails(voter);
 
     }
 
     /**
-     * scenario : validation fails
+     * scenario: vote NOT added successfully, validation fails
+     * input : mock voter, candidate, society
+     * expectation: InvalidVoteException is thrown
      */
     @Test
     void testCastVotedList_2() {
@@ -77,8 +86,13 @@ class VotedListServiceImplTest {
         VotedList vote=mock(VotedList.class);
         Optional<VotedList>optional=Optional.of(vote);
         when(voteRepository.findById(voteId)).thenReturn(optional);
+        when(voteRepository.save(vote)).thenReturn(vote);
         VotedList result = service.updateVotedListDetails(voteId,voter,candidate,society);
-        
+        Assertions.assertSame(vote,result);
+        verify(vote).setVoter(voter);
+        verify(vote).setCandidate(candidate);
+        verify(vote).setSociety(society);
+        verify(voteRepository).save(vote);
 
     }
 

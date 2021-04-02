@@ -26,6 +26,9 @@ public class ElectionResult {
     private float candidatesVotesPercentage;
     private String result;
 
+    public ElectionResult(){
+    }
+
     public ElectionResult(NominatedCandidates candidate, String cooperativeSocietyName, int totalPolledVotes, int totalCandidateVotes, float candidatesVotesPercentage, String result) {
         this.candidate = candidate;
         this.pollingDate = LocalDate.now();
@@ -36,14 +39,6 @@ public class ElectionResult {
         this.result = result;
     }
 
-    public ElectionResult(String cooperativeSocietyName, int totalPolledVotes, int totalCandidateVotes, float candidatesVotesPercentage, String result) {
-        this.pollingDate = LocalDate.now();
-        this.cooperativeSocietyName = cooperativeSocietyName;
-        this.totalPolledVotes = totalPolledVotes;
-        this.totalCandidateVotes = totalCandidateVotes;
-        this.candidatesVotesPercentage = candidatesVotesPercentage;
-        this.result = result;
-    }
 
     public int getId() {
         return id;

@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Validated
-@RequestMapping("/vote")
+@RequestMapping("/votes")
 @RestController
 public class VotedListController {
 
@@ -47,7 +47,7 @@ public class VotedListController {
 
     // cast a vote
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping()
+    @PostMapping("/add")
     public CastVotedListResponse castNewVote(@RequestBody @Valid CastVotedListRequest request){
         CooperativeSociety society = societyService.viewSocietyById(request.getSocietyID());
         NominatedCandidates candidate = candidateService.searchByCandidateID(request.getCandidateID());
@@ -58,20 +58,20 @@ public class VotedListController {
 
     // view all the votes
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping()
+    @GetMapping
     public List<VotedListDTO> viewVotedList() {
         List<VotedList> votes = votedListService.viewVotedList();
         return votedListUtil.toDTO(votes);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("byId/{id}")
+    @DeleteMapping("/byId/{id}")
     public VotedListDTO deleteVotedListDetails(@PathVariable("id") @Min(1) int id){
         return votedListUtil.toDTO(votedListService.deletedVotedListDetails(id));
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("byVoterId/{id}")
+    @GetMapping("/byVoterId/{id}")
     public VotedListDTO searchByVoterId(@PathVariable("id") @Min(1) int id){
         return votedListUtil.toDTO(votedListService.searchByVoterId(id));
     }

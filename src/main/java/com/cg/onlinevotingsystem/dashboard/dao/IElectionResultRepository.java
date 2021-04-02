@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface IElectionResultRepository extends JpaRepository<ElectionResult, Integer> {
-    ElectionResult findByCandidate(NominatedCandidates candidate);
+    ElectionResult findElectionResultByCandidate(NominatedCandidates candidate);
 
 }

@@ -1,0 +1,64 @@
+package com.cg.onlinevotingsystem.dashboard.controllers;
+
+import com.cg.onlinevotingsystem.dashboard.dto.ElectionResultDto;
+import com.cg.onlinevotingsystem.dashboard.entities.ElectionResult;
+import com.cg.onlinevotingsystem.dashboard.services.IElectionResultService;
+import com.cg.onlinevotingsystem.dashboard.util.ResultUtil;
+import com.cg.onlinevotingsystem.nominatedcandidatems.dto.NominatedCandidateDTO;
+import com.cg.onlinevotingsystem.nominatedcandidatems.entities.NominatedCandidates;
+import com.cg.onlinevotingsystem.nominatedcandidatems.util.NominatedCandidatesUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RequestMapping("/results/")
+@RestController
+public class ElectionResultController {
+
+    @Autowired
+    private IElectionResultService resultService;
+
+    @Autowired
+    private ResultUtil resultUtil;
+
+    @Autowired
+    private NominatedCandidatesUtil candidatesUtil;
+
+    @GetMapping("/bycandidate/{cid}")
+    public ElectionResultDto getCandidateResult(@PathVariable("cid") int cid){
+        ElectionResult result= resultService.viewCandidatewiseResult(cid);
+        ElectionResultDto dto=resultUtil.toDetails(result);
+        return dto;
+    }
+
+    @GetMapping("/votingpercentage")
+    public double getVotingPercentage(){
+        return resultService.viewVotingPercentage();
+    }
+
+    @GetMapping("/winner")
+    public NominatedCandidateDTO getWinner(){
+        NominatedCandidates candidate=resultService.viewHighestVotingPercentCandidate();
+        NominatedCandidateDTO details=candidatesUtil.toDTO(candidate);
+        return details;
+    }
+
+
+    @GetMapping("/biggestloser")
+    public NominatedCandidateDTO viewLowestVotingPercentCandidate(){
+        NominatedCandidates candidate=resultService.viewLowestVotingPercentCandidate();
+        NominatedCandidateDTO details=candidatesUtil.toDTO(candidate);
+        return details;
+
+    }
+
+    @GetMapping("/electionresult")
+    public String displayElectionResult(){
+        resultService.displayPollingResult();
+        return "Result displayed in console UI";
+    }
+
+
+}
