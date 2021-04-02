@@ -14,6 +14,16 @@ public class VoterUtil {
         voter.setFirstName(request.getFirstName());
         voter.setLastName(request.getLastName());
         voter.setEmailId(request.getEmailID());
+        voter.setGender(request.getGender());
+        voter.setPassword(request.getPassword());
+        voter.setReservationCategory(request.getReservationCategory());
+        voter.setMobileNo(request.getMobileNo());
+        voter.setEmailId(request.getEmailID());
+        voter.setAddress1(request.getAddress1());
+        voter.setAddress2(request.getAddress2());
+        voter.setMandal(request.getMandal());
+        voter.setDistrict(request.getDistrict());
+        voter.setPincode(request.getPincode());
         return voter;
     }
 
