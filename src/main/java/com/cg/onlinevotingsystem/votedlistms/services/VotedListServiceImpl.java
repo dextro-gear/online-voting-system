@@ -149,9 +149,9 @@ public class VotedListServiceImpl implements IVotedListService {
      */
     @Override
     public VotedList searchByVoterId(int voterId) {
-        Optional<VotedList> votedListOptional = Optional.of(votedListRepository.findByVoter_Id(voterId));
-        if (votedListOptional.isPresent()) {
-            return votedListOptional.get();
+        VotedList votedList = votedListRepository.findByVoter_Id(voterId);
+        if (votedList != null) {
+            return votedList;
         }
         throw new VotedListNotFoundException("VotedList record with voter:" + voterId + " was not found in the DB");
     }
