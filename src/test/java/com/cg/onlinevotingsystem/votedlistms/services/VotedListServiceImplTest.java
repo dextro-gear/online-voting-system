@@ -101,17 +101,6 @@ class VotedListServiceImplTest {
 
     }
 
-    /*  @Test
-      void deletedVotedListDetails() {
-          VotedList votedList = Mockito.mock(VotedList.class);
-          VotedList votedListSaved = Mockito.mock(VotedList.class);
-          Mockito.when(repository.findById(123)).thenReturn(Optional.of(Mockito.mock(VotedList.class)));
-          VotedList result = service.deletedVotedListDetails(123);
-          Assertions.assertEquals(votedList,result);
-
-      }
-  */
-
 
     /**
      * scenario:  list of votes is successfully viewed

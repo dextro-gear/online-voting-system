@@ -122,7 +122,7 @@ class ElectionResultServiceImplTest {
     /**
      * Scenario: ElectionResult record is NOT found in the DB
      * Input: candidateID
-     * Expectations : Verifying electionResultRepository.indElectionResultByCandidate is called;
+     * Expectations : Verifying electionResultRepository.findElectionResultByCandidate() is called;
      *                Verifying ResultNotFoundException is thrown
      */
     @Test

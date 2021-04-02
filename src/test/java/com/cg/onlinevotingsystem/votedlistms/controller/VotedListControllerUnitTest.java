@@ -46,27 +46,12 @@ class VotedListControllerUnitTest {
     @InjectMocks
     VotedListController votedListController;
 
-/*
-    @Test
-    void castNewVote() {
-        VotedList votedList =mock(VotedList.class);
-        VotedList saved =mock(VotedList.class);
-        CooperativeSociety society=mock(CooperativeSociety.class);
-        RegisteredSocietyVoters voter =mock(RegisteredSocietyVoters.class);
-        NominatedCandidates candidate =mock(NominatedCandidates.class);
-        CastVotedListRequest request =mock(CastVotedListRequest.class);
-        when(societyService.viewSocietyById(request.getSocietyID())).thenReturn(society);
-        when(votersService.searchByVoterID(request.getVoterID())).thenReturn(voter);
-        when(candidateService.searchByCandidateID(request.getCandidateID())).thenReturn(candidate);
-        when(votedListService.castVotedList(voter,candidate,society)).thenReturn(saved);
 
-
-    }*/
 
     @Test
     void viewVotedList() {
 
-        List<VotedList> votedListList =mock(List.class);
+        List<VotedList> votedListList = mock(List.class);
         when(votedListService.viewVotedList()).thenReturn(votedListList);
         List<VotedListDTO> requiredList = mock(List.class);
         when(util.toDTO(votedListList)).thenReturn(requiredList);

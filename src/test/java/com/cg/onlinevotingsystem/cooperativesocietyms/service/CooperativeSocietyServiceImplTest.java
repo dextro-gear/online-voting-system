@@ -40,9 +40,17 @@ class CooperativeSocietyServiceImplTest {
     void updateSocietyDetails() {
     }
 
+
+
+    /**
+     * scenario: society list in store
+     * input: list
+     * expectation: society list fetched is the same mocked object which is stubbed
+     */
     @Test
     void deleteSociety() {
     }
+
 
     /**
      * scenario: society list in store
