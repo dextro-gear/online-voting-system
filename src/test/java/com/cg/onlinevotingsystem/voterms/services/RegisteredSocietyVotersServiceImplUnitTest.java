@@ -56,7 +56,7 @@ public class RegisteredSocietyVotersServiceImplUnitTest {
     /**
      * scenario: voter not saved successfully
      * input: mocked voter object
-     * expectation: InvalidVoterException is thrown , voterRespoistory.save(voter) is never called
+     * expectation: InvalidVoterException is thrown , voterRepository.save(voter) is never called
      */
     @Test
     void testVoterRegistration_2() {
@@ -68,6 +68,11 @@ public class RegisteredSocietyVotersServiceImplUnitTest {
 
     }
 
+    /**
+     * scenario: voter is updated successfully
+     * input: mocked voter object
+     * expectation: voterRepository.save(voter) is called
+     */
     @Test
     void testUpdateRegisteredVoterDetails_1() {
         int id=7667;
@@ -86,7 +91,7 @@ public class RegisteredSocietyVotersServiceImplUnitTest {
     /**
      * scenario: voter not saved successfully
      * input: mocked voter object
-     * expectation: InvalidVoterException is thrown , voterRespoistory.save(voter) is never called
+     * expectation: InvalidVoterException is thrown , voterRepository.save(voter) is never called
      */
     @Test
     void testUpdateRegisteredVoterDetails_2() {
@@ -115,6 +120,7 @@ public class RegisteredSocietyVotersServiceImplUnitTest {
 
     /**
      * scenario: voter does not exist for id
+     * input : 123 id
      * expectation: verifying  VoterNotFoundException is thrown
      */
     @Test
@@ -126,6 +132,11 @@ public class RegisteredSocietyVotersServiceImplUnitTest {
         verify(voterRepository,never()).deleteById(id);
     }
 
+    /**
+     * scenario: voter list successfully viewed
+     * input : mocked voter object
+     * expectation: voterRepository.save(voter) is called
+     */
     @Test
     void testViewRegisteredVoterList_1() {
         List list=mock(List.class);

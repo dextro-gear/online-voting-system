@@ -25,7 +25,11 @@ public class RegisteredSocietyVotersServiceImpl implements IRegisteredSocietyVot
     @Autowired
     private CooperativeSocietyServiceImpl societyService;
 
-
+    /**
+     * This method creates a new record for a voter in the database.
+     * @param voter The voter which has multiple fields of general information
+     * @return the newly created voter entity object
+     */
     @Override
     @Transactional
     public RegisteredSocietyVoters voterRegistration(RegisteredSocietyVoters voter) {
@@ -35,6 +39,10 @@ public class RegisteredSocietyVotersServiceImpl implements IRegisteredSocietyVot
         return voterRepository.save(voter);
     }
 
+    /**
+     * This method is to generate a random Id to the voter ranging from 0-9.
+     * @return a randomly generated Id for voter in string format.
+     */
     public String generateId(){
         Random random = new Random();
         StringBuilder builder = new StringBuilder();
@@ -46,6 +54,11 @@ public class RegisteredSocietyVotersServiceImpl implements IRegisteredSocietyVot
 
     }
 
+    /**
+     * This method updates all the field of voter information in the database.
+     * @param voter The voter which has multiple fields of general information
+     * @return The updated values on information field of voter.
+     */
     @Override
     @Transactional
     public RegisteredSocietyVoters updateRegisteredVoterDetails(RegisteredSocietyVoters voter) {
@@ -58,6 +71,11 @@ public class RegisteredSocietyVotersServiceImpl implements IRegisteredSocietyVot
     }
 
 
+    /**
+     * This methods the row from the database on the basis of Id of the voter.
+     * @param voterId The self generated Id .
+     * @return The remaining objects in the database.
+     */
     @Override
     @Transactional
     public RegisteredSocietyVoters deleteRegisteredVoter(int voterId) {
@@ -66,11 +84,23 @@ public class RegisteredSocietyVotersServiceImpl implements IRegisteredSocietyVot
         return voter;
     }
 
+
+    /**
+     * This method returns the record of all the voters registered till date.
+     * @return Returns the Registered society voters objects.
+     */
     @Override
     public List<RegisteredSocietyVoters> viewRegisteredVoterList() {
         return voterRepository.findAll();
     }
 
+
+    /**
+     * This method searches the database for voter based on voterId.
+     * @param voterId The self generated Id for voter
+     * @return Returns the Registered society voter object if found by id
+     * else throws an exception of voter not found
+     */
     @Override
     public RegisteredSocietyVoters searchByVoterID(int voterId) {
         Optional<RegisteredSocietyVoters> registeredSocietyVotersOptional = voterRepository.findById(voterId);
@@ -81,11 +111,16 @@ public class RegisteredSocietyVotersServiceImpl implements IRegisteredSocietyVot
         throw new VoterNotFoundException("Voter with id:" + voterId + " was not found in the DB");
     }
 
+
     @Override
     public RegisteredSocietyVoters loginValidate(String userid, String password) {
         return null;
     }
 
+    /**
+     * This method validates the first name for it to be not null or empty.
+     * @param voter The voter object which has multiple fields of general information
+     */
 
     public void validateFirstName(RegisteredSocietyVoters voter) {
         if (voter.getFirstName() == null || voter.getFirstName().isEmpty()) {

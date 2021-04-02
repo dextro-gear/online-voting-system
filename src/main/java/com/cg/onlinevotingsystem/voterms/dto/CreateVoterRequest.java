@@ -143,4 +143,5 @@ public class CreateVoterRequest {
     public boolean isCastedVote() {
         return castedVote;
     }
+
 }
