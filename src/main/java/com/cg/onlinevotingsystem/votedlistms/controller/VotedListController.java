@@ -27,6 +27,15 @@ import java.util.Optional;
 @RestController
 public class VotedListController {
 
+    /* TODO
+        VotedList REST Endpoints
+    *   1. cast a vote
+    *   2. view all the votes that are casted
+    *   3. Delete the vote for a particular id
+    *   4. View vote by voterId
+    * */
+
+
     @Autowired
     private IVotedListService votedListService;
 

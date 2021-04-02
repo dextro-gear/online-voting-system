@@ -106,6 +106,13 @@ class VotedListServiceImplTest {
 
       }
   */
+
+
+    /**
+     * scenario:  list of votes is successfully viewed
+     * input : mocked votedlist  object
+     * expectation: voteRepository.findByVoter_Id(voterid) is called
+     */
     @Test
     void viewVotedList() {
 
@@ -118,6 +125,12 @@ class VotedListServiceImplTest {
 
     }
 
+
+    /**
+     * scenario:  vote of particular voter is successfully viewed
+     * input : mocked votedlist  object
+     * expectation: voteRepository.findByVoter_Id(voterid) is called and vote is successfully viewed
+     */
     @Test
     void searchByVoterId() {
         VotedList votedList =mock(VotedList.class);
@@ -127,6 +140,13 @@ class VotedListServiceImplTest {
 
     }
 
+
+    /**
+     * scenario:  list of votes for particular candidate is successfully viewed
+     * input : mocked votedlist  object
+     * list of  type votedList is created
+     * expectation: all the votes for particular candidate is printed successfully
+     */
     @Test
     void searchByNominatedCandidateId() {
         VotedList votedList = mock(VotedList.class);
