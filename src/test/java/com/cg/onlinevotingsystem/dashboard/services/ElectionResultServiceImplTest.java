@@ -45,8 +45,12 @@ class ElectionResultServiceImplTest {
     void addElectionResult_1() {
         ElectionResult resultArg = mock(ElectionResult.class);
         ElectionResult saved = mock(ElectionResult.class);
+
+        // Stubbing save, validate methods
         when(electionResultRepository.save(resultArg)).thenReturn(saved);
         doNothing().when(electionResultService).validateResult(resultArg);
+
+        // Verify the saved instance is returned; save() is being called
         ElectionResult result = electionResultService.addElectionResult(resultArg);
         Assertions.assertSame(saved, result);
         verify(electionResultRepository).save(resultArg);
@@ -62,6 +66,8 @@ class ElectionResultServiceImplTest {
     @Test
     void testAddElectionResult_2() {
         ElectionResult resultArg = mock(ElectionResult.class);
+
+        // Verify the correct exception is thrown; save() method is NEVER called
         Executable executable = () -> electionResultService.addElectionResult(resultArg);
         Assertions.assertThrows(InvalidResultException.class, executable);
         verify(electionResultRepository, never()).save(resultArg);
@@ -77,7 +83,11 @@ class ElectionResultServiceImplTest {
     @Test
     void viewElectionResultList() {
         List<ElectionResult> list = mock(List.class);
+
+        // Stubbing the findAll() method
         when(electionResultRepository.findAll()).thenReturn(list);
+
+        // Verify a list is returned; findAll() is called
         List<ElectionResult> result = electionResultService.viewElectionResultList();
         Assertions.assertSame(list, result);
         verify(electionResultRepository).findAll();
@@ -95,9 +105,13 @@ class ElectionResultServiceImplTest {
     public void viewCandidatewiseResult_1(){
         int candidateId=6367;
         NominatedCandidates candidate=mock(NominatedCandidates.class);
-        when(candidatesService.searchByCandidateID(candidateId)).thenReturn(candidate);
         ElectionResult fetchedResult=mock(ElectionResult.class);
+
+        // Stubbing searchByCandidateID(), findElectionResultByCandidate()
+        when(candidatesService.searchByCandidateID(candidateId)).thenReturn(candidate);
         when(electionResultRepository.findElectionResultByCandidate(candidate)).thenReturn(fetchedResult);
+
+        // Verify the saved instance is returned; findElectionResultByCandidate() is called
         ElectionResult result=electionResultService.viewCandidatewiseResult(candidateId);
         Assertions.assertSame(fetchedResult,result);
         verify(electionResultRepository).findElectionResultByCandidate(candidate);
@@ -115,10 +129,12 @@ class ElectionResultServiceImplTest {
     public void viewCandidatewiseResult_2(){
         int candidateId=6367;
         NominatedCandidates candidate=mock(NominatedCandidates.class);
-        when(candidatesService.searchByCandidateID(candidateId)).thenReturn(candidate);
 
-        ElectionResult fetchedResult=null;
-        when(electionResultRepository.findElectionResultByCandidate(candidate)).thenReturn(fetchedResult);
+        // Stubbing searchByCandidateID(), findElectionResultByCandidate()
+        when(candidatesService.searchByCandidateID(candidateId)).thenReturn(candidate);
+        when(electionResultRepository.findElectionResultByCandidate(candidate)).thenReturn(null);
+
+        // Verify the proper exception is thrown; findElectionResultByCandidate() is called
         Executable executable=()->electionResultService.viewCandidatewiseResult(candidateId);
         Assertions.assertThrows(ResultNotFoundException.class,executable);
         verify(electionResultRepository).findElectionResultByCandidate(candidate);
