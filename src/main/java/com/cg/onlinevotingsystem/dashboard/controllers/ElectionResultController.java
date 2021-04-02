@@ -8,13 +8,19 @@ import com.cg.onlinevotingsystem.nominatedcandidatems.dto.NominatedCandidateDTO;
 import com.cg.onlinevotingsystem.nominatedcandidatems.entities.NominatedCandidates;
 import com.cg.onlinevotingsystem.nominatedcandidatems.util.NominatedCandidatesUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
 @RequestMapping("/results/")
 @RestController
+@Validated
 public class ElectionResultController {
 
     @Autowired
@@ -27,7 +33,7 @@ public class ElectionResultController {
     private NominatedCandidatesUtil candidatesUtil;
 
     @GetMapping("/bycandidate/{cid}")
-    public ElectionResultDto getCandidateResult(@PathVariable("cid") int cid){
+    public ElectionResultDto getCandidateResult(@PathVariable("cid") @Min(1) int cid){
         ElectionResult result= resultService.viewCandidatewiseResult(cid);
         ElectionResultDto dto=resultUtil.toDetails(result);
         return dto;
