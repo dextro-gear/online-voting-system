@@ -44,8 +44,14 @@ class CooperativeSocietyServiceImplTest {
     void deleteSociety() {
     }
 
+    /**
+     * scenario: society list in store
+     * input: list
+     * expectation: society list fetched is the same mocked object which is stubbed
+     */
+
     @Test
-    void viewSocietyList() {
+    void TestViewSocietyList() {
         List list = mock(List.class);
         when(repository.findAll()).thenReturn(list);
         List<CooperativeSociety> result = service.viewSocietyList();
@@ -60,7 +66,7 @@ class CooperativeSocietyServiceImplTest {
      * expectation: society fetched is the same mocked object which is stubbed
      */
     @Test
-    void viewSocietyById_1() {
+    void TestViewSocietyById_1() {
         CooperativeSociety society = Mockito.mock(CooperativeSociety.class);
         Optional optional=Optional.of(society);
         when(repository.findById(1)).thenReturn(optional);
