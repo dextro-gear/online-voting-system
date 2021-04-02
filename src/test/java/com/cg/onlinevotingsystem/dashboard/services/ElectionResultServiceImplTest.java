@@ -37,9 +37,9 @@ class ElectionResultServiceImplTest {
     ElectionResultServiceImpl electionResultService;
 
     /**
-     * scenario: result added successfully
-     * input: result arg
-     * expectation : verifying  electionResultRepository.save(resultArg) is called
+     * Scenario: ElectionResult object is saved in the DB successfully.
+     * Input: ElectionResult object
+     * Expectations : Verifying  electionResultRepository.save() is called; Saved instance is returned
      */
     @Test
     void addElectionResult_1() {
@@ -52,6 +52,13 @@ class ElectionResultServiceImplTest {
         verify(electionResultRepository).save(resultArg);
     }
 
+
+    /**
+     * Scenario: Validation for object fails
+     * Input: ElectionResult object
+     * Expectations : Verifying  electionResultRepository.save() is never called;
+     *                Verifying proper exception is thrown
+     */
     @Test
     void testAddElectionResult_2() {
         ElectionResult resultArg = mock(ElectionResult.class);
@@ -62,6 +69,11 @@ class ElectionResultServiceImplTest {
     }
 
 
+
+    /**
+     * Scenario: Retrieve all ElectionResult Objects
+     * Expectations : Verifying electionResultRepository.findAll() is called; List is returned
+     */
     @Test
     void viewElectionResultList() {
         List<ElectionResult> list = mock(List.class);
@@ -71,8 +83,13 @@ class ElectionResultServiceImplTest {
         verify(electionResultRepository).findAll();
     }
 
+
+
     /**
-     * scenario: result found for a candidate
+     * Scenario: Retrieval of an ElectionResult object by candidateID is successful.
+     * Input: candidateID
+     * Expectations : Verifying electionResultRepository.indElectionResultByCandidate is called;
+     *                Fetched instance is returned
      */
     @Test
     public void viewCandidatewiseResult_1(){
@@ -81,14 +98,18 @@ class ElectionResultServiceImplTest {
         when(candidatesService.searchByCandidateID(candidateId)).thenReturn(candidate);
         ElectionResult fetchedResult=mock(ElectionResult.class);
         when(electionResultRepository.findElectionResultByCandidate(candidate)).thenReturn(fetchedResult);
-       ElectionResult result=electionResultService.viewCandidatewiseResult(candidateId);
-       Assertions.assertSame(fetchedResult,result);
-       verify(electionResultRepository).findElectionResultByCandidate(candidate);
+        ElectionResult result=electionResultService.viewCandidatewiseResult(candidateId);
+        Assertions.assertSame(fetchedResult,result);
+        verify(electionResultRepository).findElectionResultByCandidate(candidate);
     }
 
+
+
     /**
-     * scenario: result NOT found for a candidate
-     *
+     * Scenario: ElectionResult record is NOT found in the DB
+     * Input: candidateID
+     * Expectations : Verifying electionResultRepository.indElectionResultByCandidate is called;
+     *                Verifying ResultNotFoundException is thrown
      */
     @Test
     public void viewCandidatewiseResult_2(){
@@ -102,15 +123,6 @@ class ElectionResultServiceImplTest {
         Assertions.assertThrows(ResultNotFoundException.class,executable);
         verify(electionResultRepository).findElectionResultByCandidate(candidate);
     }
-
-    @Test
-    void viewCandidatewiseResult() {
-        ElectionResult found = mock(ElectionResult.class);
-        when(electionResultRepository.findById(1)).thenReturn(Optional.of(found));
-        ElectionResult result = electionResultService.viewCandidatewiseResult(1);
-        Assertions.assertEquals(found, result);
-    }
-
 
 
 }
