@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class VoterUtil {
 
-    public RegisteredSocietyVoters toVoterEntity(CreateVoterRequest request) {
+    public RegisteredSocietyVoters populateVoterEntity(CreateVoterRequest request) {
         RegisteredSocietyVoters voter = new RegisteredSocietyVoters();
         voter.setFirstName(request.getFirstName());
         voter.setLastName(request.getLastName());
@@ -27,9 +27,7 @@ public class VoterUtil {
         return voter;
     }
 
-    public RegisteredSocietyVoters toVoterEntity(UpdateVoterRequest requestData) {
-        RegisteredSocietyVoters voter = new RegisteredSocietyVoters();
-        voter.setId(requestData.getVoterID());
+    public void populateVoterEntity(UpdateVoterRequest requestData, RegisteredSocietyVoters voter) {
         voter.setVoterIdCardNo(requestData.getVoterIDCardNo());
         voter.setFirstName(requestData.getFirstName());
         voter.setLastName(requestData.getLastName());
@@ -43,7 +41,6 @@ public class VoterUtil {
         voter.setMandal(requestData.getMandal());
         voter.setDistrict(requestData.getDistrict());
         voter.setPincode(requestData.getPincode());
-        return voter;
     }
 
 

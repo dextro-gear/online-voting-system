@@ -1,27 +1,17 @@
 package com.cg.onlinevotingsystem.votedlistms.dto;
 
-import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
-import com.cg.onlinevotingsystem.nominatedcandidatems.entities.NominatedCandidates;
-import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
-
-import java.time.LocalDateTime;
-
 public class VotedListDTO {
 
-    int voteId;
-    int candidateId;
-    int societyId;
-    String votingDateTime;
+    private int voteId;
+    private int candidateId;
+    private String candidateFirstName;
+    private String candidateLastName;
+    private int societyId;
+    private String votingDateTime;
 
     public VotedListDTO() {
     }
 
-    public VotedListDTO(int voteId, int candidateId, int societyId, String votingDateTime) {
-        this.voteId = voteId;
-        this.candidateId = candidateId;
-        this.societyId = societyId;
-        this.votingDateTime = votingDateTime;
-    }
 
     public int getVoteId() {
         return voteId;
@@ -56,6 +46,24 @@ public class VotedListDTO {
 
     public VotedListDTO setSocietyId(int societyId) {
         this.societyId = societyId;
+        return this;
+    }
+
+    public String getCandidateFirstName() {
+        return candidateFirstName;
+    }
+
+    public VotedListDTO setCandidateFirstName(String candidateFirstName) {
+        this.candidateFirstName = candidateFirstName;
+        return this;
+    }
+
+    public String getCandidateLastName() {
+        return candidateLastName;
+    }
+
+    public VotedListDTO setCandidateLastName(String candidateLastName) {
+        this.candidateLastName = candidateLastName;
         return this;
     }
 }

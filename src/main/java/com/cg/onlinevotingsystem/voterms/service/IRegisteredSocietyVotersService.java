@@ -7,18 +7,25 @@ import com.cg.onlinevotingsystem.cooperativesocietyms.service.CooperativeSociety
 import com.cg.onlinevotingsystem.cooperativesocietyms.service.ICooperativeSocietyService;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 
-public interface IRegisteredSocietyVotersService  {
+public interface IRegisteredSocietyVotersService {
 
-   RegisteredSocietyVoters voterRegistration(RegisteredSocietyVoters voter);
-   /*
-   RegisteredSocietyVoters voterRegistration(String voterIdCardNo,String firstName, String lastName, String gender, String password, String reservationCategory,
-                                              String mobileNo, String emailId, String address1, String address2, String mandal, String district, int pincode,boolean castedVote,
-                                              CooperativeSociety society);
-   */
+    RegisteredSocietyVoters voterRegistration(RegisteredSocietyVoters voter);
+
+    /*
+    RegisteredSocietyVoters voterRegistration(String voterIdCardNo,String firstName, String lastName, String gender, String password, String reservationCategory,
+                                               String mobileNo, String emailId, String address1, String address2, String mandal, String district, int pincode,boolean castedVote,
+                                               CooperativeSociety society);
+    */
     RegisteredSocietyVoters updateRegisteredVoterDetails(RegisteredSocietyVoters voter);
+
     RegisteredSocietyVoters deleteRegisteredVoter(int voterId);
+
     List<RegisteredSocietyVoters> viewRegisteredVoterList();
+
     RegisteredSocietyVoters searchByVoterID(int voterId);
+
     RegisteredSocietyVoters loginValidate(String userid, String password);
+
+    RegisteredSocietyVoters findByVoterCardId(String cardId);
 
 }

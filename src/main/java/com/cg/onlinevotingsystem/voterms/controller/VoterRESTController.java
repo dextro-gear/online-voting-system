@@ -40,7 +40,7 @@ public class VoterRESTController {
 
     @PostMapping("/add")
     public VoterDetails addNewVoter(@RequestBody @Valid CreateVoterRequest request) {
-        RegisteredSocietyVoters voter = util.toVoterEntity(request);
+        RegisteredSocietyVoters voter = util.populateVoterEntity(request);
         CooperativeSociety society = societyService.viewSocietyById(request.getSocietyId());
         voter.setSociety(society);
         voter = voterService.voterRegistration(voter);
@@ -49,23 +49,19 @@ public class VoterRESTController {
 
     @PutMapping("/updatevoter")
     public VoterDetails updateVoter(UpdateVoterRequest requestData) {
-        RegisteredSocietyVoters voter =util.toVoterEntity(requestData);
+        RegisteredSocietyVoters voter=voterService.findByVoterCardId(requestData.getVoterIDCardNo());
+        util.populateVoterEntity(requestData, voter);
         voter=voterService.updateRegisteredVoterDetails(voter);
         return util.details(voter) ;
     }
 
 
     @GetMapping("/{id}")
-    public VoterDetails findVoter(@PathVariable("id") int id) {
-        RegisteredSocietyVoters details = voterService.searchByVoterID(id);
+    public VoterDetails findVoter(@PathVariable("id") String  cardId) {
+        RegisteredSocietyVoters details = voterService.findByVoterCardId(cardId);
         return util.details(details);
     }
 
-    @DeleteMapping("/{id}")
-    public VoterDetails deleteVoter(@PathVariable("id") int id) {
-        RegisteredSocietyVoters details = voterService.deleteRegisteredVoter(id);
-        return util.details(details);
-    }
 
 
 

@@ -5,7 +5,7 @@ import com.cg.onlinevotingsystem.cooperativesocietyms.exceptions.SocietyNotFound
 import com.cg.onlinevotingsystem.dashboard.exceptions.ResultNotFoundException;
 import com.cg.onlinevotingsystem.electionoffice.exceptions.ElectionOfficerNotFoundException;
 import com.cg.onlinevotingsystem.nominatedcandidatems.exceptions.CandidateNotFoundException;
-import com.cg.onlinevotingsystem.votedlistms.exceptions.VotedListNotFoundException;
+import com.cg.onlinevotingsystem.votedlistms.exceptions.VoteNotFoundException;
 import com.cg.onlinevotingsystem.voterms.exceptions.VoterNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -45,7 +45,7 @@ public class GlobalExceptionalHandler {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler
-    public String handleVoteNotFoundException(VotedListNotFoundException e)
+    public String handleVoteNotFoundException(VoteNotFoundException e)
     {
         return e.getMessage();
     }

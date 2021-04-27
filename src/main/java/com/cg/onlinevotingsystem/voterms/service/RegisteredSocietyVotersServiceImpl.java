@@ -54,6 +54,16 @@ public class RegisteredSocietyVotersServiceImpl implements IRegisteredSocietyVot
 
     }
 
+    @Override
+    public RegisteredSocietyVoters findByVoterCardId(String cardId){
+        boolean exists=voterRepository.existsByVoterIDCardNo(cardId);
+        if(!exists){
+            throw new VoterNotFoundException("voter not found for card id="+cardId);
+        }
+        RegisteredSocietyVoters voter=voterRepository.findRegisteredSocietyVotersByVoterIDCardNo(cardId);
+        return voter;
+    }
+
     /**
      * This method updates all the field of voter information in the database.
      * @param voter The voter which has multiple fields of general information

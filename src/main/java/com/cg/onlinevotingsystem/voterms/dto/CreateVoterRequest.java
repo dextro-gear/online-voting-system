@@ -26,7 +26,6 @@ public class CreateVoterRequest {
     private String district;
     private int pincode;
     private int societyId;
-    private boolean castedVote;
 
     public String getFirstName() {
         return firstName;
@@ -124,24 +123,12 @@ public class CreateVoterRequest {
         this.pincode = pincode;
     }
 
-    public boolean getCastedVote() {
-        return castedVote;
-    }
-
-    public void setCastedVote(boolean castedVote) {
-        this.castedVote = castedVote;
-    }
-
     public int getSocietyId() {
         return societyId;
     }
 
     public void setSocietyId(int societyId) {
         this.societyId = societyId;
-    }
-
-    public boolean isCastedVote() {
-        return castedVote;
     }
 
 }

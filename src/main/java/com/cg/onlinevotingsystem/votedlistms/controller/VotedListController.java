@@ -48,12 +48,13 @@ public class VotedListController {
     // cast a vote
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/add")
-    public CastVotedListResponse castNewVote(@RequestBody @Valid CastVotedListRequest request){
+    public VotedListDTO castNewVote(@RequestBody @Valid CastVotedListRequest request){
         CooperativeSociety society = societyService.viewSocietyById(request.getSocietyID());
         NominatedCandidates candidate = candidateService.searchByCandidateID(request.getCandidateID());
-        RegisteredSocietyVoters voter = votersService.searchByVoterID(request.getVoterID());
-        votedListService.castVotedList(voter, candidate, society);
-        return new CastVotedListResponse("Vote Successful!", request.getCandidateID());
+        RegisteredSocietyVoters voter = votersService.findByVoterCardId(request.getVoterCardID());
+        VotedList votedList=votedListService.castVotedList(voter, candidate, society);
+        VotedListDTO response=votedListUtil.toDTO(votedList);
+        return response;
     }
 
     // view all the votes
@@ -64,16 +65,11 @@ public class VotedListController {
         return votedListUtil.toDTO(votes);
     }
 
-    @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/byId/{id}")
-    public VotedListDTO deleteVotedListDetails(@PathVariable("id") @Min(1) int id){
-        return votedListUtil.toDTO(votedListService.deletedVotedListDetails(id));
-    }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/byVoterId/{id}")
-    public VotedListDTO searchByVoterId(@PathVariable("id") @Min(1) int id){
-        return votedListUtil.toDTO(votedListService.searchByVoterId(id));
+    @GetMapping("/byVoterCardId/{id}")
+    public VotedListDTO searchByVoterCardId(@PathVariable("id") @Min(1) String cardid){
+        return votedListUtil.toDTO(votedListService.searchByVoterCardId(cardid));
     }
 
 }

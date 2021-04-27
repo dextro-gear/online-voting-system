@@ -2,7 +2,6 @@ package com.cg.onlinevotingsystem.voterms.dto;
 
 public class UpdateVoterRequest {
 
-    private int voterID;
     private int societyID;
     private String voterIDCardNo;
     private String firstName;
@@ -17,15 +16,6 @@ public class UpdateVoterRequest {
     private String mandal;
     private String district;
     private int pincode;
-
-    public int getVoterID() {
-        return voterID;
-    }
-
-    public UpdateVoterRequest setVoterID(int voterID) {
-        this.voterID = voterID;
-        return this;
-    }
 
     public int getSocietyID() {
         return societyID;

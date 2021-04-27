@@ -3,12 +3,16 @@ package com.cg.onlinevotingsystem.votedlistms.dto;
 import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
 import com.cg.onlinevotingsystem.nominatedcandidatems.entities.NominatedCandidates;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 public class CastVotedListRequest {
-    @Min(1)
-    private int voterID;
+    @NotBlank
+    @Length(min=10,max=10)
+    private String voterCardID;
 
     @Min(1)
     private int candidateID;
@@ -16,12 +20,13 @@ public class CastVotedListRequest {
     @Min(1)
     private int societyID;
 
-    public int getVoterID() {
-        return voterID;
+
+    public String getVoterCardID() {
+        return voterCardID;
     }
 
-    public void setVoterID(int voterID) {
-        this.voterID = voterID;
+    public void setVoterCardID(String voterCardID) {
+        this.voterCardID = voterCardID;
     }
 
     public int getCandidateID() {

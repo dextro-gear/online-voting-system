@@ -1,6 +1,5 @@
 package com.cg.onlinevotingsystem.nominatedcandidatems.controllers;
 
-import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
 import com.cg.onlinevotingsystem.cooperativesocietyms.service.CooperativeSocietyServiceImpl;
 import com.cg.onlinevotingsystem.nominatedcandidatems.dto.AddCandidateRequest;
 import com.cg.onlinevotingsystem.nominatedcandidatems.dto.NominatedCandidateDTO;
@@ -58,13 +57,6 @@ public class NominatedCandidateRESTController {
     @GetMapping
     public List<NominatedCandidateDTO> getAllCandidates(){
         return candidatesUtil.toDTO(candidateService.viewNominatedCandidateList());
-    }
-
-    @PutMapping("/updatecandidate")
-    public NominatedCandidateDTO updateCandidateDetails(@RequestBody NominatedCandidateDTO request){
-        RegisteredSocietyVoters voter=voterUtil.toVoterEntity(request.getVoter());
-        NominatedCandidates candidate=candidateService.updateNominatedCandidateDetails(request.getCandidateID(),request.getNominationFormNo(),voter);
-        return candidatesUtil.toDTO(candidate);
     }
 
 

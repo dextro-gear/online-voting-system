@@ -8,6 +8,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface IVotedListRepository extends JpaRepository<VotedList, Integer> {
+    VotedList findVotedListByVoter(RegisteredSocietyVoters voter);
+
+    boolean existsByVoter(RegisteredSocietyVoters voter);
+
     VotedList findByVoter_Id(int voterID);
+
     List<VotedList> findByCandidate_CandidateID(int candidateID);
 }

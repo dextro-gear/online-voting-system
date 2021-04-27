@@ -11,6 +11,8 @@ public class RegisteredSocietyVoters {
     @GeneratedValue
     @Id
     private int id;
+
+    @Column(unique = true)
     private String voterIDCardNo;
     private String firstName;
     private String lastName;
