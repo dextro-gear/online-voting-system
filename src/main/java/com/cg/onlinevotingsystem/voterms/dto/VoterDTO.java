@@ -1,134 +1,155 @@
 package com.cg.onlinevotingsystem.voterms.dto;
 
-import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
+public class VoterDTO {
 
-import javax.validation.constraints.NotBlank;
-
-public class CreateVoterRequest {
-
-    @NotBlank
+    private int voterID;
+    private int societyID;
+    private String voterIDCardNo;
     private String firstName;
-    @NotBlank
     private String lastName;
-    @NotBlank
     private String gender;
-    @NotBlank
     private String password;
     private String reservationCategory;
-    @NotBlank
     private String mobileNo;
-    @NotBlank
     private String emailID;
-    @NotBlank
     private String address1;
     private String address2;
     private String mandal;
     private String district;
     private int pincode;
-    private int societyId;
+
+    public int getVoterID() {
+        return voterID;
+    }
+
+    public VoterDTO setVoterID(int voterID) {
+        this.voterID = voterID;
+        return this;
+    }
+
+    public int getSocietyID() {
+        return societyID;
+    }
+
+    public VoterDTO setSocietyID(int societyID) {
+        this.societyID = societyID;
+        return this;
+    }
+
+    public String getVoterIDCardNo() {
+        return voterIDCardNo;
+    }
+
+    public VoterDTO setVoterIDCardNo(String voterIDCardNo) {
+        this.voterIDCardNo = voterIDCardNo;
+        return this;
+    }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public VoterDTO setFirstName(String firstName) {
         this.firstName = firstName;
+        return this;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public VoterDTO setLastName(String lastName) {
         this.lastName = lastName;
+        return this;
     }
 
     public String getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public VoterDTO setGender(String gender) {
+        this.gender= gender;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public VoterDTO setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     public String getReservationCategory() {
         return reservationCategory;
     }
 
-    public void setReservationCategory(String reservationCategory) {
+    public VoterDTO setReservationCategory(String reservationCategory) {
         this.reservationCategory = reservationCategory;
+        return this;
     }
 
     public String getMobileNo() {
         return mobileNo;
     }
 
-    public void setMobileNo(String mobileNo) {
+    public VoterDTO setMobileNo(String mobileNo) {
         this.mobileNo = mobileNo;
+        return this;
     }
 
     public String getEmailID() {
         return emailID;
     }
 
-    public void setEmailID(String emailID) {
+    public VoterDTO setEmailID(String emailID) {
         this.emailID = emailID;
+        return this;
     }
 
     public String getAddress1() {
         return address1;
     }
 
-    public void setAddress1(String address1) {
+    public VoterDTO setAddress1(String address1) {
         this.address1 = address1;
+        return this;
     }
 
     public String getAddress2() {
         return address2;
     }
 
-    public void setAddress2(String address2) {
+    public VoterDTO setAddress2(String address2) {
         this.address2 = address2;
+        return this;
     }
 
     public String getMandal() {
         return mandal;
     }
 
-    public void setMandal(String mandal) {
+    public VoterDTO setMandal(String mandal) {
         this.mandal = mandal;
+        return this;
     }
 
     public String getDistrict() {
         return district;
     }
 
-    public void setDistrict(String district) {
+    public VoterDTO setDistrict(String district) {
         this.district = district;
+        return this;
     }
 
     public int getPincode() {
         return pincode;
     }
 
-    public void setPincode(int pincode) {
+    public VoterDTO setPincode(int pincode) {
         this.pincode = pincode;
+        return this;
     }
-
-    public int getSocietyId() {
-        return societyId;
-    }
-
-    public void setSocietyId(int societyId) {
-        this.societyId = societyId;
-    }
-
 }

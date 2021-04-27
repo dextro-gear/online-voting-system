@@ -1,16 +1,11 @@
 package com.cg.onlinevotingsystem.votedlistms.controller;
 
-import com.cg.onlinevotingsystem.cooperativesocietyms.entities.CooperativeSociety;
 import com.cg.onlinevotingsystem.cooperativesocietyms.service.CooperativeSocietyServiceImpl;
-import com.cg.onlinevotingsystem.nominatedcandidatems.entities.NominatedCandidates;
 import com.cg.onlinevotingsystem.nominatedcandidatems.services.NominatedCandidateServiceImpl;
-import com.cg.onlinevotingsystem.votedlistms.dto.CastVotedListRequest;
-import com.cg.onlinevotingsystem.votedlistms.dto.CastVotedListResponse;
 import com.cg.onlinevotingsystem.votedlistms.dto.VotedListDTO;
 import com.cg.onlinevotingsystem.votedlistms.entities.VotedList;
 import com.cg.onlinevotingsystem.votedlistms.services.IVotedListService;
 import com.cg.onlinevotingsystem.votedlistms.util.VotedListUtil;
-import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 import com.cg.onlinevotingsystem.voterms.service.RegisteredSocietyVotersServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -62,7 +57,7 @@ class VotedListControllerUnitTest {
         verify(util).toDTO(votedListList);
 
     }
-
+/*
     @Test
     void deleteVotedListDetails() {
 
@@ -75,6 +70,8 @@ class VotedListControllerUnitTest {
         verify(votedListService).deletedVotedListDetails(id);
         verify(util).toDTO(votedList);
     }
+
+    */
 
     @Test
     void searchByVoterId() {
