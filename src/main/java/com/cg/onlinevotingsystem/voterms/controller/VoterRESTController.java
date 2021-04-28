@@ -40,10 +40,13 @@ public class VoterRESTController {
 
     @PostMapping("/add")
     public VoterDetails addNewVoter(@RequestBody @Valid CreateVoterRequest request) {
-        RegisteredSocietyVoters voter = util.populateVoterEntity(request);
+        System.out.println("****** inside addNewVoter");
+        RegisteredSocietyVoters voter = util.toEntity(request);
         CooperativeSociety society = societyService.viewSocietyById(request.getSocietyId());
+        System.out.println("society fetched");
         voter.setSociety(society);
         voter = voterService.voterRegistration(voter);
+        System.out.println("Voter created");
         return util.details(voter);
     }
 

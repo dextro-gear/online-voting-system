@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class VoterUtil {
 
-    public RegisteredSocietyVoters populateVoterEntity(CreateVoterRequest request) {
+    public RegisteredSocietyVoters toEntity(CreateVoterRequest request) {
         RegisteredSocietyVoters voter = new RegisteredSocietyVoters();
         voter.setFirstName(request.getFirstName());
         voter.setLastName(request.getLastName());
