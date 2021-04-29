@@ -35,6 +35,14 @@ public class RegisteredSocietyVotersServiceImpl implements IRegisteredSocietyVot
     public RegisteredSocietyVoters voterRegistration(RegisteredSocietyVoters voter) {
         validateVoter(voter);
         String cardId=generateId();
+        boolean generateLoop = true;
+        while(generateLoop){
+            try {
+                findByVoterCardId(cardId);
+            } catch (VoterNotFoundException e) {
+                generateLoop = false;
+            }
+        }
         voter.setVoterIdCardNo(cardId);
         return voterRepository.save(voter);
     }

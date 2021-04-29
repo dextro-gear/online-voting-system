@@ -21,15 +21,9 @@ public class CooperativeSociety {
 	private String district;
 	private String pincode;
 
-	public CooperativeSociety() {
-		
-	}
-
-
 	public int getSocietyId() {
 		return societyId;
 	}
-
 
 	public String getSocietyName() {
 		return societyName;

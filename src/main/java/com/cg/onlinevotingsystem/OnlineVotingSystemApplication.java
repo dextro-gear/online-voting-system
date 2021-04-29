@@ -43,17 +43,7 @@ public class OnlineVotingSystemApplication {
 		UserUI userUI = context.getBean(UserUI.class);
 		userUI.start();
 
-		/*TODO
-		* 	1. Dashboard REST Controller?
-		* 	2. displayPollingResult()
-		* 	3. Login module integration
-		* 	4. TestCases for REST Controllers
-		* 	5. Testcases for service methods
-		* 	7. Comments
-		* */
 	}
-
-
 
 	/**
 	 *
@@ -63,7 +53,7 @@ public class OnlineVotingSystemApplication {
 	public CorsFilter corsFilter(){
 		UrlBasedCorsConfigurationSource src=new UrlBasedCorsConfigurationSource();
 		CorsConfiguration configuration=new CorsConfiguration();
-		configuration.setAllowCredentials(true);
+		configuration.setAllowCredentials(false);
 		configuration.addAllowedHeader("*");
 		configuration.addAllowedOrigin("http://localhost:3000");
 		configuration.addAllowedMethod("*");

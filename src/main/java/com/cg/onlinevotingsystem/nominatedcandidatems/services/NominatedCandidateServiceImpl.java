@@ -107,12 +107,12 @@ public class NominatedCandidateServiceImpl implements INominatedCandidatesServic
      * @param candidate  The object which has to be validate
      * @throws  InvalidCandidateException
      */
-    void validateCandidate(NominatedCandidates  candidate){
+    void validateCandidate(NominatedCandidates candidate){
         if(candidate==null){
-            throw new InvalidCandidateException("arg can't be null");
+            throw new InvalidCandidateException("Object cannot be null");
         }
         if(candidate.getNominationFormNo()==null||candidate.getNominationFormNo().isEmpty()){
-            throw new InvalidCandidateException("form nuo can't be null or empty");
+            throw new InvalidCandidateException("Form No. cannot be null or empty");
 
         }
     }

@@ -36,27 +36,6 @@ public class RegisteredSocietyVoters {
 
     }
 
-    /*
-    public RegisteredSocietyVoters(String voterIDCardNo, String firstName, String lastName, String gender, String password, String reservationCategory, String mobileNo, String emailID, String address1, String address2, String mandal, String district, int pincode, boolean castedVote, CooperativeSociety cooperativeSociety) {
-        this.voterIDCardNo = voterIDCardNo;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.password = password;
-        this.reservationCategory = reservationCategory;
-        this.mobileNo = mobileNo;
-        this.emailID = emailID;
-        this.address1 = address1;
-        this.address2 = address2;
-        this.mandal = mandal;
-        this.district = district;
-        this.pincode = pincode;
-        this.castedVote = castedVote;
-        this.cooperativeSociety = cooperativeSociety;
-    }
-
-     */
-
     public int getId() {
         return id;
     }
@@ -191,7 +170,7 @@ public class RegisteredSocietyVoters {
                 "id=" + id +
                 ", voterIDCardNo='" + voterIDCardNo + '\'' +
                 ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName ;
+                ", lastName='" + lastName + " }";
 
     }
 

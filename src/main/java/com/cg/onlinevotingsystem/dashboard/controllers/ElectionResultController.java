@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @RequestMapping("/results")
 @RestController
@@ -61,9 +62,10 @@ public class ElectionResultController {
     }
 
     @GetMapping("/electionresult")
-    public String displayElectionResult(){
+    public List<ElectionResultDto> displayElectionResult(){
         resultService.displayPollingResult();
-        return "Result displayed in console UI";
+        List<ElectionResult> resultList= resultService.viewElectionResultList();
+        return resultUtil.toDetails(resultList);
     }
 
 

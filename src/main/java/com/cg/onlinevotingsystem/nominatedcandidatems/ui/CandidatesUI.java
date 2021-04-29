@@ -18,12 +18,25 @@ public class CandidatesUI {
     RegisteredSocietyVotersServiceImpl votersService;
 
     public void start(){
+        RegisteredSocietyVoters voter1 = votersService.searchByVoterID(14);
+        RegisteredSocietyVoters voter2 = votersService.searchByVoterID(17);
+        RegisteredSocietyVoters voter3 = votersService.searchByVoterID(16);
 
-     //System.out.println("\nAddcandidate");
-//        System.out.println(n4);
-//
-//        System.out.println("\nUpdate candidate");
-//        System.out.println(candidateService.updateNominatedCandidateDetails(12, "666666", null));
+        System.out.println("\nCANDIDATES ===================================================");
+
+        NominatedCandidates candidate1 = new NominatedCandidates("AE1F2G3455", voter1);
+        candidate1 = candidateService.addNominatedCandidate(candidate1);
+
+        NominatedCandidates candidate2 = new NominatedCandidates("AE1F545F55", voter2);
+        candidate2 = candidateService.addNominatedCandidate(candidate2);
+
+        NominatedCandidates candidate3 = new NominatedCandidates("AE1F747F77", voter3);
+        candidate3 = candidateService.addNominatedCandidate(candidate3);
+
+        System.out.println(candidate1.toString());
+        System.out.println(candidate2.toString());
+        System.out.println(candidate3.toString());
+
     }
 
 }

@@ -12,6 +12,7 @@ import java.util.Objects;
 @Entity
 public class ElectionResult {
 
+
     @Id
     @GeneratedValue
     private int id;
@@ -27,16 +28,17 @@ public class ElectionResult {
     private String result;
 
     public ElectionResult(){
+        this.result = "Unannounced";
     }
 
-    public ElectionResult(NominatedCandidates candidate, String cooperativeSocietyName, int totalPolledVotes, int totalCandidateVotes, float candidatesVotesPercentage, String result) {
+    public ElectionResult(NominatedCandidates candidate, String cooperativeSocietyName, int totalPolledVotes, int totalCandidateVotes, float candidatesVotesPercentage) {
         this.candidate = candidate;
         this.pollingDate = LocalDate.now();
         this.cooperativeSocietyName = cooperativeSocietyName;
         this.totalPolledVotes = totalPolledVotes;
         this.totalCandidateVotes = totalCandidateVotes;
         this.candidatesVotesPercentage = candidatesVotesPercentage;
-        this.result = result;
+        this.result = "Unannounced";
     }
 
 
