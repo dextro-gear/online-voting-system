@@ -46,8 +46,7 @@ public class OnlineVotingSystemApplication {
 	}
 
 	/**
-	 *
-	 * for handling cross origin requests
+	 * CORS Configuration for handling cross-origin requests.
 	 */
 	@Bean
 	public CorsFilter corsFilter(){
