@@ -75,9 +75,9 @@ public class ElectionResultServiceImpl implements IElectionResultService {
     @Override
     public ElectionResult viewCandidatewiseResult(int candidateID) {
         NominatedCandidates candidate = candidateService.searchByCandidateID(candidateID);
-        ElectionResult result=  resultRepository.findElectionResultByCandidate(candidate);
+        ElectionResult result =  resultRepository.findElectionResultByCandidate(candidate);
         if(result==null){
-           throw new ResultNotFoundException("result notr found for candidate");
+           throw new ResultNotFoundException("Result not found for candidate");
         }
         return result;
     }
@@ -193,15 +193,15 @@ public class ElectionResultServiceImpl implements IElectionResultService {
 
     void validateResult(ElectionResult result) {
         if (result == null) {
-            throw new InvalidResultException("result can't be null");
+            throw new InvalidResultException("Result cannot be null");
         }
 
         if (result.getCandidate() == null) {
-            throw new InvalidResultException("canidate can't be null in resunlt");
+            throw new InvalidResultException("Candidate cannot be null in result");
         }
 
         if (result.getCooperativeSocietyName() == null || result.getCooperativeSocietyName().isEmpty()) {
-            throw new InvalidResultException("society can't be null or empty");
+            throw new InvalidResultException("Society cannot be null or empty");
 
         }
 

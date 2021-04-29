@@ -46,18 +46,18 @@ public class ElectionResultController {
     }
 
     @GetMapping("/winner")
-    public NominatedCandidateDTO getWinner(){
+    public ElectionResultDto getWinner(){
         NominatedCandidates candidate=resultService.viewHighestVotingPercentCandidate();
-        NominatedCandidateDTO details=candidatesUtil.toDTO(candidate);
-        return details;
+        ElectionResultDto result = resultUtil.constructResult(candidate);
+        return result;
     }
 
 
     @GetMapping("/biggestloser")
-    public NominatedCandidateDTO viewLowestVotingPercentCandidate(){
+    public ElectionResultDto viewLowestVotingPercentCandidate(){
         NominatedCandidates candidate=resultService.viewLowestVotingPercentCandidate();
-        NominatedCandidateDTO details=candidatesUtil.toDTO(candidate);
-        return details;
+        ElectionResultDto result = resultUtil.constructResult(candidate);
+        return result;
 
     }
 
