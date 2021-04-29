@@ -5,6 +5,9 @@ import com.cg.onlinevotingsystem.cooperativesocietyms.service.CooperativeSociety
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 import com.cg.onlinevotingsystem.voterms.service.IRegisteredSocietyVotersService;
 
+import jdk.internal.org.jline.utils.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,6 +22,8 @@ public class VoterUI {
     @Autowired
     CooperativeSocietyServiceImpl societyService;
 
+    private static final Logger LOG = LoggerFactory.getLogger(VoterUI.class);
+
     public void display() {
 
         CooperativeSociety s1 = societyService.viewSocietyById(1);
@@ -32,7 +37,7 @@ public class VoterUI {
         CooperativeSociety s9 = societyService.viewSocietyById(9);
         CooperativeSociety s10 = societyService.viewSocietyById(10);
 
-        System.out.println("\nVOTERS =========================================================");
+        LOG.debug("VOTERS CREATION");
         RegisteredSocietyVoters v1 = new RegisteredSocietyVoters();
         v1.setFirstName("Ritik");
         v1.setLastName("S");
@@ -49,7 +54,7 @@ public class VoterUI {
         v1.setCastedVote(false);
         v1.setSociety(s1);
         v1 = voterService.voterRegistration(v1);
-        System.out.println(v1.toString());
+        LOG.debug(v1.toString());
 
         v1 = new RegisteredSocietyVoters();
         v1.setFirstName("Raja");
@@ -67,7 +72,7 @@ public class VoterUI {
         v1.setCastedVote(false);
         v1.setSociety(s2);
         v1 = voterService.voterRegistration(v1);
-        System.out.println(v1.toString());
+        LOG.debug(v1.toString());
 
         v1 = new RegisteredSocietyVoters();
         v1.setFirstName("Shvi");
@@ -85,7 +90,7 @@ public class VoterUI {
         v1.setCastedVote(false);
         v1.setSociety(s9);
         v1 = voterService.voterRegistration(v1);
-        System.out.println(v1.toString());
+        LOG.debug(v1.toString());
 
         v1 = new RegisteredSocietyVoters();
         v1.setFirstName("Samira");
@@ -103,7 +108,7 @@ public class VoterUI {
         v1.setCastedVote(false);
         v1.setSociety(s3);
         v1 = voterService.voterRegistration(v1);
-        System.out.println(v1.toString());
+        LOG.debug(v1.toString());
 
         v1 = new RegisteredSocietyVoters();
         v1.setFirstName("Sam");
@@ -121,7 +126,7 @@ public class VoterUI {
         v1.setCastedVote(false);
         v1.setSociety(s4);
         v1 = voterService.voterRegistration(v1);
-        System.out.println(v1.toString());
+        LOG.debug(v1.toString());
 
         v1 = new RegisteredSocietyVoters();
         v1.setFirstName("Ira");
@@ -139,7 +144,7 @@ public class VoterUI {
         v1.setCastedVote(false);
         v1.setSociety(s6);
         v1 = voterService.voterRegistration(v1);
-        System.out.println(v1.toString());
+        LOG.debug(v1.toString());
 
         v1 = new RegisteredSocietyVoters();
         v1.setFirstName("Samir");
@@ -157,7 +162,7 @@ public class VoterUI {
         v1.setCastedVote(false);
         v1.setSociety(s6);
         v1 = voterService.voterRegistration(v1);
-        System.out.println(v1.toString());
+        LOG.debug(v1.toString());
 
         v1 = new RegisteredSocietyVoters();
         v1.setFirstName("Mira");
@@ -175,7 +180,7 @@ public class VoterUI {
         v1.setCastedVote(false);
         v1.setSociety(s10);
         v1 = voterService.voterRegistration(v1);
-        System.out.println(v1.toString());
+        LOG.debug(v1.toString());
 
         v1 = new RegisteredSocietyVoters();
         v1.setFirstName("Amir");
@@ -193,7 +198,7 @@ public class VoterUI {
         v1.setCastedVote(false);
         v1.setSociety(s3);
         v1 = voterService.voterRegistration(v1);
-        System.out.println(v1.toString());
+        LOG.debug(v1.toString());
 
         v1 = new RegisteredSocietyVoters();
         v1.setFirstName("Ram");
@@ -211,7 +216,7 @@ public class VoterUI {
         v1.setCastedVote(false);
         v1.setSociety(s7);
         v1 = voterService.voterRegistration(v1);
-        System.out.println(v1.toString());
+        LOG.debug(v1.toString());
 
     }
 

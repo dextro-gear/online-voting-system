@@ -8,6 +8,8 @@ import com.cg.onlinevotingsystem.votedlistms.exceptions.InvalidVoteException;
 import com.cg.onlinevotingsystem.votedlistms.exceptions.VoteNotFoundException;
 import com.cg.onlinevotingsystem.voterms.entities.RegisteredSocietyVoters;
 import com.cg.onlinevotingsystem.voterms.service.IRegisteredSocietyVotersService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,11 +29,13 @@ public class VotedListServiceImpl implements IVotedListService {
     @Autowired
     private IRegisteredSocietyVotersService voterService;
 
+    private static final Logger LOG = LoggerFactory.getLogger(VotedListServiceImpl.class);
+
     /**
      * This method saves a VotedList record to the database. Saving a record
      * to the database is considered as "casting a vote". The appropriate flags
      * are set in the voter object and is updated.
-     * <p>
+     *
      * Note: The voter and the candidate must already be registered before
      * a vote can be cast
      *
@@ -47,6 +51,7 @@ public class VotedListServiceImpl implements IVotedListService {
         vote.setPollingDateTime(currentDate());
         voter.setCastedVote(true);
         votersService.updateRegisteredVoterDetails(voter);
+        LOG.info("Casted a vote for candidate {}" , candidate.getCandidateID());
         return votedListRepository.save(vote);
     }
 
@@ -114,6 +119,7 @@ public class VotedListServiceImpl implements IVotedListService {
         Optional<VotedList> votedListOptional = votedListRepository.findById(votedListID);
         if (votedListOptional.isPresent()) {
             votedListRepository.deleteById(votedListID);
+            LOG.info("Deleted vote with ID: {}" , votedListOptional.get().getId());
             return votedListOptional.get();
         }
 

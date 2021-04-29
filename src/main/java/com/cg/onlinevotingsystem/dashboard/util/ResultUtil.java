@@ -58,7 +58,7 @@ public class ResultUtil {
         String name = candidate.getSocietyVoter().getFirstName() + " " + candidate.getSocietyVoter().getLastName();
         String societyName = candidate.getSocietyVoter().getSociety().getSocietyName();
         String electionResult;
-        try{
+        try {
              ElectionResult candidateResult = resultService.viewCandidatewiseResult(candidate.getCandidateID());
              electionResult = candidateResult.getResult();
         } catch (ResultNotFoundException e) {

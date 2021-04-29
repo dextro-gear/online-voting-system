@@ -1,5 +1,7 @@
 package com.cg.onlinevotingsystem.cooperativesocietyms.ui;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +13,9 @@ import com.cg.onlinevotingsystem.cooperativesocietyms.service.ICooperativeSociet
 public class CooperativeSocietyUI {
 	@Autowired
 	ICooperativeSocietyService service;
-	
+
+	private static final Logger LOG = LoggerFactory.getLogger(CooperativeSocietyUI.class);
+
 	public void display() {
 		CooperativeSociety s1 = new CooperativeSociety();
 		s1.setSocietyName("Meraki");
@@ -104,17 +108,17 @@ public class CooperativeSocietyUI {
 		s10.setPincode("101010");
 		service.addSocietyDetails(s10);
 
-		System.out.println("SOCIETIES ========================================================");
-		System.out.println(s1.toString());
-		System.out.println(s2.toString());
-		System.out.println(s3.toString());
-		System.out.println(s4.toString());
-		System.out.println(s5.toString());
-		System.out.println(s6.toString());
-		System.out.println(s7.toString());
-		System.out.println(s8.toString());
-		System.out.println(s9.toString());
-		System.out.println(s10.toString());
+		LOG.info("SOCIETIES CREATION");
+		LOG.debug(s1.toString());
+		LOG.debug(s2.toString());
+		LOG.debug(s3.toString());
+		LOG.debug(s4.toString());
+		LOG.debug(s5.toString());
+		LOG.debug(s6.toString());
+		LOG.debug(s7.toString());
+		LOG.debug(s8.toString());
+		LOG.debug(s9.toString());
+		LOG.debug(s10.toString());
 
 	}
 

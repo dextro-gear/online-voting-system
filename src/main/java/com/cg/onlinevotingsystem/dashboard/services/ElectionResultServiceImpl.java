@@ -202,7 +202,6 @@ public class ElectionResultServiceImpl implements IElectionResultService {
 
         if (result.getCooperativeSocietyName() == null || result.getCooperativeSocietyName().isEmpty()) {
             throw new InvalidResultException("Society cannot be null or empty");
-
         }
 
     }
