@@ -108,7 +108,7 @@ public class CooperativeSocietyUI {
 		s10.setPincode("101010");
 		service.addSocietyDetails(s10);
 
-		LOG.info("SOCIETIES CREATION");
+		LOG.debug("SOCIETIES CREATION");
 		LOG.debug(s1.toString());
 		LOG.debug(s2.toString());
 		LOG.debug(s3.toString());
